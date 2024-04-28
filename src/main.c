@@ -71,7 +71,7 @@ int main() {
 
     mat4 proj;
     glm_ortho(0.0f, 800.0f, 0.0f, 800.0f, -1.5f, 1.5f, proj);
-    shader_set_mat4f(shader, proj, "u_MVP");
+    shader_set_mat4f(shader, proj, "uMVP");
 
     while (!glfwWindowShouldClose(window)) {
         window_clear(24, 24, 24, 255);
