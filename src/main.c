@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include <stdio.h>
 
 #include <GL/glew.h>
@@ -14,17 +15,57 @@ typedef signed int i32;
 typedef signed long long i64;
 
 void resize_callback(GLFWwindow* window, int width, int height);
-GLFWwindow* init(u16 width, u16 height, const char* title);
+GLFWwindow* init_window(u16 width, u16 height, const char* title);
+u32 create_shader(const char* vertexSource, const char* fragmentSource);
+char* read_entire_file(const char* fileName);
 
+float vertices[] = {
+     0.5f,  0.5f, 0.0f,
+     0.5f, -0.5f, 0.0f,
+    -0.5f, -0.5f, 0.0f,
+    -0.5f,  0.5f, 0.0f,
+};
+
+u32 indices[] = {
+    0, 1, 3,
+    1, 2, 3
+};
 
 int main() {
-    GLFWwindow* window = init(800, 800, "Hello world!");
+    GLFWwindow* window = init_window(800, 800, "Hello world!");
 
     if (window == NULL) {
         return 0;
     }
 
+    u32 shader = create_shader("vertex.glsl", "fragment.glsl");
+
+    u32 VAO;
+    u32 VBO;
+    u32 EBO;
+    glGenBuffers(1, &EBO);
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
     while (!glfwWindowShouldClose(window)) {
+        glClearColor(0.09, 0.09, 0.09, 1);
+        glClear(GL_COLOR_BUFFER_BIT);
+
+        glUseProgram(shader);
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -37,7 +78,7 @@ void resize_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
 }
 
-GLFWwindow* init(u16 width, u16 height, const char* title) {
+GLFWwindow* init_window(u16 width, u16 height, const char* title) {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -62,4 +103,48 @@ GLFWwindow* init(u16 width, u16 height, const char* title) {
 
     glViewport(0, 0, width, height);
     return window;
+}
+
+char* read_entire_file(const char* fileName) {
+    FILE* file = fopen(fileName, "r");
+    if (file == NULL) {
+        printf("Failed to open file: %s", fileName);
+        return NULL;
+    }
+    fseek(file, 0, SEEK_END);
+    i32 size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+    
+    char* string = malloc(size + 1);
+    fread(string, size, 1, file);
+    fclose(file);
+    string[size] = 0;
+    
+    return string;
+
+}
+
+u32 create_shader(const char* vertexSource, const char* fragmentSource) {
+    u32 vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    const char* vertexSrc = read_entire_file(vertexSource);
+    glShaderSource(vertexShader, 1, &vertexSrc, NULL);
+    glCompileShader(vertexShader);
+
+    u32 fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const char* fragmentSrc = read_entire_file(fragmentSource);
+    glShaderSource(fragmentShader, 1, &fragmentSrc, NULL);
+    glCompileShader(fragmentShader);
+
+    u32 shader = glCreateProgram();
+    glAttachShader(shader, vertexShader);
+    glAttachShader(shader, fragmentShader);
+    glLinkProgram(shader);
+    glUseProgram(shader);
+
+    glDeleteShader(vertexShader);
+    glDeleteShader(fragmentShader);
+    free((void*)vertexSrc);
+    free((void*)fragmentSrc);
+
+    return shader;
 }
