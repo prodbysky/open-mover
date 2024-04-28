@@ -4,10 +4,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include "shader.h"
 #include "types.h"
 
 void resize_callback(GLFWwindow* window, int width, int height);
-u32 create_shader(const char* vertexSource, const char* fragmentSource);
 GLFWwindow* window_init(u16 width, u16 height, const char* title);
 void window_clear(u16 r, u16 b, u16 g, u16 a);
 void window_swap(GLFWwindow* window);
@@ -31,7 +31,7 @@ int main() {
         return 0;
     }
 
-    u32 shader = create_shader("vertex.glsl", "fragment.glsl");
+    u32 shader = shader_new("vertex.glsl", "fragment.glsl");
 
     u32 VAO;
     u32 VBO;
@@ -103,29 +103,6 @@ void window_clear(u16 r, u16 b, u16 g, u16 a) {
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-u32 create_shader(const char* vertexSource, const char* fragmentSource) {
-    u32 vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    const char* vertexSrc = read_entire_file(vertexSource);
-    glShaderSource(vertexShader, 1, &vertexSrc, NULL);
-    glCompileShader(vertexShader);
-
-    u32 fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    const char* fragmentSrc = read_entire_file(fragmentSource);
-    glShaderSource(fragmentShader, 1, &fragmentSrc, NULL);
-    glCompileShader(fragmentShader);
-
-    u32 shader = glCreateProgram();
-    glAttachShader(shader, vertexShader);
-    glAttachShader(shader, fragmentShader);
-    glLinkProgram(shader);
-    glUseProgram(shader);
-
-    glDeleteShader(vertexShader);
-    glDeleteShader(fragmentShader);
-    free((void*)vertexSrc);
-    free((void*)fragmentSrc);
-
-    return shader;
 void window_swap(GLFWwindow* window) {
     glfwSwapBuffers(window);
     glfwPollEvents();
