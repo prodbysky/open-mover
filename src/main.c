@@ -3,7 +3,9 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <cglm/cglm.h>
 
+#include "cglm/cam.h"
 #include "shader.h"
 #include "types.h"
 
@@ -13,15 +15,15 @@ void window_clear(u16 r, u16 b, u16 g, u16 a);
 void window_swap(GLFWwindow* window);
 
 float vertices[] = {
-     0.5f,  0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-    -0.5f, -0.5f, 0.0f,
-    -0.5f,  0.5f, 0.0f,
+    200.0f, 600.0f, 1.0f,
+    600.0f, 600.0f, 1.0f,
+    600.0f, 200.0f, 1.0f,
+    200.0f, 200.0f, 1.0f,
 };
 
 u32 indices[] = {
-    0, 1, 3,
-    1, 2, 3
+    0, 1, 2,
+    0, 2, 3
 };
 
 int main() {
@@ -51,16 +53,16 @@ int main() {
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    while (!glfwWindowShouldClose(window)) {
-        glClearColor(0.09, 0.09, 0.09, 1);
-        glClear(GL_COLOR_BUFFER_BIT);
+    mat4 proj;
+    glm_ortho(0.0f, 800.0f, 0.0f, 800.0f, -1.5f, 1.5f, proj);
+    shader_set_mat4f(shader, proj, "u_MVP");
 
+    while (!glfwWindowShouldClose(window)) {
+        window_clear(24, 24, 24, 255);
         glUseProgram(shader);
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        window_swap(window);
     }
 
     glfwTerminate();
@@ -68,6 +70,7 @@ int main() {
 }
 
 void resize_callback(GLFWwindow* window, int width, int height) {
+    (void) window;
     glViewport(0, 0, width, height);
 }
 
