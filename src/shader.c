@@ -1,6 +1,6 @@
 #include <stdlib.h>
 
-#include <GL/glew.h>
+#include <glad/glad.h>
 #include <cglm/cglm.h>
 #include <GLFW/glfw3.h>
 
@@ -8,22 +8,36 @@
 
 #include "util.h"
 
-
 shader_t shader_new(const char* vertexSource, const char* fragmentSource) {
+    i32 success;
+    char infoLog[512];
+
     u32 vertexShader = glCreateShader(GL_VERTEX_SHADER);
     const char* vertexSrc = read_entire_file(vertexSource);
     glShaderSource(vertexShader, 1, &vertexSrc, NULL);
     glCompileShader(vertexShader);
+    glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+        printf("Failed to compile vertex shader: %s", infoLog);
+    }
 
     u32 fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     const char* fragmentSrc = read_entire_file(fragmentSource);
     glShaderSource(fragmentShader, 1, &fragmentSrc, NULL);
     glCompileShader(fragmentShader);
+    glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
+        printf("Failed to compile fragment shader: %s", infoLog);
+    }
+
 
     shader_t shader = glCreateProgram();
     glAttachShader(shader, vertexShader);
     glAttachShader(shader, fragmentShader);
     glLinkProgram(shader);
+
     glUseProgram(shader);
 
     glDeleteShader(vertexShader);
