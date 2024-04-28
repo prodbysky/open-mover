@@ -9,7 +9,6 @@
 void resize_callback(GLFWwindow* window, int width, int height);
 GLFWwindow* init_window(u16 width, u16 height, const char* title);
 u32 create_shader(const char* vertexSource, const char* fragmentSource);
-char* read_entire_file(const char* fileName);
 
 float vertices[] = {
      0.5f,  0.5f, 0.0f,
@@ -96,23 +95,6 @@ GLFWwindow* init_window(u16 width, u16 height, const char* title) {
     glViewport(0, 0, width, height);
     return window;
 }
-
-char* read_entire_file(const char* fileName) {
-    FILE* file = fopen(fileName, "r");
-    if (file == NULL) {
-        printf("Failed to open file: %s", fileName);
-        return NULL;
-    }
-    fseek(file, 0, SEEK_END);
-    i32 size = ftell(file);
-    fseek(file, 0, SEEK_SET);
-    
-    char* string = malloc(size + 1);
-    fread(string, size, 1, file);
-    fclose(file);
-    string[size] = 0;
-    
-    return string;
 
 }
 
