@@ -56,3 +56,6 @@ void rect_draw(rect_t rect, shader_t shader) {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
+void rect_color(rect_t* rect, vec3s c) {
+    rect->color = c;
+}
