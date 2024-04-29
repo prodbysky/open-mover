@@ -8,9 +8,11 @@
 
 #include "types.h"
 #include "shader.h"
+#include "vao.h"
 
 typedef struct {
-    u32 VAO, VBO, EBO; 
+    u32 VBO, EBO; 
+    vao_t vao;
     vec2s pos;
     vec3s color;
     f32 w, h;
