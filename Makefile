@@ -1,4 +1,4 @@
-SRC = src/glad.c src/shader.c src/util.c src/rect.c src/window.c src/input.c src/vao.c
+SRC = src/glad.c src/shader.c src/util.c src/rect.c src/window.c src/input.c src/vao.c src/vbo.c
 
 CFLAGS = -Llib/ -lglfw3 -lGL -lm -Iinclude/ -Wall -Werror -Wextra -ggdb
 

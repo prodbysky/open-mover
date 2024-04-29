@@ -2,6 +2,7 @@
 #include "cglm/mat4.h"
 #include "shader.h"
 #include "vao.h"
+#include "vbo.h"
 
 
 rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
@@ -23,12 +24,9 @@ rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
 
     rect.vao = vao_new(3);
     vao_bind(rect.vao);
+    rect.vbo = vbo_new(temp_vertices, 12);
     glGenBuffers(1, &rect.EBO);
-    glGenBuffers(1, &rect.VBO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, rect.VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(temp_vertices), temp_vertices, GL_STATIC_DRAW);
-
+    
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rect.EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(temp_indices), temp_indices, GL_STATIC_DRAW);
 
@@ -36,7 +34,7 @@ rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
     vao_enable_attribute(0);
 
     vao_unbind();
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    vbo_unbind();
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     return rect;
