@@ -3,16 +3,17 @@
 rect_t rect_new(f32 x, f32 y, f32 w, f32 h, f32 r, f32 g, f32 b) {
     rect_t rect; 
 
-    const u32 temp[] = {0, 1, 2, 0, 2, 3};
-    memcpy(rect.indices, temp, sizeof(temp));
-
-    const f32 temp_verts[] = {
+    rect.x = x;
+    rect.y = y;
+    rect.w = w;
+    rect.h = h;
+    const u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
+    const f32 temp_vertices[] = {
         x,     y, 1.0f, r, g, b, 
         x + w, y, 1.0f, r, g, b, 
         x + w, y - h, 1.0f, r, g, b, 
         x,     y - h, 1.0f, r, g, b, 
     };
-    memcpy(rect.vertices, temp_verts, sizeof(temp_verts));
 
     glGenBuffers(1, &rect.EBO);
     glGenVertexArrays(1, &rect.VAO);
@@ -21,10 +22,10 @@ rect_t rect_new(f32 x, f32 y, f32 w, f32 h, f32 r, f32 g, f32 b) {
     glBindVertexArray(rect.VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, rect.VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(rect.vertices), rect.vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(temp_vertices), temp_vertices, GL_STATIC_DRAW);
 
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, rect.EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(rect.indices), rect.indices, GL_STATIC_DRAW);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(temp_indices), temp_indices, GL_STATIC_DRAW);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(f32), (void*)0);
     glEnableVertexAttribArray(0);
