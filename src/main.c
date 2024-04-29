@@ -6,11 +6,11 @@
 #include <GLFW/glfw3.h>
 #include <cglm/cglm.h>
 
+#include "input.h"
 #include "window.h"
 #include "rect.h"
 #include "shader.h"
 #include "types.h"
-
 
 int main() {
     GLFWwindow* window = window_init(800, 800, "Hello world!");
@@ -18,6 +18,9 @@ int main() {
     if (window == NULL) {
         return 0;
     }
+
+    input_t input = input_new();
+    input_setup(&input, window);
 
     u32 shader = shader_new("vertex.glsl", "fragment.glsl");
 
@@ -32,7 +35,9 @@ int main() {
         glUseProgram(shader);
         
         rect_draw(rect, shader);
-        rect_move(&rect, (vec3s){.x = 1, .y = 0, .z = 0});
+        if (input_is_key_down(input, GLFW_KEY_SPACE)) {
+            rect_move(&rect, (vec3s){.x = 1, .y = 0, .z = 0});
+        }
         window_swap(window);
     }
 
