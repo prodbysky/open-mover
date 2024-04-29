@@ -24,7 +24,7 @@ int main() {
 
     u32 shader = shader_new("vertex.glsl", "fragment.glsl");
 
-    rect_t rect = rect_new(200, 600, 200, 200, 1, 1, 1);
+    rect_t rect = rect_new((vec2s){.x = 200, .y = 600}, 200, 200, (vec3s){.r = 1, .g = 1, .b = 1});
 
     mat4 proj;
     glm_ortho(0.0f, 800.0f, 0.0f, 800.0f, -1.5f, 1.5f, proj);
