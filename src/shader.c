@@ -71,3 +71,7 @@ void shader_set_vec3f(shader_t shader, vec3s data, const char* name) {
     glUseProgram(shader);
     glUniform3fv(uniform_location, 1, data.raw);
 }
+
+void shader_use(shader_t shader) {
+    glUseProgram(shader);
+}

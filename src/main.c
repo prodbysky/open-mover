@@ -35,7 +35,6 @@ int main() {
 
     while (!window_should_close(window)) {
         window_clear(24, 24, 24, 255);
-        glUseProgram(shader);
         
         rect_draw(rect, shader);
         window_swap(window);

@@ -49,6 +49,7 @@ void rect_move(rect_t* rect, vec3s d) {
 }
 
 void rect_draw(rect_t rect, shader_t shader) {
+    shader_use(shader);
     shader_set_vec3f(shader, rect.color, "uColor");
     shader_set_mat4f(shader, rect.view, "uView");
     glBindVertexArray(rect.VAO);

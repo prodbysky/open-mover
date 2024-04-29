@@ -4,6 +4,7 @@
 
 #include "window.h"
 #include <GLFW/glfw3.h>
+
 void resize_callback(GLFWwindow* window, i32 width, i32 height) {
     (void) window;
     glViewport(0, 0, width, height);
