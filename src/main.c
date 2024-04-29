@@ -24,7 +24,7 @@ int main() {
     input_t input = input_new();
     input_setup(&input, window);
 
-    u32 shader = shader_new("vertex.glsl", "fragment.glsl");
+    u32 shader = shader_new("color_quad_vertex.glsl", "color_quad_fragment.glsl");
 
     rect_t rect = rect_new((vec2s){.x = 200, .y = 600}, 200, 200, (vec3s){.r = 0, .g = 0, .b = 0});
 
