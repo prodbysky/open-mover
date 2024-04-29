@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 
 #include "window.h"
+#include <GLFW/glfw3.h>
 void resize_callback(GLFWwindow* window, i32 width, i32 height) {
     (void) window;
     glViewport(0, 0, width, height);
@@ -43,4 +44,8 @@ void window_clear(u16 r, u16 b, u16 g, u16 a) {
 void window_swap(GLFWwindow* window) {
     glfwSwapBuffers(window);
     glfwPollEvents();
+}
+
+bool window_should_close(GLFWwindow* window) {
+    return glfwWindowShouldClose(window);
 }
