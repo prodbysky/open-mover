@@ -68,7 +68,6 @@ void shader_set_vec3f(shader_t shader, vec3s data, const char* name) {
         return;
     }
 
-    f32 data_array[] = {data.x, data.y, data.z};
     glUseProgram(shader);
-    glUniform3fv(uniform_location, 1, data_array);
+    glUniform3fv(uniform_location, 1, data.raw);
 }
