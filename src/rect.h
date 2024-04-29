@@ -13,4 +13,5 @@ typedef struct {
 } rect_t;
 
 rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color);
+void rect_draw(rect_t rect);
 #endif

@@ -41,3 +41,8 @@ rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
     return rect;
 }
 
+void rect_draw(rect_t rect) {
+    glBindVertexArray(rect.VAO);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+

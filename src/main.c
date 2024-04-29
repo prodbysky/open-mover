@@ -34,8 +34,7 @@ int main() {
         window_clear(24, 24, 24, 255);
         glUseProgram(shader);
         
-        glBindVertexArray(rect.VAO);
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+        rect_draw(rect);
         window_swap(window);
     }
 
