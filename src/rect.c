@@ -6,8 +6,7 @@
 rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
     rect_t rect; 
 
-    rect.pos.x = pos.x;
-    rect.pos.y = pos.y;
+    rect.pos = pos;
     rect.w = w;
     rect.h = h;
     rect.color = color;
