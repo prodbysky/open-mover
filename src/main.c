@@ -28,13 +28,14 @@ int main() {
 
     mat4 proj;
     glm_ortho(0.0f, 800.0f, 0.0f, 800.0f, -1.5f, 1.5f, proj);
-    shader_set_mat4f(shader, proj, "uMVP");
+    shader_set_mat4f(shader, proj, "uProjection");
 
     while (!glfwWindowShouldClose(window)) {
         window_clear(24, 24, 24, 255);
         glUseProgram(shader);
         
         rect_draw(rect, shader);
+        rect_move(&rect, (vec3s){.x = 1, .y = 0, .z = 0});
         window_swap(window);
     }
 
