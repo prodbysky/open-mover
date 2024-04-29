@@ -1,18 +1,20 @@
 #include "rect.h"
 
-rect_t rect_new(f32 x, f32 y, f32 w, f32 h, f32 r, f32 g, f32 b) {
+
+rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
     rect_t rect; 
 
-    rect.x = x;
-    rect.y = y;
+    rect.pos.x = pos.x;
+    rect.pos.y = pos.y;
     rect.w = w;
     rect.h = h;
+
     const u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
     const f32 temp_vertices[] = {
-        x,     y, 1.0f, r, g, b, 
-        x + w, y, 1.0f, r, g, b, 
-        x + w, y - h, 1.0f, r, g, b, 
-        x,     y - h, 1.0f, r, g, b, 
+        pos.x,     pos.y,     1.0f, color.x, color.y, color.z, 
+        pos.x + w, pos.y,     1.0f, color.x, color.y, color.z, 
+        pos.x + w, pos.y - h, 1.0f, color.x, color.y, color.z, 
+        pos.x,     pos.y - h, 1.0f, color.x, color.y, color.z, 
     };
 
     glGenBuffers(1, &rect.EBO);
