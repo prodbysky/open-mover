@@ -59,3 +59,16 @@ void shader_set_mat4f(shader_t shader, mat4 data, const char* name) {
     glUseProgram(shader);
     glUniformMatrix4fv(uniform_location, 1, false, data[0]);
 }
+
+void shader_set_vec3f(shader_t shader, vec3s data, const char* name) {
+    i32 uniform_location = glGetUniformLocation(shader, name); 
+
+    if (uniform_location < 0) {
+        printf("Tried to set non-existant shader uniform: %s", name);
+        return;
+    }
+
+    f32 data_array[] = {data.x, data.y, data.z};
+    glUseProgram(shader);
+    glUniform3fv(uniform_location, 1, data_array);
+}
