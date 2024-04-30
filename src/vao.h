@@ -6,11 +6,11 @@
 #include <glad/glad.h>
 
 typedef struct {
-    u32 ID;
-    u8 nextAttrib;
-    u32 stride;
     u64 nextAttribOffset;
+    u32 ID;
+    u32 stride;
     u32 maxSize;
+    u8 nextAttrib;
 } vao_t;
 
 vao_t vao_new(u32 maxSize);
