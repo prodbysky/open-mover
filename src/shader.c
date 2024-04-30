@@ -14,6 +14,7 @@ shader_t shader_new() {
 
     const char* vertName = "quad_vertex.glsl";
     const char* defaultFragName = "default_quad_fragment.glsl";
+    const char* textureFragName = "default_quad_fragment.glsl";
 
     u32 vertexShader = glCreateShader(GL_VERTEX_SHADER);
     const char* vertexSrc = read_entire_file(vertName);
@@ -35,17 +36,33 @@ shader_t shader_new() {
         printf("Failed to compile default fragment shader: %s", infoLog);
     }
 
+    u32 textureFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    const char* textureFragmentSrc = read_entire_file(textureFragName);
+    glShaderSource(textureFragmentShader, 1, &textureFragmentSrc, NULL);
+    glCompileShader(textureFragmentShader);
+    glGetShaderiv(textureFragmentShader, GL_COMPILE_STATUS, &success);
+    if (!success) {
+        glGetShaderInfoLog(textureFragmentShader, 512, NULL, infoLog);
+        printf("Failed to compile texture fragment shader: %s", infoLog);
+    }
+
 
     shader_t shader;
     shader.defaultID = glCreateProgram();
+    shader.textureID = glCreateProgram();
     glAttachShader(shader.defaultID, vertexShader);
     glAttachShader(shader.defaultID, defaultFragmentShader);
+    glAttachShader(shader.textureID, vertexShader);
+    glAttachShader(shader.textureID, textureFragmentShader);
     glLinkProgram(shader.defaultID);
+    glLinkProgram(shader.textureID);
 
     glDeleteShader(vertexShader);
     glDeleteShader(defaultFragmentShader);
+    glDeleteShader(textureFragmentShader);
     free((void*)vertexSrc);
     free((void*)defaultFragmentSrc);
+    free((void*)textureFragmentSrc);
 
     return shader;
 }
