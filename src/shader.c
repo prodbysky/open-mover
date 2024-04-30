@@ -75,3 +75,9 @@ void shader_set_vec3f(shader_t shader, vec3s data, const char* name) {
 void shader_use(shader_t shader) {
     glUseProgram(shader);
 }
+
+void shader_set_projection(shader_t shader, vec2s size, vec2s zBounds) {
+    mat4 proj;
+    glm_ortho(0, size.x, 0, size.y, zBounds.x, zBounds.y, proj);
+    shader_set_mat4f(shader, proj, "uProjection");
+}
