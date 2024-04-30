@@ -18,5 +18,3 @@ TODO:
  - Don't include dependencies directly so use packages from package managers (APT PACMAN...)
  - A generic renderer that takes a struct and a function that renders the object
  - Testing the functionality (Tests)
- - Textures, transformations
- - Specialized shaders for solid colors and textured things
