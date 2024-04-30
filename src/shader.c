@@ -14,7 +14,7 @@ shader_t shader_new() {
 
     const char* vertName = "quad_vertex.glsl";
     const char* defaultFragName = "default_quad_fragment.glsl";
-    const char* textureFragName = "default_quad_fragment.glsl";
+    const char* textureFragName = "texture_quad_fragment.glsl";
 
     u32 vertexShader = glCreateShader(GL_VERTEX_SHADER);
     const char* vertexSrc = read_entire_file(vertName);
