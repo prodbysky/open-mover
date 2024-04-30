@@ -6,10 +6,8 @@
 #include <GLFW/glfw3.h>
 #include <cglm/cglm.h>
 
-#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-#define MINIAUDIO_IMPLEMENTATION
 #include <miniaudio.h>
 
 #include "rect.h"
