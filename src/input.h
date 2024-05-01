@@ -15,8 +15,6 @@ void input_callback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 m
 
 input_t input_new();
 
-bool input_is_key_down(input_t input, i32 key); 
-
 void input_setup(input_t* input, GLFWwindow* window);
 
 #endif // INPUT_H

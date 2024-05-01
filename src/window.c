@@ -3,6 +3,7 @@
 #include <glad/glad.h>
 
 #include "window.h"
+#include "input.h"
 #include <GLFW/glfw3.h>
 
 void resize_callback(GLFWwindow* window, i32 width, i32 height) {
@@ -10,30 +11,35 @@ void resize_callback(GLFWwindow* window, i32 width, i32 height) {
     glViewport(0, 0, width, height);
 }
 
-GLFWwindow* window_init(u16 width, u16 height, const char* title) {
+window_t window_init(u16 width, u16 height, const char* title) {
+    window_t window;
+
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    window.window = glfwCreateWindow(width, height, title, NULL, NULL);
 
-    GLFWwindow* window = glfwCreateWindow(width, height, title, NULL, NULL);
-
-    if (window == NULL) {
+    if (window.window == NULL) {
         printf("Failed to create GLFW window!\n");
-        return NULL;
     }
 
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(window.window);
     glfwSwapInterval(1);
 
-    if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        printf("Failed to initialize GLAD");
-        return NULL;
-    }
+    gladLoadGL();
 
-    glfwSetFramebufferSizeCallback(window, resize_callback);
+    glfwSetFramebufferSizeCallback(window.window, resize_callback);
 
     glViewport(0, 0, width, height);
+    
+    window.input = input_new();
+    input_setup(&window.input, window.window);
+    window.audio = audio_new();
+    if (window.audio == NULL) {
+        printf("Failed to initialize miniaudio engine");
+    }
+
     return window;
 }
 
@@ -42,11 +48,15 @@ void window_clear(u16 r, u16 b, u16 g, u16 a) {
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void window_swap(GLFWwindow* window) {
-    glfwSwapBuffers(window);
+void window_swap(window_t* window) {
+    glfwSwapBuffers(window->window);
     glfwPollEvents();
 }
 
-bool window_should_close(GLFWwindow* window) {
-    return glfwWindowShouldClose(window);
+bool window_should_close(window_t* window) {
+    return glfwWindowShouldClose(window->window);
+}
+
+bool window_is_key_down(window_t window, GLenum key) {
+    return window.input.keyStates[key - 32];
 }

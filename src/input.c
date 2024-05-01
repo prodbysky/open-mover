@@ -18,10 +18,6 @@ input_t input_new() {
     return input;
 }
 
-bool input_is_key_down(input_t input, i32 key) {
-    return input.keyStates[key - 32];
-}
-
 void input_setup(input_t* input, GLFWwindow* window) {
     glfwSetWindowUserPointer(window, input);
     glfwSetKeyCallback(window, input_callback);

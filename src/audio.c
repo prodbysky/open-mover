@@ -9,6 +9,7 @@ audio_t* audio_new() {
     result = ma_engine_init(NULL, engine);
     if (result != MA_SUCCESS) {
         printf("Failed to initialize audio engine\n");
+        return NULL;
     }
 
     return engine;
