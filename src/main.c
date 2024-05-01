@@ -1,4 +1,3 @@
-#include "cglm/struct/vec2.h"
 #define GLFW_INCLUDE_NONE
 #include <stdlib.h>
 #include <stdio.h>
