@@ -14,11 +14,12 @@ typedef struct {
     vec2s pos;
     vec3s color;
     f32 w, h;
-    mat4 view;
+    mat4 model;
 } rect_t;
 
 rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color);
 void rect_draw(rect_t rect, window_t* window);
 void rect_move(rect_t* rect, vec3s d);
+void rect_set_pos(rect_t* rect, vec2s d);
 void rect_color(rect_t* rect, vec3s c);
 #endif

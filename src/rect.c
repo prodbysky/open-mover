@@ -13,7 +13,7 @@ rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
     rect.w = w;
     rect.h = h;
     rect.color = color;
-    glm_mat4_identity(rect.view);
+    glm_mat4_identity(rect.model);
 
     const u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
     const f32 temp_vertices[] = {
@@ -39,7 +39,7 @@ rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color) {
 }
 
 void rect_move(rect_t* rect, vec3s d) {
-    glm_translate(rect->view, d.raw);
+    glm_translate(rect->model, d.raw);
     rect->pos.x += d.x;
     rect->pos.y += d.y;
 }
@@ -47,11 +47,21 @@ void rect_move(rect_t* rect, vec3s d) {
 void rect_draw(rect_t rect, window_t* window) {
     shader_set_current_shader(&window->shader, SHADER_DEFAULT);
     shader_set_vec3f(window->shader, rect.color, "uColor");
-    shader_set_mat4f(window->shader, rect.view, "uView");
+    shader_set_mat4f(window->shader, rect.model, "uModel");
     vao_bind(rect.vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
 void rect_color(rect_t* rect, vec3s c) {
     rect->color = c;
+}
+
+void rect_set_pos(rect_t* rect, vec2s d) {
+    vec3s movement = (vec3s){.x = -rect->pos.x, .y = -rect->pos.y, .z = 0};
+    glm_translate(rect->model, movement.raw);
+    movement.x = d.x;
+    movement.y = d.y;
+    glm_translate(rect->model, movement.raw);
+    rect->pos.x = d.x;
+    rect->pos.y = d.y;
 }
