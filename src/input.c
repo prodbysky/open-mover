@@ -1,4 +1,5 @@
 #include "input.h"
+#include <stdlib.h>
 
 void input_callback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 mods) {
     (void) scancode;
@@ -12,9 +13,9 @@ void input_callback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 m
     }
 }
 
-input_t input_new() {
-    input_t input;
-    memset(input.keyStates, 0, sizeof(input.keyStates));
+input_t* input_new() {
+    input_t* input = (input_t*)malloc(sizeof(input_t));
+    memset(input->keyStates, 0, sizeof(input->keyStates));
     return input;
 }
 

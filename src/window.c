@@ -34,7 +34,7 @@ window_t window_init(u16 width, u16 height, const char* title) {
     glViewport(0, 0, width, height);
     
     window.input = input_new();
-    input_setup(&window.input, window.window);
+    input_setup(window.input, window.window);
     window.audio = audio_new();
     if (window.audio == NULL) {
         printf("Failed to initialize miniaudio engine");
@@ -64,5 +64,5 @@ bool window_should_close(window_t* window) {
 }
 
 bool window_is_key_down(window_t window, GLenum key) {
-    return window.input.keyStates[key - 32];
+    return window.input->keyStates[key - 32];
 }

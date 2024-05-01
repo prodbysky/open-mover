@@ -11,7 +11,7 @@
 
 typedef struct {
     GLFWwindow* window;
-    input_t input;
+    input_t* input;
     audio_t* audio;
     shader_t shader;
 } window_t;
@@ -21,5 +21,6 @@ window_t window_init(u16 width, u16 height, const char* title);
 void window_clear(u16 r, u16 b, u16 g, u16 a);
 void window_swap(window_t* window);
 bool window_should_close(window_t* window);
+bool window_is_key_down(window_t window, GLenum key);
 
 #endif // WINDOW_H

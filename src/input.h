@@ -13,7 +13,7 @@ typedef struct {
 
 void input_callback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 mods);
 
-input_t input_new();
+input_t* input_new();
 
 void input_setup(input_t* input, GLFWwindow* window);
 
