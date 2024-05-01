@@ -40,6 +40,12 @@ window_t window_init(u16 width, u16 height, const char* title) {
         printf("Failed to initialize miniaudio engine");
     }
 
+    window.shader = shader_new();
+    shader_set_current_shader(&window.shader, SHADER_DEFAULT);
+    shader_set_projection(window.shader, (vec2s){.x = width, .y = height}, (vec2s){.x = -1.5, .y = 1.5});
+    shader_set_current_shader(&window.shader, SHADER_TEXTURE);
+    shader_set_projection(window.shader, (vec2s){.x = width, .y = height}, (vec2s){.x = -1.5, .y = 1.5});
+
     return window;
 }
 

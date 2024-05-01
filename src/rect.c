@@ -44,10 +44,10 @@ void rect_move(rect_t* rect, vec3s d) {
     rect->pos.y += d.y;
 }
 
-void rect_draw(rect_t rect, shader_t* shader) {
-    shader_set_current_shader(shader, SHADER_DEFAULT);
-    shader_set_vec3f(*shader, rect.color, "uColor");
-    shader_set_mat4f(*shader, rect.view, "uView");
+void rect_draw(rect_t rect, window_t* window) {
+    shader_set_current_shader(&window->shader, SHADER_DEFAULT);
+    shader_set_vec3f(window->shader, rect.color, "uColor");
+    shader_set_mat4f(window->shader, rect.view, "uView");
     vao_bind(rect.vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

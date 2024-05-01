@@ -6,7 +6,7 @@
 #include "vao.h"
 #include "vbo.h"
 #include "ebo.h"
-#include "shader.h"
+#include "window.h"
 
 typedef struct {
     vao_t vao;
@@ -19,6 +19,6 @@ typedef struct {
 } textured_rect_t;
 
 textured_rect_t textured_rect_new(vec2s pos, f32 w, f32 h, const char* textureName);
-void textured_rect_draw(textured_rect_t rect, shader_t* shader);
+void textured_rect_draw(textured_rect_t rect, window_t* window);
 
 #endif // TEXTURED_RECT_H

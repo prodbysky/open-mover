@@ -35,9 +35,9 @@ textured_rect_t textured_rect_new(vec2s pos, f32 w, f32 h, const char* textureNa
     return tRect; 
 }
 
-void textured_rect_draw(textured_rect_t rect, shader_t* shader) {
-    shader_set_current_shader(shader, SHADER_TEXTURE);
-    shader_set_mat4f(*shader, rect.view, "uView");
+void textured_rect_draw(textured_rect_t rect, window_t* window) {
+    shader_set_current_shader(&window->shader, SHADER_TEXTURE);
+    shader_set_mat4f(window->shader, rect.view, "uView");
     glBindTexture(GL_TEXTURE_2D, rect.texture);
     vao_bind(rect.vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

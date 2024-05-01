@@ -3,14 +3,17 @@
 
 #include <stdbool.h>
 #include <GLFW/glfw3.h>
+
 #include "types.h"
 #include "input.h"
 #include "audio.h"
+#include "shader.h"
 
 typedef struct {
     GLFWwindow* window;
     input_t input;
     audio_t* audio;
+    shader_t shader;
 } window_t;
 
 void resize_callback(GLFWwindow* window, i32 width, i32 height);
