@@ -3,7 +3,6 @@
 #include "ebo.h"
 #include "shader.h"
 #include "vao.h"
-#include <memory>
 
 Rect::Rect(vec2s pos, f32 w, f32 h, vec3s color) {
     this->pos = pos;
@@ -39,10 +38,10 @@ void Rect::Move(vec3s move) {
     pos.y += move.y;
 }
 
-void Rect::Draw(std::unique_ptr<Shader>& shader) {
-    shader->SetShader(SHADER_DEFAULT); 
-    shader->SetUniform(color, "uColor");
-    shader->SetUniform(model, "uModel");
+void Rect::Draw(Shader& shader) {
+    shader.SetShader(SHADER_DEFAULT); 
+    shader.SetUniform(color, "uColor");
+    shader.SetUniform(model, "uModel");
     vao.Bind();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }

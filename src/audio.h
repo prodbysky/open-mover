@@ -4,9 +4,10 @@
 
 class Audio {
 private:
-    std::unique_ptr<ma_engine> engine;
+    ma_engine* engine;
 
 public:
     Audio();
+    ~Audio() = default;
     void Play(const char* filename);
 };

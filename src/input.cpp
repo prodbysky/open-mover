@@ -1,4 +1,6 @@
 #include "input.h"
+
+#define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 #include <algorithm>
 #include <stdlib.h>
@@ -22,4 +24,8 @@ void Input::InputCallback(GLFWwindow* window, i32 key, i32 scancode, i32 action,
     } else if (action == GLFW_RELEASE) {
         input->keyStates[key - 32] = 0;
     }
+}
+
+bool Input::KeyDown(GLenum key) {
+    return keyStates[key - 32];
 }

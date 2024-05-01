@@ -1,7 +1,6 @@
 #include "ebo.h"
 #include <glad/glad.h>
 
-
 EBO::EBO(u32 vertices[], u32 n) {
     glGenBuffers(1, &ID);
 

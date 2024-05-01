@@ -1,8 +1,9 @@
-#include <iostream>
 #include <glad/glad.h>
 
 #include "window.h"
+#include "GLFW/glfw3.h"
 #include "types.h"
+#include <iostream>
 
 Window::Window(u16 width, u16 height, const char* title) {
     glfwInit();
@@ -23,17 +24,28 @@ Window::Window(u16 width, u16 height, const char* title) {
 
     glViewport(0, 0, width, height);
     
-    input = std::make_unique<Input>();
-    input->Setup(window);
+    input = Input();
+    input.Setup(window);
 
-    audio = std::make_unique<Audio>();
-    if (audio == nullptr) {
-        std::cerr << "Failed to initialize miniaudio engine" << '\n';
-    }
+    audio = Audio();
 
-    shader = Shader();
+    shader = Shader(123);
     shader.SetShader(SHADER_DEFAULT);
     shader.SetProjection((vec2s){.x = f32(width), .y = f32(height)}, (vec2s){.x = -1.5, .y = 1.5});
     shader.SetShader(SHADER_TEXTURE);
     shader.SetProjection((vec2s){.x = f32(width), .y = f32(height)}, (vec2s){.x = -1.5, .y = 1.5});
+}
+
+bool Window::ShouldClose() {
+    return glfwWindowShouldClose(window);
+}
+
+void Window::Swap() {
+    glfwSwapBuffers(window);
+    glfwPollEvents();
+}
+
+void Window::Clear(u16 r, u16 b, u16 g, u16 a) {
+    glClearColor(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
 }

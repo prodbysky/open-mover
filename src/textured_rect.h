@@ -14,14 +14,16 @@ private:
     VAO vao;
     VBO vbo;
     EBO ebo;
-    vec2s pos;
-    f32 w, h;
     mat4 model;
     Texture texture;
 public:
+    vec2s pos;
+    f32 w, h;
+public:
     // TODO: again options for the textures
+    TexturedRect() = default;
     TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName);
-    void Draw(std::unique_ptr<Shader>& shader);
+    void Draw(Shader& shader);
     void Move(vec2s move);
     void SetPos(vec2s move);
 };

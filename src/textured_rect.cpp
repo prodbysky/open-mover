@@ -2,7 +2,6 @@
 #include "cglm/mat4.h"
 #include "shader.h"
 #include "texture.h"
-#include <memory>
 
 TexturedRect::TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName) {
     this->pos = pos;
@@ -35,9 +34,9 @@ TexturedRect::TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName) {
     ebo.Unbind();
 }
 
-void TexturedRect::Draw(std::unique_ptr<Shader>& shader) {
-    shader->SetShader(SHADER_TEXTURE);
-    shader->SetUniform(model, "uModel");
+void TexturedRect::Draw(Shader& shader) {
+    shader.SetShader(SHADER_TEXTURE);
+    shader.SetUniform(model, "uModel");
     texture.Bind();
     vao.Bind();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

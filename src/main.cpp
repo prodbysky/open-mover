@@ -1,69 +1,66 @@
-#define GLFW_INCLUDE_NONE
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
+#include <iostream>
+#include <memory>
 
-#include <GLFW/glfw3.h>
 #include <cglm/cglm.h>
 
 #include <stb_image.h>
 #include <miniaudio.h>
 
 #include "textured_rect.h"
+#include <GLFW/glfw3.h>
 #include "window.h"
 
 #define G -.981
 #define GROUND 200
 
-typedef struct {
-    textured_rect_t rect;
+class Player {
+private:
+    TexturedRect rect;
     vec2s velocity;
     bool grounded;
-} player_t;
 
-player_t player_new(vec2s pos) {
-    player_t player;
-    player.rect = textured_rect_new(pos, 80, 80, "assets/player.png");
-    player.velocity = glms_vec2_zero();
-
-    return player;
-}
-
-void player_update(player_t* player, window_t window) {
-    if (player->rect.pos.y - player->rect.h <= GROUND) {
-        player->velocity.y = 0;
-        player->grounded = true;
-    } else {
-        player->velocity.y += G; 
-        player->grounded = false;
+public:
+    Player(vec2s pos) {
+        rect = TexturedRect(pos, 80, 80, "assets/player.png");
+        velocity = glms_vec2_zero();
     }
 
-    if (window_is_key_down(window, GLFW_KEY_SPACE) && player->grounded) {
-        player->velocity.y += 20; 
+    void Update(Window& window) {
+        if (rect.pos.y - rect.h <= GROUND) {
+            velocity.y = 0;
+            grounded = true;
+        } else {
+            velocity.y += G; 
+            grounded = false;
+        }
+        
+        if (window.input.KeyDown(GLFW_KEY_SPACE) && grounded) {
+            velocity.y += 20; 
+        }
+        rect.Move(velocity);
     }
 
-    textured_rect_move(&player->rect, player->velocity);
-}
+    void Draw(Shader& shader) {
+        rect.Draw(shader);
+    }
+};
 
-void player_draw(player_t player, window_t* window) {
-    textured_rect_draw(player.rect, window);
-}
 
 int main() {
-    window_t window = window_init(800, 800, "Hello world!");
+    Window window(800, 800, "Hello world!");
 
     if (window.window == NULL) {
         return -1;
     }
 
-    player_t player = player_new((vec2s){.x = 300, .y = 600});
+    Player player((vec2s){.x = 300, .y = 600});
 
-    audio_play(window.audio, "assets/pickupCoin.wav");
-    while (!window_should_close(&window)) {
-        player_update(&player, window);
-        window_clear(24, 24, 24, 255);
-        player_draw(player, &window);
-        window_swap(&window);
+    window.audio.Play("assets/pickupCoin.wav");
+    while (!window.ShouldClose()) {
+        player.Update(window);
+        window.Clear(24, 24, 24, 255);
+        player.Draw(window.shader);
+        window.Swap();
     }
 
     glfwTerminate();

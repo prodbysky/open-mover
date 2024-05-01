@@ -1,7 +1,11 @@
 #pragma once
 
-#include <GLFW/glfw3.h>
 #include <array>
+
+#define GLFW_INCLUDE_NONE
+#include <GLFW/glfw3.h>
+#include <glad/glad.h>
+
 
 #include "types.h"
 
@@ -13,4 +17,5 @@ private:
 public:
     Input();
     void Setup(GLFWwindow* window);
+    bool KeyDown(GLenum key);
 };

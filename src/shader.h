@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cglm/cglm.h>
 #include <cglm/struct.h>
 #include <glad/glad.h>
 #include <optional>
@@ -20,7 +19,9 @@ private:
 
     u32 CompileShader(const char* name, GLenum type);
 public:
-    Shader();
+    Shader() = default;
+    // HACK
+    Shader(int a);
     void SetProjection(vec2s size, vec2s zBounds);
     void Use();
     // TODO: Functions for all uniforms

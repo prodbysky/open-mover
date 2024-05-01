@@ -3,4 +3,4 @@ SRC = src/glad.c src/shader.cpp src/util.cpp src/rect.cpp src/window.cpp src/inp
 CPPFLAGS = -Llib/ -lglfw3 -lGL -lm -Iinclude/ -Wall -Werror -Wextra -ggdb
 
 main: src/main.cpp $(SRC)
-	g++ src/main.cpp -o main $(CPPFLAGS) $(SRC)
+	g++ $(SRC) src/main.cpp -o main $(CPPFLAGS)

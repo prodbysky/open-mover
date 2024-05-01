@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <stdbool.h>
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 
 #include "types.h"
@@ -10,14 +11,14 @@
 #include "shader.h"
 
 class Window {
-private:
+public:
     GLFWwindow* window;
     Shader shader;
-    std::unique_ptr<Input> input;
-    std::unique_ptr<Audio> audio;
+    Input input;
+    Audio audio;
 public:
     Window(u16 width, u16 height, const char* title);
     void Clear(u16 r, u16 b, u16 g, u16 a);
     void Swap();
-    void ShouldClose();
+    bool ShouldClose();
 };
