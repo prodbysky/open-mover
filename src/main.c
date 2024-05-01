@@ -25,16 +25,16 @@ int main() {
         return -1;
     }
 
+    // TODO: Setup this less manually e.g in the window_init()
     input_t input = input_new();
     input_setup(&input, window);
     audio_t* audio = audio_new();
-
-    // TODO:
     shader_t shader = shader_new();
     shader_set_current_shader(&shader, SHADER_DEFAULT);
     shader_set_projection(shader, (vec2s){.x = 800, .y = 800}, (vec2s){.x = -1.5, .y = 1.5});
     shader_set_current_shader(&shader, SHADER_TEXTURE);
     shader_set_projection(shader, (vec2s){.x = 800, .y = 800}, (vec2s){.x = -1.5, .y = 1.5});
+
 
     rect_t rect = rect_new((vec2s){.x = 200, .y = 600}, 80, 80, (vec3s){.r = 1, .g = 1, .b = 1});
     textured_rect_t tRect = textured_rect_new((vec2s){.x = 300, .y = 600}, 80, 80, "assets/player.png");
