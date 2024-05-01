@@ -1,8 +1,12 @@
 #pragma once
+#include <memory>
 #include <miniaudio.h>
 
-typedef ma_engine audio_t;
+class Audio {
+private:
+    std::unique_ptr<ma_engine> engine;
 
-audio_t* audio_new();
-
-void audio_play(audio_t* audio, const char* filename);
+public:
+    Audio();
+    void Play(const char* filename);
+};

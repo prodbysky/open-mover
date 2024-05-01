@@ -1,2 +1,3 @@
 #pragma once
-char* read_entire_file(const char* fileName);
+#include <string>
+std::string read_entire_file(const char* fileName);

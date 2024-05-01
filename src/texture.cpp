@@ -1,11 +1,11 @@
 #include "texture.h"
 #include <glad/glad.h>
+#include <iostream>
 #include <stb_image.h>
 
-texture_t texture_new(const char* name) {
-    texture_t texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
+Texture::Texture(const char* name) {
+    glGenTextures(1, &ID);
+    glBindTexture(GL_TEXTURE_2D, ID);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
@@ -23,16 +23,15 @@ texture_t texture_new(const char* name) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data); 
         glGenerateMipmap(GL_TEXTURE_2D);
     } else {
-        fprintf(stderr, "Failed to load texture: %s", name);
+        std::cerr << "Failed to load texture: " << name << '\n';
     }
     stbi_image_free(data);
-    return texture;
 }
 
-void texture_bind(texture_t texture) {
-    glBindTexture(GL_TEXTURE_2D, texture);
+void Texture::Bind() {
+    glBindTexture(GL_TEXTURE_2D, ID);
 }
 
-void texture_unbind() {
+void Texture::Unbind() {
     glBindTexture(GL_TEXTURE_2D, 0);
 }

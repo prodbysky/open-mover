@@ -6,18 +6,19 @@
 #include "vbo.h"
 #include "window.h"
 
-typedef struct {
-    vao_t vao;
-    vbo_t vbo;
-    ebo_t ebo;
+class Rect {
+private:
+    VAO vao;
+    VBO vbo;
+    EBO ebo;
     vec2s pos;
     vec3s color;
     f32 w, h;
     mat4 model;
-} rect_t;
-
-rect_t rect_new(vec2s pos, f32 w, f32 h, vec3s color);
-void rect_draw(rect_t rect, window_t* window);
-void rect_move(rect_t* rect, vec3s d);
-void rect_set_pos(rect_t* rect, vec2s d);
-void rect_color(rect_t* rect, vec3s c);
+public:
+    Rect(vec2s pos, f32 w, f32 h, vec3s color);
+    void Draw(std::unique_ptr<Shader>& shader);
+    void Move(vec3s move);
+    void SetPos(vec2s move);
+    void SetColor(vec3s color);
+};

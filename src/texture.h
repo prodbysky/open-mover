@@ -2,8 +2,14 @@
 #include "types.h"
 
 typedef u32 texture_t; 
+class Texture {
+private:
+    u32 ID;
 
-texture_t texture_new(const char* name);
-void texture_bind(texture_t texture);
-void texture_unbind();
-
+public:
+    // TODO: Fully featured texture function
+    Texture() = default;
+    Texture(const char* name);
+    void Bind();
+    void Unbind();
+};

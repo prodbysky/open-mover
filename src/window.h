@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <stdbool.h>
 #include <GLFW/glfw3.h>
 
@@ -8,16 +9,15 @@
 #include "audio.h"
 #include "shader.h"
 
-typedef struct {
+class Window {
+private:
     GLFWwindow* window;
-    input_t* input;
-    audio_t* audio;
-    shader_t shader;
-} window_t;
-
-void resize_callback(GLFWwindow* window, i32 width, i32 height);
-window_t window_init(u16 width, u16 height, const char* title);
-void window_clear(u16 r, u16 b, u16 g, u16 a);
-void window_swap(window_t* window);
-bool window_should_close(window_t* window);
-bool window_is_key_down(window_t window, GLenum key);
+    Shader shader;
+    std::unique_ptr<Input> input;
+    std::unique_ptr<Audio> audio;
+public:
+    Window(u16 width, u16 height, const char* title);
+    void Clear(u16 r, u16 b, u16 g, u16 a);
+    void Swap();
+    void ShouldClose();
+};

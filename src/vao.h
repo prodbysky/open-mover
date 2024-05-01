@@ -4,17 +4,18 @@
 
 #include <glad/glad.h>
 
-typedef struct {
+class VAO {
+private:
     u64 nextAttribOffset;
     u32 ID;
     u32 stride;
     u32 maxSize;
     u8 nextAttrib;
-} vao_t;
-
-vao_t vao_new(u32 maxSize);
-void vao_bind(vao_t vao);
-void vao_unbind();
-
-void vao_add_attribute(vao_t* vao, u32 size, GLenum type);
-void vao_enable_attribute(u32 attribute);
+public:
+    VAO() = default;
+    VAO(u32 maxSize);
+    void Bind();
+    void Unbind();
+    void AddAttribute(u32 size, GLenum type);
+    void EnableAttribute(u32 attribute);
+};

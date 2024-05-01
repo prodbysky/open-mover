@@ -1,17 +1,16 @@
 #pragma once
 
-#include <string.h>
-#include <stdbool.h>
 #include <GLFW/glfw3.h>
+#include <array>
 
 #include "types.h"
 
-typedef struct {
-    bool keyStates[316];
-} input_t;
-
-void input_callback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 mods);
-
-input_t* input_new();
-
-void input_setup(input_t* input, GLFWwindow* window);
+class Input {
+private:
+    std::array<bool, 316> keyStates;
+private:
+    static void InputCallback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 mods);
+public:
+    Input();
+    void Setup(GLFWwindow* window);
+};
