@@ -1,5 +1,4 @@
-#ifndef INPUT_H
-#define INPUT_H
+#pragma once
 
 #include <string.h>
 #include <stdbool.h>
@@ -16,5 +15,3 @@ void input_callback(GLFWwindow* window, i32 key, i32 scancode, i32 action, i32 m
 input_t* input_new();
 
 void input_setup(input_t* input, GLFWwindow* window);
-
-#endif // INPUT_H

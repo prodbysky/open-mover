@@ -1,5 +1,4 @@
-#ifndef SHADER_H
-#define SHADER_H
+#pragma once
 
 #include <cglm/cglm.h>
 #include <cglm/struct.h>
@@ -23,4 +22,3 @@ void shader_use(shader_t shader);
 void shader_set_mat4f(shader_t shader, mat4 data, const char* name);
 void shader_set_vec3f(shader_t shader, vec3s data, const char* name);
 void shader_set_current_shader(shader_t* shader, shader_type_e type);
-#endif // SHADER_H

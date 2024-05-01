@@ -1,5 +1,4 @@
-#ifndef RECT_H
-#define RECT_H
+#pragma once
 
 #include "ebo.h"
 #include "types.h"
@@ -22,4 +21,3 @@ void rect_draw(rect_t rect, window_t* window);
 void rect_move(rect_t* rect, vec3s d);
 void rect_set_pos(rect_t* rect, vec2s d);
 void rect_color(rect_t* rect, vec3s c);
-#endif

@@ -1,5 +1,4 @@
-#ifndef VAO_H
-#define VAO_H
+#pragma once
 
 #include "types.h"
 
@@ -19,5 +18,3 @@ void vao_unbind();
 
 void vao_add_attribute(vao_t* vao, u32 size, GLenum type);
 void vao_enable_attribute(u32 attribute);
-
-#endif // VAO_H

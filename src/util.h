@@ -1,4 +1,2 @@
-#ifndef UTIL_H
-#define UTIL_H
+#pragma once
 char* read_entire_file(const char* fileName);
-#endif // UTIL_H

@@ -1,5 +1,4 @@
-#ifndef TEXTURED_RECT_H
-#define TEXTURED_RECT_H
+#pragma once
 
 #include <cglm/struct.h>
 
@@ -22,5 +21,3 @@ textured_rect_t textured_rect_new(vec2s pos, f32 w, f32 h, const char* textureNa
 void textured_rect_draw(textured_rect_t rect, window_t* window);
 void textured_rect_move(textured_rect_t* rect, vec2s d);
 void textured_rect_set_pos(textured_rect_t* rect, vec2s d);
-
-#endif // TEXTURED_RECT_H
