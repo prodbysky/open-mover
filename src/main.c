@@ -22,8 +22,6 @@ int main() {
         return -1;
     }
 
-    // TODO: Setup this less manually e.g in the window_init()
-
     rect_t rect = rect_new((vec2s){.x = 200, .y = 600}, 80, 80, (vec3s){.r = 1, .g = 1, .b = 1});
     textured_rect_t tRect = textured_rect_new((vec2s){.x = 300, .y = 600}, 80, 80, "assets/player.png");
 
