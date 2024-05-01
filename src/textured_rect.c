@@ -42,3 +42,10 @@ void textured_rect_draw(textured_rect_t rect, window_t* window) {
     vao_bind(rect.vao);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
+
+void textured_rect_move(textured_rect_t* rect, vec2s d) {
+    vec3s movement = (vec3s){.x = d.x, .y = d.y, .z = 0};
+    glm_translate(rect->view, movement.raw);
+    rect->pos.x += d.x;
+    rect->pos.y += d.y;
+}

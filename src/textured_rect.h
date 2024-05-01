@@ -20,5 +20,6 @@ typedef struct {
 
 textured_rect_t textured_rect_new(vec2s pos, f32 w, f32 h, const char* textureName);
 void textured_rect_draw(textured_rect_t rect, window_t* window);
+void textured_rect_move(textured_rect_t* rect, vec2s d);
 
 #endif // TEXTURED_RECT_H
