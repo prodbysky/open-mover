@@ -89,6 +89,19 @@ void Shader::SetUniform(vec3s data, const char* name) {
     glUniform3fv(uniform_location, 1, data.raw);
 }
 
+
+void Shader::SetUniform(vec2s data, const char* name) {
+    i32 uniform_location = glGetUniformLocation(currentID, name); 
+
+    if (uniform_location < 0) {
+        std::cerr << "Tried to set non-existant shader uniform: " << name;
+        return;
+    }
+
+    Use();
+    glUniform2fv(uniform_location, 1, data.raw);
+}
+
 void Shader::Use() {
     glUseProgram(currentID);
 }

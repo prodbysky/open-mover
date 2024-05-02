@@ -25,6 +25,7 @@ public:
     // TODO: Functions for all uniforms
     void SetUniform(mat4 data, const char* name);
     void SetUniform(vec3s data, const char* name);
+    void SetUniform(vec2s data, const char* name);
 
     void SetShader(ShaderType type);
 };

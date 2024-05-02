@@ -46,7 +46,7 @@ void Rect::SetColor(vec3s color) {
 }
 
 void Rect::SetPos(vec2s move) {
-    vec3s movement = (vec3s){.x = -pos.x, .y = -pos.y, .z = 0};
+    vec3s movement = {.x = -pos.x, .y = -pos.y, .z = 0};
     glm_translate(model, movement.raw);
     movement.x = move.x;
     movement.y = move.y;

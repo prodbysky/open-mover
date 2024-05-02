@@ -37,7 +37,7 @@ void TexturedRect::Draw(Shader& shader) {
 }
 
 void TexturedRect::Move(vec2s move) {
-    vec3s movement = (vec3s){.x = move.x, .y = move.y, .z = 0};
+    vec3s movement = {.x = move.x, .y = move.y, .z = 0};
     glm_translate(model, movement.raw);
     pos.x += move.x;
     pos.y += move.y;
@@ -52,4 +52,3 @@ void TexturedRect::SetPos(vec2s move) {
     pos.x = move.x;
     pos.y = move.y;
 }
-
