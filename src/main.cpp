@@ -1,6 +1,3 @@
-#include <iostream>
-#include <memory>
-
 #include <cglm/cglm.h>
 
 #include <stb_image.h>
@@ -49,7 +46,7 @@ public:
 int main() {
     Window window(800, 800, "Hello world!");
 
-    if (window.window == NULL) {
+    if (window.window == nullptr) {
         return -1;
     }
 

@@ -3,7 +3,6 @@
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 #include <algorithm>
-#include <stdlib.h>
 
 Input::Input() {
     std::fill(keyStates.begin(), keyStates.end(), 0);

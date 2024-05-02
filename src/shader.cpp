@@ -1,8 +1,9 @@
-#include <glad/glad.h>
-#include <cglm/cglm.h>
+#include <iostream>
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
+#include <cglm/cglm.h>
 
 #include "shader.h"
 
@@ -44,7 +45,7 @@ u32 Shader::CompileShader(const char* name, GLenum type) {
     glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
     if (!success) {
         glGetShaderInfoLog(shader, 512, NULL, infoLog);
-        // std::cerr << "Failed to compile " << name << ": " << infoLog << '\n';
+        std::cerr << "Failed to compile " << name << ": " << infoLog << '\n';
     }
     
     return shader;
@@ -69,7 +70,7 @@ void Shader::SetUniform(mat4 data, const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
-        // std::cerr << "Tried to set non-existant shader uniform: " << name;
+        std::cerr << "Tried to set non-existant shader uniform: " << name;
         return;
     }
 
@@ -81,7 +82,7 @@ void Shader::SetUniform(vec3s data, const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
-        // std::cerr << "Tried to set non-existant shader uniform: " << name;
+        std::cerr << "Tried to set non-existant shader uniform: " << name;
         return;
     }
 

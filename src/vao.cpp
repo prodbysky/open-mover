@@ -1,5 +1,5 @@
 #include "vao.h"
-#include <assert.h>
+#include <cassert>
 #include <stdbool.h>
 
 VAO::VAO(u32 maxSize) {
