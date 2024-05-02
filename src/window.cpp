@@ -78,9 +78,9 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
 
     shader = std::make_unique<Shader>();
     shader->SetShader(SHADER_DEFAULT);
-    shader->SetProjection({.x = f32(width), .y = f32(height)}, {.x = -1.5, .y = 1.5});
+    shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
     shader->SetShader(SHADER_TEXTURE);
-    shader->SetProjection({.x = f32(width), .y = f32(height)}, {.x = -1.5, .y = 1.5});
+    shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
 }
 
 Window::~Window() {

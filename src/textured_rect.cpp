@@ -1,13 +1,13 @@
 #include "textured_rect.h"
-#include "cglm/mat4.h"
+#include <glm/ext/matrix_transform.hpp>
 #include "shader.h"
 #include "texture.h"
 
-TexturedRect::TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName) {
+TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName) {
     this->pos = pos;
     this->w = w;
     this->h = h;
-    glm_mat4_identity(model);
+    model = glm::identity<glm::mat4>();
 
     u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
     f32 temp_vertices[] = {
@@ -36,19 +36,19 @@ void TexturedRect::Draw(Shader& shader) {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void TexturedRect::Move(vec2s move) {
-    vec3s movement = {.x = move.x, .y = move.y, .z = 0};
-    glm_translate(model, movement.raw);
+void TexturedRect::Move(glm::vec2 move) {
+    glm::vec3 movement(move.x, move.y, 0);
+    model = glm::translate(model, movement);
     pos.x += move.x;
     pos.y += move.y;
 }
 
-void TexturedRect::SetPos(vec2s move) {
-    vec3s movement = (vec3s){.x = -pos.x, .y = -pos.y, .z = 0};
-    glm_translate(model, movement.raw);
+void TexturedRect::SetPos(glm::vec2 move) {
+    glm::vec3 movement(-pos.x, -pos.y, 0);
+    model = glm::translate(model, movement);
     movement.x = move.x;
     movement.y = move.y;
-    glm_translate(model, movement.raw);
+    model = glm::translate(model, movement);
     pos.x = move.x;
     pos.y = move.y;
 }

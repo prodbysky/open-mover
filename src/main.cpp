@@ -1,8 +1,9 @@
-#include <cglm/cglm.h>
 
 #include <stb_image.h>
 #include <miniaudio.h>
 
+#include <glm/ext/vector_float2.hpp>
+#include <glm/gtc/constants.hpp>
 #include "rect.h"
 #include "textured_rect.h"
 #include <GLFW/glfw3.h>
@@ -14,19 +15,19 @@
 class Player {
 private:
     TexturedRect rect;
-    vec2s velocity;
+    glm::vec2 velocity;
     bool grounded;
 public:
-    Player(vec2s pos) {
+    Player(glm::vec2 pos) {
         rect = TexturedRect(pos, 80, 80, "assets/player.png");
-        velocity = glms_vec2_zero();
+        velocity = glm::zero<glm::vec2>();
     }
 
     void Update(Window& window) {
         if (rect.pos.y - rect.h <= GROUND) {
             velocity.y = 0;
             grounded = true;
-            rect.SetPos({.x = rect.pos.x, .y = GROUND + 80});
+            rect.SetPos(glm::vec2(rect.pos.x, GROUND + 80));
         } else {
             velocity.y += G; 
             grounded = false;
@@ -61,8 +62,8 @@ int main() {
         return -1;
     }
 
-    Player player({.x = 300, .y = 600});
-    Rect ground({.x = 0, .y = 200}, 800, 80, {.r = 1, .g = 1, .b = 1});
+    Player player(glm::vec2(300.0f, 600.0f));
+    Rect ground(glm::vec2(0.0f, 200.0f), 800, 80, glm::vec3(1.0f, 1.0f, 1.0f));
 
     window.audio.Play("assets/pickupCoin.wav");
     while (!window.ShouldClose()) {

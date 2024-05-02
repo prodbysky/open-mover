@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cglm/struct.h>
 #include <memory>
 
 #include "texture.h"
@@ -14,16 +13,16 @@ private:
     VAO vao;
     VBO vbo;
     EBO ebo;
-    mat4 model;
+    glm::mat4 model;
     Texture texture;
 public:
-    vec2s pos;
+    glm::vec2 pos;
     f32 w, h;
 public:
     // TODO: again options for the textures
     TexturedRect() = default;
-    TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName);
+    TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName);
     void Draw(Shader& shader);
-    void Move(vec2s move);
-    void SetPos(vec2s move);
+    void Move(glm::vec2 move);
+    void SetPos(glm::vec2 move);
 };

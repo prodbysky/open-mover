@@ -1,8 +1,10 @@
 #pragma once
 
-#include <cglm/struct.h>
 #include <glad/glad.h>
 #include <optional>
+#include <glm/mat4x4.hpp>
+#include <glm/vec2.hpp>
+#include <glm/vec3.hpp>
 
 #include "types.h"
 
@@ -20,12 +22,12 @@ private:
     u32 CompileShader(const char* name, GLenum type);
 public:
     Shader();
-    void SetProjection(vec2s size, vec2s zBounds);
+    void SetProjection(glm::vec2 size, glm::vec2 zBounds);
     void Use();
     // TODO: Functions for all uniforms
-    void SetUniform(mat4 data, const char* name);
-    void SetUniform(vec3s data, const char* name);
-    void SetUniform(vec2s data, const char* name);
+    void SetUniform(glm::mat4 data, const char* name);
+    void SetUniform(glm::vec3 data, const char* name);
+    void SetUniform(glm::vec2 data, const char* name);
 
     void SetShader(ShaderType type);
 };

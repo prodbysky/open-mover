@@ -3,8 +3,7 @@
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
-#include <cglm/cglm.h>
-
+#include <glm/gtc/type_ptr.hpp>
 #include "shader.h"
 
 #include "util.h"
@@ -65,7 +64,7 @@ void Shader::SetShader(ShaderType type) {
     Use();
 }
 
-void Shader::SetUniform(mat4 data, const char* name) {
+void Shader::SetUniform(glm::mat4 data, const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
@@ -74,10 +73,11 @@ void Shader::SetUniform(mat4 data, const char* name) {
     }
 
     Use();
-    glUniformMatrix4fv(uniform_location, 1, false, data[0]);
+    glUniformMatrix4fv(uniform_location, 1, false, glm::value_ptr(data));
+    
 }
 
-void Shader::SetUniform(vec3s data, const char* name) {
+void Shader::SetUniform(glm::vec3 data, const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
@@ -86,11 +86,11 @@ void Shader::SetUniform(vec3s data, const char* name) {
     }
 
     Use();
-    glUniform3fv(uniform_location, 1, data.raw);
+    glUniform3fv(uniform_location, 1, glm::value_ptr(data));
 }
 
 
-void Shader::SetUniform(vec2s data, const char* name) {
+void Shader::SetUniform(glm::vec2 data, const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
@@ -99,15 +99,13 @@ void Shader::SetUniform(vec2s data, const char* name) {
     }
 
     Use();
-    glUniform2fv(uniform_location, 1, data.raw);
+    glUniform2fv(uniform_location, 1, glm::value_ptr(data));
 }
 
 void Shader::Use() {
     glUseProgram(currentID);
 }
 
-void Shader::SetProjection(vec2s size, vec2s zBounds) {
-    mat4 proj;
-    glm_ortho(0, size.x, 0, size.y, zBounds.x, zBounds.y, proj);
-    Shader::SetUniform(proj, "uProjection");
+void Shader::SetProjection(glm::vec2 size, glm::vec2 zBounds) {
+    Shader::SetUniform(glm::ortho(0.0f, size.x, 0.0f, size.y, zBounds.x, zBounds.y), "uProjection");
 }

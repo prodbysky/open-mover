@@ -1,15 +1,15 @@
 #include "rect.h"
-#include "cglm/mat4.h"
 #include "ebo.h"
+#include <glm/ext/matrix_transform.hpp>
 #include "shader.h"
 #include "vao.h"
 
-Rect::Rect(vec2s pos, f32 w, f32 h, vec3s color) {
+Rect::Rect(glm::vec2 pos, f32 w, f32 h, glm::vec3 color) {
     this->pos = pos;
     this->w = w;
     this->h = h;
     this->color = color;
-    glm_mat4_identity(model);
+    model = glm::identity<glm::mat4>();
 
     u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
     f32 temp_vertices[] = {
@@ -27,8 +27,8 @@ Rect::Rect(vec2s pos, f32 w, f32 h, vec3s color) {
     vao.Finalize(vbo, ebo);
 }
 
-void Rect::Move(vec3s move) {
-    glm_translate(model, move.raw);
+void Rect::Move(glm::vec3 move) {
+    model = glm::translate(model, move);
     pos.x += move.x;
     pos.y += move.y;
 }
@@ -41,16 +41,16 @@ void Rect::Draw(Shader& shader) {
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 }
 
-void Rect::SetColor(vec3s color) {
+void Rect::SetColor(glm::vec3 color) {
     this->color = color;
 }
 
-void Rect::SetPos(vec2s move) {
-    vec3s movement = {.x = -pos.x, .y = -pos.y, .z = 0};
-    glm_translate(model, movement.raw);
+void Rect::SetPos(glm::vec2 move) {
+    glm::vec3 movement(-pos.x, -pos.y, 0);
+    model = glm::translate(model, movement);
     movement.x = move.x;
     movement.y = move.y;
-    glm_translate(model, movement.raw);
+    model = glm::translate(model, movement);
     pos.x = move.x;
     pos.y = move.y;
 }
