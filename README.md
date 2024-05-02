@@ -8,15 +8,12 @@ Game / Game framework in C++ using OpenGL (GLAD GLFW CGLM)
 ```
 
 ## Style
-C files:
- - Function names: move_rect()
+C++ files:
+ - Method names: MoveRect();
  - Variable / argument names: move_rect(int xDiffrence)
-H files:
- - Header include guards
 
 TODO:
  - Don't include dependencies directly so use packages from package managers (APT PACMAN...)
  - A generic renderer that takes a struct and a function that renders the object
  - Testing the functionality (Tests)
  - Text rendering
- - DSA
