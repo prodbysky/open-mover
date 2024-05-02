@@ -2,10 +2,8 @@
 #include <glad/glad.h>
 
 VBO::VBO(f32 vertices[], u32 n) {
-    glGenBuffers(1, &ID);
-
-    glBindBuffer(GL_ARRAY_BUFFER, ID);
-    glBufferData(GL_ARRAY_BUFFER, n * sizeof(f32), vertices, GL_STATIC_DRAW);
+    glCreateBuffers(1, &ID);
+    glNamedBufferData(ID, n * sizeof(f32), vertices, GL_STATIC_DRAW);
 }
 
 void VBO::Bind() {

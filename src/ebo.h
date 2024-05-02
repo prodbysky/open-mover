@@ -3,7 +3,7 @@
 #include "types.h"
 
 class EBO {
-private:
+public:
     u32 ID;
 public:
     EBO() = default;

@@ -1,6 +1,8 @@
 #pragma once
 
+#include "ebo.h"
 #include "types.h"
+#include "vbo.h"
 
 #include <glad/glad.h>
 
@@ -17,5 +19,6 @@ public:
     void Bind();
     void Unbind();
     void AddAttribute(u32 size, GLenum type);
+    void Finalize(const VBO& vbo, const EBO& ebo);
     void EnableAttribute(u32 attribute);
 };

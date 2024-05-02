@@ -5,7 +5,7 @@
 typedef u32 vbo_t;
 
 class VBO {
-private:
+public:
     u32 ID;
 
 public:

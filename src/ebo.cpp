@@ -1,11 +1,9 @@
 #include "ebo.h"
 #include <glad/glad.h>
 
-EBO::EBO(u32 vertices[], u32 n) {
-    glGenBuffers(1, &ID);
-
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, n * sizeof(u32), vertices, GL_STATIC_DRAW);
+EBO::EBO(u32 indices[], u32 n) {
+    glCreateBuffers(1, &ID);
+    glNamedBufferData(ID, n * sizeof(u32), indices, GL_STATIC_DRAW);
 }
 
 void EBO::Bind() {

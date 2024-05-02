@@ -18,20 +18,14 @@ TexturedRect::TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName) {
     };
 
     vao = VAO(5);
-    vao.Bind();
     vbo = VBO(temp_vertices, 20);
     ebo = EBO(temp_indices, 6);
 
     vao.AddAttribute(3, GL_FLOAT);
     vao.AddAttribute(2, GL_FLOAT);
-    vao.EnableAttribute(0);
-    vao.EnableAttribute(1);
+    vao.Finalize(vbo, ebo);
 
     texture = Texture(textureName);
-    
-    vao.Unbind();
-    vbo.Unbind();
-    ebo.Unbind();
 }
 
 void TexturedRect::Draw(Shader& shader) {

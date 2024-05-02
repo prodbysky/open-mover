@@ -20,16 +20,11 @@ Rect::Rect(vec2s pos, f32 w, f32 h, vec3s color) {
     };
 
     vao = VAO(3);
-    vao.Bind();
     vbo = VBO(temp_vertices, 12);
     ebo = EBO(temp_indices, 6);
 
     vao.AddAttribute(3, GL_FLOAT);
-    vao.EnableAttribute(0);
-
-    vao.Unbind();
-    vbo.Unbind();
-    ebo.Unbind();
+    vao.Finalize(vbo, ebo);
 }
 
 void Rect::Move(vec3s move) {

@@ -1,13 +1,15 @@
 #include "vao.h"
+#include "glad/glad.h"
+#include "vbo.h"
 #include <cassert>
 #include <stdbool.h>
 
 VAO::VAO(u32 maxSize) {
-    glGenVertexArrays(1, &ID);
+    glCreateVertexArrays(1, &ID);
     nextAttribOffset = 0;
     nextAttrib = 0;
     stride = 0;
-    this->maxSize = maxSize;
+    this->maxSize = maxSize * sizeof(f32);
 }
 
 void VAO::Bind() {
@@ -31,7 +33,10 @@ void VAO::AddAttribute(u32 size, GLenum type) {
             assert(false && "Unimplemented attribute type");
     }
 
-    glVertexAttribPointer(nextAttrib, size, type, GL_FALSE, maxSize * elementSize, (void*)nextAttribOffset);
+    
+    EnableAttribute(nextAttrib);
+    glVertexArrayAttribBinding(ID, nextAttrib, 0);
+    glVertexArrayAttribFormat(ID, nextAttrib, size, type, GL_FALSE, nextAttribOffset);
     
     nextAttribOffset = elementSize * size;
     stride = elementSize * size;
@@ -39,5 +44,10 @@ void VAO::AddAttribute(u32 size, GLenum type) {
 }
 
 void VAO::EnableAttribute(u32 attribute) {
-    glEnableVertexAttribArray(attribute);
+    glEnableVertexArrayAttrib(ID, attribute);
+}
+
+void VAO::Finalize(const VBO& vbo, const EBO& ebo) {
+    glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, maxSize);
+    glVertexArrayElementBuffer(ID, ebo.ID);
 }
