@@ -17,7 +17,7 @@ TexturedRect::TexturedRect(vec2s pos, f32 w, f32 h, const char* textureName) {
         pos.x,     pos.y - h, 1.0f, 0.0f, 0.0f,
     };
 
-    vao = VAO(5);
+    vao = VAO();
     vbo = VBO(temp_vertices, 20);
     ebo = EBO(temp_indices, 6);
 

@@ -19,7 +19,7 @@ Rect::Rect(vec2s pos, f32 w, f32 h, vec3s color) {
         pos.x,     pos.y - h, 1.0f,  
     };
 
-    vao = VAO(3);
+    vao = VAO();
     vbo = VBO(temp_vertices, 12);
     ebo = EBO(temp_indices, 6);
 
