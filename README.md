@@ -1,5 +1,5 @@
 # Open Mover 
-Game / Game framework in C using OpenGL (GLAD GLFW CGLM)
+Game / Game framework in C++ using OpenGL (GLAD GLFW CGLM)
 
 ## Quick start
 ```console
