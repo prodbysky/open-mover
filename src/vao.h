@@ -17,7 +17,6 @@ public:
     VAO() = default;
     VAO(u32 maxSize);
     void Bind();
-    void Unbind();
     void AddAttribute(u32 size, GLenum type);
     void Finalize(const VBO& vbo, const EBO& ebo);
     void EnableAttribute(u32 attribute);

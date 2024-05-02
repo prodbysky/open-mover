@@ -16,10 +16,6 @@ void VAO::Bind() {
     glBindVertexArray(ID);
 }
 
-void VAO::Unbind() {
-    glBindVertexArray(0);
-}
-
 void VAO::AddAttribute(u32 size, GLenum type) {
     assert(size <= 4 && "Vertex attribute size more than 4");
 
