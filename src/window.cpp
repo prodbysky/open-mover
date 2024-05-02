@@ -4,6 +4,7 @@
 #include "GLFW/glfw3.h"
 #include "types.h"
 #include <iostream>
+#include <memory>
 
 void Window::MessageCallback(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei len, GLchar const* message, void const* user_param) {
     (void) user_param;
@@ -47,7 +48,7 @@ void Window::MessageCallback(GLenum src, GLenum type, GLuint id, GLenum severity
 	std::cout << src_str << ", " << type_str << ", " << severity_str << ", " << id << ": " << message << '\n';
 }
 
-Window::Window(u16 width, u16 height, const char* title) {
+Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -75,11 +76,15 @@ Window::Window(u16 width, u16 height, const char* title) {
 
     audio = Audio();
 
-    shader = Shader(123);
-    shader.SetShader(SHADER_DEFAULT);
-    shader.SetProjection((vec2s){.x = f32(width), .y = f32(height)}, (vec2s){.x = -1.5, .y = 1.5});
-    shader.SetShader(SHADER_TEXTURE);
-    shader.SetProjection((vec2s){.x = f32(width), .y = f32(height)}, (vec2s){.x = -1.5, .y = 1.5});
+    shader = std::make_unique<Shader>();
+    shader->SetShader(SHADER_DEFAULT);
+    shader->SetProjection((vec2s){.x = f32(width), .y = f32(height)}, (vec2s){.x = -1.5, .y = 1.5});
+    shader->SetShader(SHADER_TEXTURE);
+    shader->SetProjection((vec2s){.x = f32(width), .y = f32(height)}, (vec2s){.x = -1.5, .y = 1.5});
+}
+
+Window::~Window() {
+    glfwTerminate();
 }
 
 bool Window::ShouldClose() {

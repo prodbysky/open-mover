@@ -56,10 +56,8 @@ int main() {
     while (!window.ShouldClose()) {
         player.Update(window);
         window.Clear(24, 24, 24, 255);
-        player.Draw(window.shader);
+        player.Draw(*window.shader);
         window.Swap();
     }
-
-    glfwTerminate();
     return 0;
 }

@@ -9,8 +9,7 @@
 
 #include "util.h"
 
-Shader::Shader(int a) {
-    (void)a;
+Shader::Shader() {
     const char* vertName = "quad_vertex.glsl";
     const char* defaultFragName = "default_quad_fragment.glsl";
     const char* textureFragName = "texture_quad_fragment.glsl";
