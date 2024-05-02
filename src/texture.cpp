@@ -4,24 +4,24 @@
 #include <stb_image.h>
 
 Texture::Texture(const char* name) {
-    glGenTextures(1, &ID);
-    glBindTexture(GL_TEXTURE_2D, ID);
+    glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTextureParameteri(ID, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
+    glTextureParameteri(ID, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+    glTextureParameteri(ID, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTextureParameteri(ID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTextureParameteri(ID, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
+    glTextureParameteri(ID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     i32 width, height, nChannels;
     stbi_set_flip_vertically_on_load(1);
     u8* data = stbi_load(name, &width, &height, &nChannels, 0);
 
     if (data) {
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data); 
-        glGenerateMipmap(GL_TEXTURE_2D);
+        glTextureStorage2D(ID, 1, GL_SRGB8, width, height);
+        glTextureSubImage2D(ID, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+        glGenerateTextureMipmap(ID);
     } else {
         std::cerr << "Failed to load texture: " << name << '\n';
     }
@@ -29,7 +29,7 @@ Texture::Texture(const char* name) {
 }
 
 void Texture::Bind() {
-    glBindTexture(GL_TEXTURE_2D, ID);
+    glBindTextureUnit(0, ID);
 }
 
 void Texture::Unbind() {
