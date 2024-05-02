@@ -34,6 +34,16 @@ public:
         if (window.input.KeyDown(GLFW_KEY_SPACE) && grounded) {
             velocity.y += 20; 
         }
+
+        if (window.input.KeyDown(GLFW_KEY_A)) {
+            velocity.x = -10;
+        }
+
+        if (window.input.KeyDown(GLFW_KEY_D)) {
+            velocity.x = 10;
+        }
+
+        velocity.x /= 1.2;
         rect.Move(velocity);
     }
 
