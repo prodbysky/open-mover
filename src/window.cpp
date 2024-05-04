@@ -97,5 +97,5 @@ void Window::MessageCallback(GLenum src, GLenum type, GLuint id, GLenum severity
 		}
         return "UNKNOWN";
 	}();
-	std::cout << src_str << ", " << type_str << ", " << severity_str << ", " << id << ": " << message << '\n';
+	std::cerr << src_str << ", " << type_str << ", " << severity_str << ", " << id << ": " << message << '\n';
 }
