@@ -3,7 +3,8 @@
 #include <iostream>
 #include <stb_image.h>
 
-Texture::Texture(const char* name, GLenum wrapMode, GLenum textureFilter, GLenum mipmapMinFilter, 
+Texture::Texture(const char* name, GLenum wrapMode, 
+                 GLenum textureFilter, GLenum mipmapMinFilter, 
                  GLenum mipmapMagFilter, GLenum imageType) {
     glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 
