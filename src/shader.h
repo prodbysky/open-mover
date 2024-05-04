@@ -20,6 +20,7 @@ private:
     u32 currentID;
 
     u32 CompileShader(const char* name, GLenum type);
+    u32 GetUniformLocation(const char* name);
 public:
     Shader();
     void SetProjection(glm::vec2 size, glm::vec2 zBounds);

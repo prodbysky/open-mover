@@ -63,14 +63,19 @@ void Shader::SetShader(ShaderType type) {
 
     Use();
 }
-
-void Shader::SetUniform(glm::mat4 data, const char* name) {
+u32 Shader::GetUniformLocation(const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
-        std::cerr << "Tried to set non-existant shader uniform: " << name;
-        return;
+        std::cerr << "Tried to get non-existant shader uniform: " << name;
+        return -1;
     }
+    return uniform_location;
+}
+
+void Shader::SetUniform(glm::mat4 data, const char* name) {
+    i32 uniform_location = GetUniformLocation(name);
+
 
     Use();
     glUniformMatrix4fv(uniform_location, 1, false, glm::value_ptr(data));
@@ -78,12 +83,7 @@ void Shader::SetUniform(glm::mat4 data, const char* name) {
 }
 
 void Shader::SetUniform(glm::vec3 data, const char* name) {
-    i32 uniform_location = glGetUniformLocation(currentID, name); 
-
-    if (uniform_location < 0) {
-        std::cerr << "Tried to set non-existant shader uniform: " << name;
-        return;
-    }
+    i32 uniform_location = GetUniformLocation(name);
 
     Use();
     glUniform3fv(uniform_location, 1, glm::value_ptr(data));
@@ -91,12 +91,7 @@ void Shader::SetUniform(glm::vec3 data, const char* name) {
 
 
 void Shader::SetUniform(glm::vec2 data, const char* name) {
-    i32 uniform_location = glGetUniformLocation(currentID, name); 
-
-    if (uniform_location < 0) {
-        std::cerr << "Tried to set non-existant shader uniform: " << name;
-        return;
-    }
+    i32 uniform_location = GetUniformLocation(name);
 
     Use();
     glUniform2fv(uniform_location, 1, glm::value_ptr(data));
