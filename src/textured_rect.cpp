@@ -23,7 +23,7 @@ TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName)
 
     vao.AddAttribute(3, GL_FLOAT);
     vao.AddAttribute(2, GL_FLOAT);
-    vao.Finalize(vbo, ebo);
+    vao.LinkVBOAndEBO(vbo, ebo);
 
     texture = Texture(textureName);
 }

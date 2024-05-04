@@ -24,7 +24,7 @@ Rect::Rect(glm::vec2 pos, f32 w, f32 h, glm::vec3 color) {
     ebo = EBO(temp_indices, 6);
 
     vao.AddAttribute(3, GL_FLOAT);
-    vao.Finalize(vbo, ebo);
+    vao.LinkVBOAndEBO(vbo, ebo);
 }
 
 void Rect::Move(glm::vec3 move) {

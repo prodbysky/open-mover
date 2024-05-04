@@ -17,6 +17,6 @@ public:
     VAO();
     void Bind();
     void AddAttribute(u32 size, GLenum type);
-    void Finalize(const VBO& vbo, const EBO& ebo);
+    void LinkVBOAndEBO(const VBO& vbo, const EBO& ebo);
     void EnableAttribute(u32 attribute);
 };

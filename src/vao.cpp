@@ -42,7 +42,7 @@ void VAO::EnableAttribute(u32 attribute) {
     glEnableVertexArrayAttrib(ID, attribute);
 }
 
-void VAO::Finalize(const VBO& vbo, const EBO& ebo) {
+void VAO::LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) {
     glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
     glVertexArrayElementBuffer(ID, ebo.ID);
 }
