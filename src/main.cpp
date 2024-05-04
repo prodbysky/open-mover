@@ -1,13 +1,12 @@
-
 #include <stb_image.h>
 #include <miniaudio.h>
 
 #include <glm/ext/vector_float2.hpp>
 #include <glm/gtc/constants.hpp>
-#include "rect.h"
 #include "textured_rect.h"
-#include <GLFW/glfw3.h>
 #include "window.h"
+#include "rect.h"
+#include <GLFW/glfw3.h>
 
 #define G -.981
 #define GROUND 200

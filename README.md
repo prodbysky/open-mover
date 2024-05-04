@@ -14,7 +14,6 @@ C++ files:
 
 TODO:
  - Don't include dependencies directly so use packages from package managers (APT PACMAN...)
- - A generic renderer that takes a struct and a function that renders the object
- - Testing the functionality (Tests)
  - Text rendering
  - Compilation on Windows (horrible)
+ - Move framework code to separate github repo (Not soon since it still experiencing rapid changes)
