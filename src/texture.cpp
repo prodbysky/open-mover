@@ -1,4 +1,5 @@
 #include "texture.h"
+#include <cstring>
 #include <glad/glad.h>
 #include <iostream>
 #include <stb_image.h>
@@ -15,6 +16,7 @@ Texture::Texture(const char* name, GLenum wrapMode,
 
     glTextureParameteri(ID, GL_TEXTURE_MIN_FILTER, mipmapMinFilter);
     glTextureParameteri(ID, GL_TEXTURE_MAG_FILTER, mipmapMagFilter);
+
 
     i32 width, height, nChannels;
     stbi_set_flip_vertically_on_load(1);
