@@ -19,7 +19,7 @@ private:
     bool grounded;
 public:
     Player(glm::vec2 pos) {
-        rect = TexturedRect(pos, 80, 80, "assets/player.png");
+        rect = TexturedRect(pos, 80, 80, "assets/sprites/player.png");
         velocity = glm::zero<glm::vec2>();
     }
 
@@ -58,7 +58,7 @@ public:
 int main() {
     Window window(800, 800, "Hello world!");
     FontSystem fs;
-    fs.LoadFont("assets/arial.ttf", 48);
+    fs.LoadFont("assets/fonts/arial.ttf", 48);
 
     if (window.window == nullptr) {
         return -1;
@@ -67,13 +67,13 @@ int main() {
     Player player(glm::vec2(300.0f, 600.0f));
     Rect ground(glm::vec2(0.0f, 200.0f), 800, 80, glm::vec3(1.0f, 1.0f, 1.0f));
 
-    window.audio.Play("assets/pickupCoin.wav");
+    window.audio.Play("assets/sounds/pickupCoin.wav");
     while (!window.ShouldClose()) {
         player.Update(window);
         window.Clear(24, 24, 24, 255);
         player.Draw(*window.shader);
         ground.Draw(*window.shader);
-        fs.Draw("assets/arial.ttf", *window.shader, "This is really funny :D", glm::vec2(200, 200), 1, glm::vec3(1, 1, 1));
+        fs.Draw("assets/fonts/arial.ttf", *window.shader, "This is really funny :D", glm::vec2(200, 300), 1, glm::vec3(1, 1, 1));
         window.Swap();
     }
     return 0;

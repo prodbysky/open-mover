@@ -9,11 +9,11 @@
 #include "util.h"
 
 Shader::Shader() {
-    const char* vertName = "quad_vertex.glsl";
-    const char* defaultFragName = "default_quad_fragment.glsl";
-    const char* textureFragName = "texture_quad_fragment.glsl";
-    const char* fontVertexName = "font_vertex.glsl";
-    const char* fontFragName = "font_fragment.glsl";
+    const char* vertName = "assets/shaders/quad_vertex.glsl";
+    const char* defaultFragName = "assets/shaders/default_quad_fragment.glsl";
+    const char* textureFragName = "assets/shaders/texture_quad_fragment.glsl";
+    const char* fontVertexName = "assets/shaders/font_vertex.glsl";
+    const char* fontFragName = "assets/shaders/font_fragment.glsl";
 
     u32 vertexShader = CompileShader(vertName, GL_VERTEX_SHADER);
     u32 defaultFragShader = CompileShader(defaultFragName, GL_FRAGMENT_SHADER);
