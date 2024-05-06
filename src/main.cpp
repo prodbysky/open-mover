@@ -73,7 +73,7 @@ int main() {
         window.Clear(24, 24, 24, 255);
         player.Draw(*window.shader);
         ground.Draw(*window.shader);
-        fs.Draw("assets/arial.ttf", *window.shader, "HELLO", glm::vec2(200, 200), 1, glm::vec3(1, 1, 1));
+        fs.Draw("assets/arial.ttf", *window.shader, "This is really funny :D", glm::vec2(200, 200), 1, glm::vec3(1, 1, 1));
         window.Swap();
     }
     return 0;
