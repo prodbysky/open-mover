@@ -15,7 +15,6 @@ class FontSystem {
 private: 
     FT_Library freetype;
     std::unordered_map<std::string, Font> fonts;
-    // TODO: FontRect class
     VAO vao;
     VBO vbo;
 
