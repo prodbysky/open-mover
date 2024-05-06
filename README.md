@@ -22,7 +22,6 @@ Game / Game framework in C++ using OpenGL (GLAD GLFW CGLM)
  - Playing audio
  - Input management
 
-
 ## TODO:
  - Don't include dependencies directly so use packages from package managers (APT PACMAN...)
  - Compilation on Windows (horrible)
