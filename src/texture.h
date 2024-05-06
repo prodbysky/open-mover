@@ -1,8 +1,14 @@
 #pragma once
 #include "types.h"
 #include <glad/glad.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
-typedef u32 texture_t; 
+enum TextureType {
+    TEXTURE_GLYPH,
+    TEXTURE_IMAGE,
+};
+
 class Texture {
 private:
     u32 ID;
@@ -10,9 +16,12 @@ private:
 public:
     // TODO: Fully featured texture function
     Texture() = default;
+
     Texture(const char* name, GLenum wrapMode = GL_MIRRORED_REPEAT, 
-                     GLenum textureFilter = GL_NEAREST, GLenum mipmapMinFilter = GL_LINEAR_MIPMAP_NEAREST, 
-                     GLenum mipmapMagFilter = GL_NEAREST, GLenum imageType = GL_SRGB8);
+                     GLenum textureFilter = GL_NEAREST, GLenum imageType = GL_SRGB8,
+                     FT_Face face = {}, TextureType type = TEXTURE_IMAGE);
+
+    Texture(GLenum wrapMode, GLenum textureFilter, FT_Face face);
     void Bind();
     void Unbind();
 };
