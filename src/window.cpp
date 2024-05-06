@@ -2,6 +2,7 @@
 
 #include "window.h"
 #include "GLFW/glfw3.h"
+#include "shader.h"
 #include "types.h"
 #include <iostream>
 #include <memory>
@@ -30,6 +31,9 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
 
     glViewport(0, 0, width, height);
     
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+
     input = Input();
     input.Setup(window);
 
@@ -39,6 +43,8 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
     shader->SetShader(SHADER_DEFAULT);
     shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
     shader->SetShader(SHADER_TEXTURE);
+    shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
+    shader->SetShader(SHADER_FONT);
     shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
 }
 
