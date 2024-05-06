@@ -46,3 +46,6 @@ void VAO::LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) {
     glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
     glVertexArrayElementBuffer(ID, ebo.ID);
 }
+void VAO::LinkVBO(const VBO& vbo) {
+    glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
+}

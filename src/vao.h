@@ -18,6 +18,9 @@ public:
     VAO();
     void Bind();
     void AddAttribute(u32 size, GLenum type);
+    // Use when drawing with glDrawElements()
     void LinkVBOAndEBO(const VBO& vbo, const EBO& ebo);
+    // Use when drawing with glDrawArrays()
+    void LinkVBO(const VBO& vbo);
     void EnableAttribute(u32 attribute);
 };
