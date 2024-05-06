@@ -9,10 +9,11 @@
 class VAO {
 private:
     u64 nextAttribOffset;
-    u32 ID;
     u32 stride;
     u32 maxSize;
     u8 nextAttrib;
+public:
+    u32 ID;
 public:
     VAO();
     void Bind();
