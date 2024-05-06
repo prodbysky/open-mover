@@ -9,12 +9,14 @@
 #include "input.h"
 #include "audio.h"
 #include "shader.h"
+#include "font_system.h"
 
 class Window {
 public:
     GLFWwindow* window;
     std::unique_ptr<Shader> shader;
     Input input;
+    FontSystem fontSystem;
     Audio audio;
 private:
     static void MessageCallback(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei len, GLchar const* message, void const* user_param);

@@ -57,8 +57,7 @@ public:
 
 int main() {
     Window window(800, 800, "Hello world!");
-    FontSystem fs;
-    fs.LoadFont("assets/fonts/arial.ttf", 48);
+    window.fontSystem.LoadFont("assets/fonts/arial.ttf", 48);
 
     if (window.window == nullptr) {
         return -1;
@@ -73,7 +72,7 @@ int main() {
         window.Clear(24, 24, 24, 255);
         player.Draw(*window.shader);
         ground.Draw(*window.shader);
-        fs.Draw("assets/fonts/arial.ttf", *window.shader, "This is really funny :D", glm::vec2(200, 300), 1, glm::vec3(1, 1, 1));
+        window.fontSystem.Draw("assets/fonts/arial.ttf", *window.shader, "This is really funny :D", glm::vec2(200, 300), 1, glm::vec3(1, 1, 1));
         window.Swap();
     }
     return 0;

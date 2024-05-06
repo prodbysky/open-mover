@@ -7,6 +7,15 @@ Game / Game framework in C++ using OpenGL (GLAD GLFW CGLM)
   $ ./main
 ```
 
+## Dependencies
+ - Freetype2 [< 2.13]
+ - Miniaudio
+ - stb_image
+ - GLAD [4.6 core]
+ - GLM
+ - GLFW
+ - OpenGL [< 4.6]
+
 ## Features
  - Solid, and textured rectangles
  - Font rendering

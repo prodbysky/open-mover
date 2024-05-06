@@ -36,8 +36,8 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
 
     input = Input();
     input.Setup(window);
-
     audio = Audio();
+    fontSystem = FontSystem(); 
 
     shader = std::make_unique<Shader>();
     shader->SetShader(SHADER_DEFAULT);
