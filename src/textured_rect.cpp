@@ -34,6 +34,7 @@ void TexturedRect::Draw(Shader& shader) {
     texture.Bind();
     vao.Bind();
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    texture.Unbind();
 }
 
 void TexturedRect::Move(glm::vec2 move) {

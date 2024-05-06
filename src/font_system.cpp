@@ -11,8 +11,7 @@ FontSystem::FontSystem() {
     vbo = VBO(NULL, 24, GL_DYNAMIC_DRAW); // Reserve space for vertices
 
     vao.AddAttribute(4, GL_FLOAT);
-    // HACK: not using VAO::LinkVBOAndEBO since it expects a EBO and we don't have it in this scenario
-    glVertexArrayVertexBuffer(vao.ID, 0, vbo.ID, 0, 4 * sizeof(f32));
+    vao.LinkVBO(vbo);
 }
 
 void FontSystem::LoadFont(const char* fontName, u16 height) {
@@ -43,19 +42,16 @@ void FontSystem::Draw(std::string font, Shader& shader, std::string text, glm::v
              xpos + w, ypos + h,   1.0f, 0.0f            
         };
         vao.Bind();
-        glBindTextureUnit(0, ch.ID);
+        ch.texture.Bind();
 
         // update content of VBO memory
         glNamedBufferSubData(vbo.ID, 0, 24 * sizeof(f32), vertices);
-        /*
-            f32* buf = (f32*)glMapNamedBufferRange(vbo.ID, 0, 24 * sizeof(f32), GL_MAP_WRITE_BIT);
-            memcpy(buf, vertices, sizeof(vertices));
-            glUnmapNamedBuffer(vbo.ID);
-        */
+
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
 
         // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
         pos.x += (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
     }
+    
 }

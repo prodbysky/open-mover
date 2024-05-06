@@ -17,7 +17,7 @@
 #include "types.h"
 
 struct Character {
-    u32 ID; // TODO: FontTexture class
+    Texture texture;
     glm::ivec2 size; 
     glm::ivec2 bearing; 
     u32 advance;
