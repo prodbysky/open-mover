@@ -10,3 +10,7 @@ std::string read_entire_file(const char* fileName) {
     buffer << t.rdbuf();
     return buffer.str();
 }
+
+f32 random_float(f32 min, f32 max) { 
+    return ((f32)rand() / RAND_MAX) * (max - min) + min; 
+};

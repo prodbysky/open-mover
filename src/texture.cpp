@@ -22,7 +22,7 @@ Texture::Texture(const char* name, GLenum wrapMode,
 
         if (data) {
             glTextureStorage2D(ID, 1, imageType, width, height);
-            glTextureSubImage2D(ID, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+            glTextureSubImage2D(ID, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
             glGenerateTextureMipmap(ID);
         } else {
             std::cerr << "Failed to load texture: " << name << '\n';

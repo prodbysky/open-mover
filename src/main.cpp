@@ -3,76 +3,72 @@
 
 #include <glm/ext/vector_float2.hpp>
 #include <glm/gtc/constants.hpp>
-#include "font_system.h"
+#include "glad/glad.h"
+#include "rect.h"
 #include "textured_rect.h"
 #include "window.h"
-#include "rect.h"
 #include <GLFW/glfw3.h>
+#include <vector>
 
-#define G -.981
-#define GROUND 200
+#define G -.25
 
-class Player {
-private:
+class Fruit {
+public:
     TexturedRect rect;
     glm::vec2 velocity;
-    bool grounded;
 public:
-    Player(glm::vec2 pos) {
-        rect = TexturedRect(pos, 80, 80, "assets/sprites/player.png");
+    Fruit(glm::vec2 pos) {
+        rect = TexturedRect(pos, 64, 64, "assets/sprites/orange.png", GL_LINEAR, GL_RGBA16);
         velocity = glm::zero<glm::vec2>();
     }
-
-    void Update(Window& window) {
-        if (rect.pos.y - rect.h <= GROUND) {
+    void Update() {
+        velocity.y += G; 
+        rect.Move(velocity);
+        if (rect.pos.y < 0) {
+            rect.SetPos(glm::vec2(rect.pos.x, 964));
             velocity.y = 0;
-            grounded = true;
-            rect.SetPos(glm::vec2(rect.pos.x, GROUND + 80));
-        } else {
-            velocity.y += G; 
-            grounded = false;
         }
         
-        if (window.input.KeyDown(GLFW_KEY_SPACE) && grounded) {
-            velocity.y += 20; 
-        }
-
-        if (window.input.KeyDown(GLFW_KEY_A)) {
-            velocity.x = -10;
-        }
-
-        if (window.input.KeyDown(GLFW_KEY_D)) {
-            velocity.x = 10;
-        }
-
-        velocity.x /= 1.2;
-        rect.Move(velocity);
     }
-
-    void Draw(Shader& shader) {
-        rect.Draw(shader);
+    void Draw(Window& window) {
+        rect.Draw(*window.shader);
     }
 };
 
-
 int main() {
     Window window(800, 800, "Hello world!");
-    window.fontSystem.LoadFont("assets/fonts/arial.ttf", 48);
+    
+    std::vector<Fruit> fruits;
+    Rect ground(glm::vec2(0, 200), 800, 64, glm::vec3(1, 1, 1));
+
+    for (u64 i = 0; i < 1; i++) {
+        fruits.push_back(Fruit(glm::vec2(400 + i, 400 + i)));
+    }
 
     if (window.window == nullptr) {
         return -1;
     }
 
-    Player player(glm::vec2(300.0f, 600.0f));
-    Rect ground(glm::vec2(0.0f, 200.0f), 800, 80, glm::vec3(1.0f, 1.0f, 1.0f));
-
-    window.audio.Play("assets/sounds/pickupCoin.wav");
     while (!window.ShouldClose()) {
-        player.Update(window);
+        glm::vec2 mPos = window.input.GetMousePos();
+        for (u64 i = 0; i < fruits.size(); i++) {
+            Fruit& f = fruits[0];
+
+            if (window.input.MouseKeyDown(GLFW_MOUSE_BUTTON_LEFT)          &&
+               (mPos.x > f.rect.pos.x && mPos.x < f.rect.pos.x + f.rect.w) && 
+               (mPos.y < f.rect.pos.y && mPos.x > f.rect.pos.y - f.rect.h)) {
+                fruits.erase(fruits.begin() + i);
+            }
+        }
+
+        for (Fruit& f : fruits) {
+            f.Update();
+        }
         window.Clear(24, 24, 24, 255);
-        player.Draw(*window.shader);
+        for (Fruit& f : fruits) {
+            f.Draw(window);
+        }
         ground.Draw(*window.shader);
-        window.fontSystem.Draw("assets/fonts/arial.ttf", *window.shader, "This is really funny :D", glm::vec2(200, 300), 1, glm::vec3(1, 1, 1));
         window.Swap();
     }
     return 0;

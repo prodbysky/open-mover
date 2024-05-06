@@ -1,9 +1,10 @@
 #include "textured_rect.h"
 #include <glm/ext/matrix_transform.hpp>
+#include "glad/glad.h"
 #include "shader.h"
 #include "texture.h"
 
-TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName) {
+TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName, GLenum textureFilter, GLenum imageType) {
     this->pos = pos;
     this->w = w;
     this->h = h;
@@ -25,7 +26,7 @@ TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName)
     vao.AddAttribute(2, GL_FLOAT);
     vao.LinkVBOAndEBO(vbo, ebo);
 
-    texture = Texture(textureName);
+    texture = Texture(textureName, GL_MIRRORED_REPEAT, textureFilter, imageType, {}, TEXTURE_IMAGE);
 }
 
 void TexturedRect::Draw(Shader& shader) {

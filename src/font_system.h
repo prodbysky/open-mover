@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include <memory>
 #include <unordered_map>
 #include <string>
 #include "font.h"
@@ -15,7 +16,7 @@ class FontSystem {
 private: 
     FT_Library freetype;
     std::unordered_map<std::string, Font> fonts;
-    VAO vao;
+    std::unique_ptr<VAO> vao;
     VBO vbo;
 
 public:

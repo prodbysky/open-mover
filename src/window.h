@@ -16,7 +16,7 @@ public:
     GLFWwindow* window;
     std::unique_ptr<Shader> shader;
     Input input;
-    FontSystem fontSystem;
+    std::unique_ptr<FontSystem> fontSystem;
     Audio audio;
 private:
     static void MessageCallback(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei len, GLchar const* message, void const* user_param);

@@ -1,17 +1,18 @@
 #include "font_system.h"
 #include "glad/glad.h"
 #include <iostream>
+#include <memory>
 
-FontSystem::FontSystem() {
+FontSystem::FontSystem() : vao(nullptr) {
     if (FT_Init_FreeType(&freetype)) {
         std::cerr << "Failed to initialize Freetype library\n";
     }
 
-    vao = VAO();
+    vao = std::make_unique<VAO>();
     vbo = VBO(NULL, 24, GL_DYNAMIC_DRAW); // Reserve space for vertices
 
-    vao.AddAttribute(4, GL_FLOAT);
-    vao.LinkVBO(vbo);
+    vao->AddAttribute(4, GL_FLOAT);
+    vao->LinkVBO(vbo);
 }
 
 void FontSystem::LoadFont(const char* fontName, u16 height) {
@@ -22,7 +23,7 @@ void FontSystem::Draw(std::string font, Shader& shader, std::string text, glm::v
     shader.SetShader(SHADER_FONT);
     
     shader.SetUniform(color.r, color.g, color.b, "uColor");
-    vao.Bind();
+    vao->Bind();
 
     for (const char& c : text) {
         Character ch = fonts[font].chars[c];
@@ -41,7 +42,7 @@ void FontSystem::Draw(std::string font, Shader& shader, std::string text, glm::v
              xpos + w, ypos,       1.0f, 1.0f,
              xpos + w, ypos + h,   1.0f, 0.0f            
         };
-        vao.Bind();
+        vao->Bind();
         ch.texture.Bind();
 
         // update content of VBO memory

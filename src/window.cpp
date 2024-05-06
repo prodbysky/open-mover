@@ -8,7 +8,7 @@
 #include <memory>
 
 
-Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
+Window::Window(u16 width, u16 height, const char* title) : window(nullptr), shader(nullptr), fontSystem(nullptr) {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
@@ -37,7 +37,7 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr) {
     input = Input();
     input.Setup(window);
     audio = Audio();
-    fontSystem = FontSystem(); 
+    fontSystem = std::make_unique<FontSystem>(); 
 
     shader = std::make_unique<Shader>();
     shader->SetShader(SHADER_DEFAULT);
