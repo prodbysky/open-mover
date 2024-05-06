@@ -12,23 +12,34 @@ Shader::Shader() {
     const char* vertName = "quad_vertex.glsl";
     const char* defaultFragName = "default_quad_fragment.glsl";
     const char* textureFragName = "texture_quad_fragment.glsl";
+    const char* fontVertexName = "font_vertex.glsl";
+    const char* fontFragName = "font_fragment.glsl";
 
     u32 vertexShader = CompileShader(vertName, GL_VERTEX_SHADER);
     u32 defaultFragShader = CompileShader(defaultFragName, GL_FRAGMENT_SHADER);
     u32 textureFragShader = CompileShader(textureFragName, GL_FRAGMENT_SHADER);
+    u32 fontVertShader = CompileShader(fontVertexName, GL_VERTEX_SHADER);
+    u32 fontFragShader = CompileShader(fontFragName, GL_FRAGMENT_SHADER);
 
     defaultID = glCreateProgram();
-    textureID = glCreateProgram();
     glAttachShader(defaultID, vertexShader);
     glAttachShader(defaultID, defaultFragShader);
+    glLinkProgram(defaultID);
+    glDeleteShader(defaultFragShader);
+
+    textureID = glCreateProgram();
     glAttachShader(textureID, vertexShader);
     glAttachShader(textureID, textureFragShader);
-    glLinkProgram(defaultID);
     glLinkProgram(textureID);
-
     glDeleteShader(vertexShader);
-    glDeleteShader(defaultFragShader);
     glDeleteShader(textureFragShader);
+
+    fontID = glCreateProgram();
+    glAttachShader(fontID, fontVertShader);
+    glAttachShader(fontID, fontFragShader);
+    glLinkProgram(fontID);
+    glDeleteShader(fontVertShader);
+    glDeleteShader(fontFragShader);
 }
 
 u32 Shader::CompileShader(const char* name, GLenum type) {
@@ -59,6 +70,10 @@ void Shader::SetShader(ShaderType type) {
                 currentID = textureID;    
                 break;
         }
+        case SHADER_FONT: {
+                currentID = fontID;
+                break;
+        }
     } 
 
     Use();
@@ -67,7 +82,7 @@ u32 Shader::GetUniformLocation(const char* name) {
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
-        std::cerr << "Tried to get non-existant shader uniform: " << name;
+        std::cerr << "Tried to get non-existant shader uniform: " << name << '\n';
         return -1;
     }
     return uniform_location;
@@ -95,6 +110,13 @@ void Shader::SetUniform(glm::vec2 data, const char* name) {
 
     Use();
     glUniform2fv(uniform_location, 1, glm::value_ptr(data));
+}
+
+void Shader::SetUniform(f32 x, f32 y, f32 z, const char* name) {
+    i32 uniform_location = GetUniformLocation(name);
+
+    Use();
+    glUniform3f(uniform_location, x, y, z);
 }
 
 void Shader::Use() {

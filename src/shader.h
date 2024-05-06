@@ -11,12 +11,14 @@
 enum ShaderType {
     SHADER_DEFAULT,
     SHADER_TEXTURE,
+    SHADER_FONT,
 };
 
 class Shader {
 private:
     u32 defaultID;
     u32 textureID;
+    u32 fontID;
     u32 currentID;
 
     u32 CompileShader(const char* name, GLenum type);
@@ -29,6 +31,7 @@ public:
     void SetUniform(glm::mat4 data, const char* name);
     void SetUniform(glm::vec3 data, const char* name);
     void SetUniform(glm::vec2 data, const char* name);
+    void SetUniform(f32 x, f32 y, f32 z, const char* name);
 
     void SetShader(ShaderType type);
 };
