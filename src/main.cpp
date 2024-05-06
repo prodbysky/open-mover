@@ -3,6 +3,7 @@
 
 #include <glm/ext/vector_float2.hpp>
 #include <glm/gtc/constants.hpp>
+#include "font_system.h"
 #include "textured_rect.h"
 #include "window.h"
 #include "rect.h"
@@ -56,6 +57,8 @@ public:
 
 int main() {
     Window window(800, 800, "Hello world!");
+    FontSystem fs;
+    fs.LoadFont("assets/arial.ttf", 48);
 
     if (window.window == nullptr) {
         return -1;
@@ -70,6 +73,7 @@ int main() {
         window.Clear(24, 24, 24, 255);
         player.Draw(*window.shader);
         ground.Draw(*window.shader);
+        fs.Draw("assets/arial.ttf", *window.shader, "HELLO", glm::vec2(200, 200), 1, glm::vec3(1, 1, 1));
         window.Swap();
     }
     return 0;
