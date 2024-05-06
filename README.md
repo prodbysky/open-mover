@@ -19,3 +19,4 @@ Game / Game framework in C++ using OpenGL (GLAD GLFW CGLM)
  - Compilation on Windows (horrible)
  - Move framework code to separate github repo (Not soon since it still experiencing rapid changes)
  - Remove debug messages from release builds
+ - Optimize compile times (Now ~7 secs.)
