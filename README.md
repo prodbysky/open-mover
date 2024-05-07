@@ -1,10 +1,10 @@
 # Open Mover 
-Game / Game framework in C++ using OpenGL (GLAD GLFW CGLM)
+Game framework in C++ using OpenGL (GLAD GLFW CGLM)
 
-## Quick start
+## Running examples
 ```console
-  $ make main
-  $ ./main
+ $ make [Example name]
+ $ ./bin/[Example name]
 ```
 
 ## Dependencies
