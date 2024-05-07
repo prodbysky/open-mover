@@ -8,13 +8,10 @@ SRC = src/glad.c src/shader.cpp src/util.cpp src/rect.cpp src/window.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-TARGET = main
+all: hello_window text_rendering
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
-
-$(TARGET): $(OBJ)
-	$(CC) $(OBJ) src/main.cpp -o bin/$(TARGET) $(CPPFLAGS)
 
 hello_window: $(OBJ)
 	$(CC) $(OBJ) src/hello_window.cpp -o bin/hello_window $(CPPFLAGS) 
@@ -24,4 +21,4 @@ text_rendering: $(OBJ)
 
 
 clean:
-	rm -f src/*.o $(TARGET)
+	rm -f src/*.o bin/*
