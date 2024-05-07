@@ -7,6 +7,12 @@ Game framework in C++ using OpenGL (GLAD GLFW CGLM)
  $ ./bin/[Example name]
 ```
 
+## List of example names
+ - hello_window
+ - text_rendering
+ - playing_sounds
+ - rendering_textures
+
 ## Dependencies
  - Freetype2 [< 2.13]
  - Miniaudio
