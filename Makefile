@@ -8,7 +8,7 @@ SRC = src/glad.c src/shader.cpp src/util.cpp src/rect.cpp src/window.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering
+all: hello_window text_rendering playing_sounds
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -18,6 +18,9 @@ hello_window: $(OBJ)
 
 text_rendering: $(OBJ)
 	$(CC) $(OBJ) src/text_rendering.cpp -o bin/text_rendering $(CPPFLAGS) 
+
+playing_sounds: $(OBJ)
+	$(CC) $(OBJ) src/playing_sounds.cpp -o bin/playing_sounds $(CPPFLAGS) 
 
 
 clean:
