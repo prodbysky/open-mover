@@ -10,11 +10,11 @@ OBJ = $(SRC:.cpp=.o)
 
 TARGET = main
 
-%.o : %.cpp
+%.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
 
 $(TARGET): $(OBJ)
 	$(CC) $(OBJ) src/main.cpp -o $(TARGET) $(CPPFLAGS) lib/miniaudio.o lib/stb_image.o
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f src/*.o $(TARGET)
