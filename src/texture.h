@@ -29,7 +29,7 @@ namespace StintaEngine::Core {
 
         // Loads a glyph from a font
         Texture(GLenum wrap_mode, GLenum texture_filter, FT_Face face);
-        void Bind();
-        void Unbind();
+        void Bind() const;
+        void Unbind() const;
     };
 }

@@ -25,13 +25,13 @@ namespace StintaEngine::Core {
         u32 font_id;
         u32 current_id;
 
-        u32 CompileShader(const char* name, GLenum type);
-        u32 GetUniformLocation(const char* name);
+        u32 CompileShader(const char* name, GLenum type) const;
+        u32 GetUniformLocation(const char* name) const;
     public:
         Shader();
         // Sets the projection uniform for the current set shader
         void SetProjection(glm::vec2 size, glm::vec2 z_bounds);
-        void Use();
+        void Use() const;
         // TODO: Functions for all uniforms
         void SetUniform(glm::mat4 data, const char* name);
         void SetUniform(glm::vec3 data, const char* name);

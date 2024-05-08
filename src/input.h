@@ -26,8 +26,8 @@ namespace StintaEngine::Core {
         Input();
         // Setups all callbacks for getting input
         void Setup(GLFWwindow* window);
-        bool KeyDown(GLenum key);
-        bool MouseKeyDown(GLenum button);
+        bool KeyDown(GLenum key) const;
+        bool MouseKeyDown(GLenum button) const;
         glm::vec2 GetMousePos();
     };
 }

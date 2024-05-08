@@ -28,7 +28,7 @@ namespace StintaEngine {
         TexturedRect() = default;
         // Creates a rectangle with an associated texture that is loaded too
         TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* texture_name, GLenum texture_filter = GL_NEAREST, GLenum image_type = GL_SRGB8);
-        void Draw(Core::Shader& shader);
+        void Draw(Core::Shader& shader) const;
         void Move(glm::vec2 move);
         void SetPos(glm::vec2 move);
     };

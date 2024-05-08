@@ -33,7 +33,7 @@ namespace StintaEngine {
         texture = Core::Texture(texture_name, GL_MIRRORED_REPEAT, texture_filter, image_type, {}, Core::TextureType::TEXTURE_IMAGE);
     }
 
-    void TexturedRect::Draw(Core::Shader& shader) {
+    void TexturedRect::Draw(Core::Shader& shader) const {
         shader.SetShader(Core::ShaderType::SHADER_TEXTURE);
         shader.SetUniform(model, "uModel");
         texture.Bind();

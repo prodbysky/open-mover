@@ -13,7 +13,7 @@ namespace StintaEngine::Core {
         stride = 0;
     }
 
-    void VAO::Bind() {
+    void VAO::Bind() const {
         glBindVertexArray(ID);
     }
 
@@ -40,15 +40,15 @@ namespace StintaEngine::Core {
         nextAttrib++;
     }
 
-    void VAO::EnableAttribute(u32 attribute) {
+    void VAO::EnableAttribute(u32 attribute) const {
         glEnableVertexArrayAttrib(ID, attribute);
     }
 
-    void VAO::LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) {
+    void VAO::LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) const {
         glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
         glVertexArrayElementBuffer(ID, ebo.ID);
     }
-    void VAO::LinkVBO(const VBO& vbo) {
+    void VAO::LinkVBO(const VBO& vbo) const {
         glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
     }
 }

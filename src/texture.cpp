@@ -42,11 +42,11 @@ namespace StintaEngine::Core {
     Texture::Texture(GLenum wrap_mode, GLenum texture_filter, FT_Face face)
         : Texture("", wrap_mode, texture_filter, GL_SRGB8, face, TextureType::TEXTURE_GLYPH) {};
 
-    void Texture::Bind() {
+    void Texture::Bind() const {
         glBindTextureUnit(0, ID);
     }
 
-    void Texture::Unbind() {
+    void Texture::Unbind() const {
         glBindTextureUnit(0, 0);
     }
 }

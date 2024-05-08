@@ -45,7 +45,7 @@ namespace StintaEngine::Core {
         glDeleteShader(font_frag_shader);
     }
 
-    u32 Shader::CompileShader(const char* name, GLenum type) {
+    u32 Shader::CompileShader(const char* name, GLenum type) const {
         i32 success;
         char info_log[512];
 
@@ -81,7 +81,7 @@ namespace StintaEngine::Core {
 
         Use();
     }
-    u32 Shader::GetUniformLocation(const char* name) {
+    u32 Shader::GetUniformLocation(const char* name) const {
         Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = glGetUniformLocation(current_id, name); 
 
@@ -127,7 +127,7 @@ namespace StintaEngine::Core {
         glUniform3f(uniform_location, x, y, z);
     }
 
-    void Shader::Use() {
+    void Shader::Use() const {
         glUseProgram(current_id);
     }
 

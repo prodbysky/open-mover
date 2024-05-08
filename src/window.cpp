@@ -55,11 +55,11 @@ namespace StintaEngine {
         lastFrame = 0;
     }
 
-    bool Window::ShouldClose() {
+    bool Window::ShouldClose() const {
         return glfwWindowShouldClose(window);
     }
 
-    void Window::Swap() {
+    void Window::Swap() const {
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
@@ -73,11 +73,16 @@ namespace StintaEngine {
         glClear(GL_COLOR_BUFFER_BIT);
     }
 
-    f64 Window::GetDeltaTime() {
+    f64 Window::GetDeltaTime() const {
         return deltaTime;
     }
 
-    f64 Window::GetTotalTime() {
+
+    f64 Window::GetFPS() const {
+        return 1/deltaTime;
+    }
+
+    f64 Window::GetTotalTime() const {
         return glfwGetTime();
     }
 

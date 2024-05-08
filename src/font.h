@@ -1,7 +1,5 @@
 #pragma once
 
-#include "glm/ext/vector_int2.hpp"
-#include "texture.h"
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -9,13 +7,12 @@
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
-
 #include <glad/glad.h>
-
 #include <glm/glm.hpp>
 
+#include "texture.h"
+#include "shader.h"
 #include "types.h"
-
 
 namespace StintaEngine::Core {
     // Struct for storing data about a character from a font

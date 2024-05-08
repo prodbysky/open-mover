@@ -18,11 +18,11 @@ namespace StintaEngine::Core {
         glfwSetMouseButtonCallback(window, MouseButtonCallback);
     }
 
-    bool Input::KeyDown(GLenum key) {
+    bool Input::KeyDown(GLenum key) const {
         return key_states[key - 32];
     }
 
-    bool Input::MouseKeyDown(GLenum button) {
+    bool Input::MouseKeyDown(GLenum button) const {
         switch (button) {
             case GLFW_MOUSE_BUTTON_LEFT:
                 return mouse_state[0];
