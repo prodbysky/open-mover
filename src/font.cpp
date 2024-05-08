@@ -14,12 +14,12 @@ Font::Font(FT_Library& freetype, const char* fontName, u16 height) {
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1); 
 
-    for (u64 c = 0; c < 128; c++ ) {
+    for (i64 c = 0; c < 128; c++ ) {
         if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
             std::cerr << "Failed to load glyph: " << char(c) << '\n';
             continue;
         }
-        
+
         u32 ID;
         glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 

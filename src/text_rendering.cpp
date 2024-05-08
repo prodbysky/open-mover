@@ -19,7 +19,7 @@ int main() {
         float yOffset = sin(time * frequency) * amplitude;
         pos.y += yOffset;
         window.Clear(24, 24, 24, 255);
-        window.fontSystem->Draw("assets/fonts/arial.ttf", *window.shader, "Whoa!", pos, 1, glm::vec3(1, 1, 1));
+        window.fontSystem->Draw("assets/fonts/arial.ttf", *window.shader, "2024 MUSIC", pos, 1, glm::vec3(1, 1, 1));
         window.Swap();
         time += 0.1f;
     }
