@@ -1,5 +1,6 @@
 #include "font_system.h"
 #include "assert.h"
+#include "font.h"
 #include "glad/glad.h"
 #include "shader.h"
 #include <cassert>
@@ -19,21 +20,20 @@ namespace StintaEngine::Core {
         vao->LinkVBO(vbo);
     }
 
-    void FontSystem::LoadFont(const char* font_name, u16 height) {
+    Font FontSystem::LoadFont(const char* font_name, u16 height) {
         Assert(font_name != nullptr, "Passed in null pointer");
         Assert(height >= 0, "Non-positive font height passed in");
-        fonts[std::string(font_name)] = Font(freetype, font_name, height);
+        return Font(freetype, font_name, height);
     }
 
-    void FontSystem::Draw(std::string font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
-        Assert(font != std::string(""), "Passed in nothing for the font name");
+    void FontSystem::Draw(const Font& font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
         shader.SetShader(Core::ShaderType::SHADER_FONT);
         
         shader.SetUniform(color.r, color.g, color.b, "uColor");
         vao->Bind();
 
         for (const char& c : text) {
-            Character ch = fonts[font].chars[c];
+            Character ch = font.chars.at(c);
 
             float xpos = pos.x + ch.bearing.x * scale;
             float ypos = pos.y - (ch.size.y - ch.bearing.y) * scale;

@@ -34,7 +34,7 @@ namespace StintaEngine {
         pos.y += move.y;
     }
 
-    void Rect::Draw(Core::Shader& shader) {
+    void Rect::Draw(Core::Shader& shader) const {
         shader.SetShader(Core::ShaderType::SHADER_DEFAULT); 
         shader.SetUniform(color, "uColor");
         shader.SetUniform(model, "uModel");

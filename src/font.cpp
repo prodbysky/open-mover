@@ -4,7 +4,7 @@
 #include "texture.h"
 #include <iostream>
 
-namespace StintaEngine::Core {
+namespace StintaEngine {
     Font::Font(FT_Library& freetype, const char* font_name, u16 height) {
         Assert(font_name != nullptr, "Passed in null pointer");
         FT_Face face;
@@ -34,7 +34,7 @@ namespace StintaEngine::Core {
             glTextureStorage2D(ID, 1, GL_R8, face->glyph->bitmap.width, face->glyph->bitmap.rows);
             glTextureSubImage2D(ID, 0, 0, 0, face->glyph->bitmap.width, face->glyph->bitmap.rows, GL_RED, GL_UNSIGNED_BYTE, face->glyph->bitmap.buffer);
             Character character = {
-                Texture(GL_CLAMP_TO_EDGE, GL_LINEAR, face),
+                Core::Texture(GL_CLAMP_TO_EDGE, GL_LINEAR, face),
                 glm::ivec2(face->glyph->bitmap.width, face->glyph->bitmap.rows),
                 glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
                 u32(face->glyph->advance.x)

@@ -14,10 +14,11 @@
 #include "shader.h"
 #include "types.h"
 
-namespace StintaEngine::Core {
+namespace StintaEngine {
+    using namespace Types;
     // Struct for storing data about a character from a font
     struct Character {
-        Texture texture;
+        Core::Texture texture;
         glm::ivec2 size; 
         glm::ivec2 bearing; 
         u32 advance;

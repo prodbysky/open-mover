@@ -13,6 +13,6 @@ namespace StintaEngine::Core {
         Audio();
         ~Audio() = default;
         // Loads a sound file from `file_name` and instantly plays it
-        void Play(const char* file_name);
+        void Play(const char* file_name) const;
     };
 }
