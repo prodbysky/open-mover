@@ -20,7 +20,7 @@ namespace StintaEngine::Core {
     void VAO::AddAttribute(u32 size, GLenum type) {
         Assert(size <= 4 && size != 0, "Passed in an invalid attribute size (0 < size <= 4");
 
-        u32 elementSize;
+        u32 elementSize = 0;
 
         switch (type) {
             case GL_FLOAT: 

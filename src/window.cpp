@@ -22,9 +22,7 @@ namespace StintaEngine {
 
         window = glfwCreateWindow(width, height, title, NULL, NULL);
 
-        if (window == nullptr) {
-            std::cerr << "Failed to create GLFW window!" << '\n';
-        }
+        Assert(window != nullptr, "Failed to create GLFW window!" );
 
         glfwMakeContextCurrent(window);
         glfwSwapInterval(vSync);

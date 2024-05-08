@@ -4,6 +4,7 @@
 
 namespace StintaEngine::Core {
     using namespace Types;
+
     class EBO {
     public:
         u32 ID;

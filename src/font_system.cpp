@@ -52,13 +52,11 @@ namespace StintaEngine::Core {
             vao->Bind();
             ch.texture.Bind();
 
-            // update content of VBO memory
             glNamedBufferSubData(vbo.ID, 0, 24 * sizeof(f32), vertices);
 
             glDrawArrays(GL_TRIANGLES, 0, 6);
 
-            // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
-            pos.x += (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
+            pos.x += (ch.advance >> 6) * scale;
         }
     }
 }
