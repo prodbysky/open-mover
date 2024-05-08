@@ -11,8 +11,9 @@ private:
     u64 nextAttribOffset;
     u32 stride;
     u8 nextAttrib;
-public:
     u32 ID;
+private:
+    void EnableAttribute(u32 attribute);
 public:
     VAO();
     void Bind();
@@ -21,5 +22,4 @@ public:
     void LinkVBOAndEBO(const VBO& vbo, const EBO& ebo);
     // Use when drawing with glDrawArrays()
     void LinkVBO(const VBO& vbo);
-    void EnableAttribute(u32 attribute);
 };

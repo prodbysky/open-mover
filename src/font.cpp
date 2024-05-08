@@ -1,6 +1,7 @@
 #include "font.h"
 #include "glad/glad.h"
 #include "texture.h"
+#include <cassert>
 #include <iostream>
 
 Font::Font(FT_Library& freetype, const char* fontName, u16 height) {

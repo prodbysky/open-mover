@@ -16,7 +16,7 @@ void VAO::Bind() {
 }
 
 void VAO::AddAttribute(u32 size, GLenum type) {
-    assert(size <= 4 && "Vertex attribute size more than 4");
+    assert(size <= 4);
 
     u32 elementSize;
 

@@ -5,6 +5,7 @@
 #include "texture.h"
 
 TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName, GLenum textureFilter, GLenum imageType) {
+    assert(textureName != nullptr);
     this->pos = pos;
     this->w = w;
     this->h = h;

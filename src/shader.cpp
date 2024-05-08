@@ -79,6 +79,7 @@ void Shader::SetShader(ShaderType type) {
     Use();
 }
 u32 Shader::GetUniformLocation(const char* name) {
+    assert(name != nullptr);
     i32 uniform_location = glGetUniformLocation(currentID, name); 
 
     if (uniform_location < 0) {
@@ -89,6 +90,7 @@ u32 Shader::GetUniformLocation(const char* name) {
 }
 
 void Shader::SetUniform(glm::mat4 data, const char* name) {
+    assert(name != nullptr);
     i32 uniform_location = GetUniformLocation(name);
 
 
@@ -98,6 +100,7 @@ void Shader::SetUniform(glm::mat4 data, const char* name) {
 }
 
 void Shader::SetUniform(glm::vec3 data, const char* name) {
+    assert(name != nullptr);
     i32 uniform_location = GetUniformLocation(name);
 
     Use();
@@ -106,6 +109,7 @@ void Shader::SetUniform(glm::vec3 data, const char* name) {
 
 
 void Shader::SetUniform(glm::vec2 data, const char* name) {
+    assert(name != nullptr);
     i32 uniform_location = GetUniformLocation(name);
 
     Use();
@@ -113,6 +117,7 @@ void Shader::SetUniform(glm::vec2 data, const char* name) {
 }
 
 void Shader::SetUniform(f32 x, f32 y, f32 z, const char* name) {
+    assert(name != nullptr);
     i32 uniform_location = GetUniformLocation(name);
 
     Use();

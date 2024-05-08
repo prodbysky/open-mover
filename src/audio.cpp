@@ -1,4 +1,6 @@
 #include "audio.h"
+#include <cassert>
+#include <cstring>
 #include <iostream>
 #include <stdlib.h>
 
@@ -12,5 +14,9 @@ Audio::Audio() {
 }
 
 void Audio::Play(const char* filename) {
-    ma_engine_play_sound(engine, filename, nullptr);
+    assert(filename != nullptr && strcmp(filename, "") != 0);
+    ma_result result = ma_engine_play_sound(engine, filename, nullptr);
+    if (result != MA_SUCCESS) {
+        std::cerr << "Failed to play sound: " << filename << '\n';
+    }
 }

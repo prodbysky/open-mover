@@ -1,3 +1,4 @@
+#include <cassert>
 #include <glad/glad.h>
 
 #include "window.h"
@@ -9,6 +10,10 @@
 
 
 Window::Window(u16 width, u16 height, const char* title) : window(nullptr), shader(nullptr), fontSystem(nullptr) {
+    assert(width != 0);
+    assert(height != 0);
+    assert(title != nullptr);
+
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);

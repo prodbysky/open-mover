@@ -1,5 +1,6 @@
 #include "font_system.h"
 #include "glad/glad.h"
+#include <cassert>
 #include <iostream>
 #include <memory>
 
@@ -16,10 +17,13 @@ FontSystem::FontSystem() : vao(nullptr) {
 }
 
 void FontSystem::LoadFont(const char* fontName, u16 height) {
+    assert(fontName != nullptr && strcmp(fontName, "") != 0);
+    assert(height > 0);
     fonts[std::string(fontName)] = Font(freetype, fontName, height);
 }
 
 void FontSystem::Draw(std::string font, Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
+    assert(font != std::string(""));
     shader.SetShader(SHADER_FONT);
     
     shader.SetUniform(color.r, color.g, color.b, "uColor");
@@ -54,5 +58,4 @@ void FontSystem::Draw(std::string font, Shader& shader, std::string text, glm::v
         // Now advance cursors for next glyph (note that advance is number of 1/64 pixels)
         pos.x += (ch.advance >> 6) * scale; // Bitshift by 6 to get value in pixels (2^6 = 64)
     }
-    
 }

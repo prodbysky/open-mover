@@ -1,4 +1,5 @@
 #include "texture.h"
+#include <cassert>
 #include <cstring>
 #include <glad/glad.h>
 #include <iostream>
@@ -7,6 +8,8 @@
 Texture::Texture(const char* name, GLenum wrapMode, 
                  GLenum textureFilter, GLenum imageType,
                  FT_Face face, TextureType type) {
+
+    assert(name != nullptr);
 
     glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 
