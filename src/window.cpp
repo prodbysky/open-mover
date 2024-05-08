@@ -66,7 +66,7 @@ void Window::Swap() {
 }
 
 void Window::Clear(u16 r, u16 b, u16 g, u16 a) {
-    f32 currentFrame = glfwGetTime();
+    f64 currentFrame = glfwGetTime();
     deltaTime = currentFrame - lastFrame;
     lastFrame = currentFrame;
 
@@ -74,8 +74,12 @@ void Window::Clear(u16 r, u16 b, u16 g, u16 a) {
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
-f32 Window::GetDeltaTime() {
+f64 Window::GetDeltaTime() {
     return deltaTime;
+}
+
+f64 Window::GetTotalTime() {
+    return glfwGetTime();
 }
 
 Window::~Window() {
