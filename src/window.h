@@ -19,6 +19,9 @@ public:
     std::unique_ptr<FontSystem> fontSystem;
     Audio audio;
 private:
+    f32 deltaTime;
+    f32 lastFrame;
+private:
     static void MessageCallback(GLenum src, GLenum type, GLuint id, GLenum severity, GLsizei len, GLchar const* message, void const* user_param);
 public:
     Window(u16 width, u16 height, const char* title);
@@ -26,4 +29,5 @@ public:
     void Clear(u16 r, u16 b, u16 g, u16 a);
     void Swap();
     bool ShouldClose();
+    f32 GetDeltaTime();
 };

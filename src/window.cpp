@@ -51,6 +51,9 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr), shad
     shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
     shader->SetShader(SHADER_FONT);
     shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
+
+    deltaTime = 0;
+    lastFrame = 0;
 }
 
 bool Window::ShouldClose() {
@@ -63,8 +66,16 @@ void Window::Swap() {
 }
 
 void Window::Clear(u16 r, u16 b, u16 g, u16 a) {
+    f32 currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
     glClearColor(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+}
+
+f32 Window::GetDeltaTime() {
+    return deltaTime;
 }
 
 Window::~Window() {
