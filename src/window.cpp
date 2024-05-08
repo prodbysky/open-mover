@@ -9,7 +9,7 @@
 #include <memory>
 
 
-Window::Window(u16 width, u16 height, const char* title) : window(nullptr), shader(nullptr), fontSystem(nullptr) {
+Window::Window(u16 width, u16 height, const char* title, bool vSync) : window(nullptr), shader(nullptr), fontSystem(nullptr) {
     assert(width != 0);
     assert(height != 0);
     assert(title != nullptr);
@@ -26,7 +26,7 @@ Window::Window(u16 width, u16 height, const char* title) : window(nullptr), shad
     }
 
     glfwMakeContextCurrent(window);
-    glfwSwapInterval(1);
+    glfwSwapInterval(vSync);
 
     gladLoadGL();
 
