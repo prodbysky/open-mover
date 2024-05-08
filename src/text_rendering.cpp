@@ -8,10 +8,6 @@ int main() {
     StintaEngine::Window window(800, 800, "Hello world!", true);
     window.font_system->LoadFont("assets/fonts/arial.ttf", 96);
     
-    if (window.window == nullptr) {
-        return -1;
-    }
-
     glm::vec2 pos = glm::vec2(300.0, 200.0);
     f64 amplitude = 100.0;
     f64 frequency = 5.0;
