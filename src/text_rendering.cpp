@@ -2,8 +2,10 @@
 #include "glm/ext/vector_float3.hpp"
 #include "window.h"
 
+using namespace StintaEngine::Types;
+
 int main() {
-    Window window(800, 800, "Hello world!", false);
+    StintaEngine::Window window(800, 800, "Hello world!", false);
     window.fontSystem->LoadFont("assets/fonts/arial.ttf", 96);
     
     if (window.window == nullptr) {

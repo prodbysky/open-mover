@@ -16,18 +16,21 @@
 
 #include "types.h"
 
-struct Character {
-    Texture texture;
-    glm::ivec2 size; 
-    glm::ivec2 bearing; 
-    u32 advance;
-};
 
-class Font {
-public:
-    std::unordered_map<char, Character> chars;
+namespace StintaEngine::Core {
+    struct Character {
+        Texture texture;
+        glm::ivec2 size; 
+        glm::ivec2 bearing; 
+        u32 advance;
+    };
 
-public:
-    Font() = default;
-    Font(FT_Library& freetype, const char* fontName, u16 height);
-};
+    class Font {
+    public:
+        std::unordered_map<char, Character> chars;
+
+    public:
+        Font() = default;
+        Font(FT_Library& freetype, const char* fontName, u16 height);
+    };
+}

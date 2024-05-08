@@ -4,24 +4,28 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-enum TextureType {
-    TEXTURE_GLYPH,
-    TEXTURE_IMAGE,
-};
+namespace StintaEngine::Core {
+    using namespace Types;
 
-class Texture {
-private:
-    u32 ID;
+    enum class TextureType {
+        TEXTURE_GLYPH,
+        TEXTURE_IMAGE,
+    };
 
-public:
-    // TODO: Fully featured texture function
-    Texture() = default;
+    class Texture {
+    private:
+        u32 ID;
 
-    Texture(const char* name, GLenum wrapMode = GL_MIRRORED_REPEAT, 
-                     GLenum textureFilter = GL_NEAREST, GLenum imageType = GL_SRGB8,
-                     FT_Face face = {}, TextureType type = TEXTURE_IMAGE);
+    public:
+        // TODO: Fully featured texture function
+        Texture() = default;
 
-    Texture(GLenum wrapMode, GLenum textureFilter, FT_Face face);
-    void Bind();
-    void Unbind();
-};
+        Texture(const char* name, GLenum wrapMode = GL_MIRRORED_REPEAT, 
+                         GLenum textureFilter = GL_NEAREST, GLenum imageType = GL_SRGB8,
+                         FT_Face face = {}, TextureType type = TextureType::TEXTURE_IMAGE);
+
+        Texture(GLenum wrapMode, GLenum textureFilter, FT_Face face);
+        void Bind();
+        void Unbind();
+    };
+}
