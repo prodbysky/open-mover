@@ -1,11 +1,12 @@
 #include "font.h"
+#include "assert.h"
 #include "glad/glad.h"
 #include "texture.h"
-#include <cassert>
 #include <iostream>
 
 namespace StintaEngine::Core {
     Font::Font(FT_Library& freetype, const char* fontName, u16 height) {
+        Assert(fontName != nullptr, "Passed in null pointer");
         FT_Face face;
         if (FT_New_Face(freetype, fontName, 0, &face)) {
             std::cerr << "Failed to load font: " << fontName << '\n';

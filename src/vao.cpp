@@ -1,4 +1,5 @@
 #include "vao.h"
+#include "assert.h"
 #include "glad/glad.h"
 #include "vbo.h"
 #include <cassert>
@@ -17,7 +18,7 @@ namespace StintaEngine::Core {
     }
 
     void VAO::AddAttribute(u32 size, GLenum type) {
-        assert(size <= 4);
+        Assert(size <= 4 && size != 0, "Passed in an invalid attribute size (0 < size <= 4");
 
         u32 elementSize;
 
@@ -26,7 +27,7 @@ namespace StintaEngine::Core {
                 elementSize = 4;
                 break;
             default:
-                assert(false && "Unimplemented attribute type");
+                Assert(false, "Unimplemented attribute type");
         }
 
         

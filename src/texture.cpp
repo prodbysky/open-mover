@@ -1,5 +1,5 @@
 #include "texture.h"
-#include <cassert>
+#include "assert.h"
 #include <cstring>
 #include <glad/glad.h>
 #include <iostream>
@@ -11,7 +11,7 @@ namespace StintaEngine::Core {
                      GLenum textureFilter, GLenum imageType,
                      FT_Face face, TextureType type) {
 
-        assert(name != nullptr);
+        Assert(name != nullptr, "Passed in null pointer for the name of the texture");
 
         glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 

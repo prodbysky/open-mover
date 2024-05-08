@@ -1,4 +1,5 @@
 #include "font_system.h"
+#include "assert.h"
 #include "glad/glad.h"
 #include "shader.h"
 #include <cassert>
@@ -19,13 +20,13 @@ namespace StintaEngine::Core {
     }
 
     void FontSystem::LoadFont(const char* fontName, u16 height) {
-        assert(fontName != nullptr && strcmp(fontName, "") != 0);
-        assert(height > 0);
+        Assert(fontName != nullptr, "Passed in null pointer");
+        Assert(height >= 0, "Non-positive font height passed in");
         fonts[std::string(fontName)] = Font(freetype, fontName, height);
     }
 
     void FontSystem::Draw(std::string font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
-        assert(font != std::string(""));
+        Assert(font != std::string(""), "Passed in nothing for the font name");
         shader.SetShader(Core::ShaderType::SHADER_FONT);
         
         shader.SetUniform(color.r, color.g, color.b, "uColor");
@@ -53,7 +54,6 @@ namespace StintaEngine::Core {
 
             // update content of VBO memory
             glNamedBufferSubData(vbo.ID, 0, 24 * sizeof(f32), vertices);
-
 
             glDrawArrays(GL_TRIANGLES, 0, 6);
 

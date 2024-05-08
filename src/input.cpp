@@ -21,6 +21,7 @@ namespace StintaEngine::Core {
     bool Input::KeyDown(GLenum key) {
         return keyStates[key - 32];
     }
+
     bool Input::MouseKeyDown(GLenum button) {
         switch (button) {
             case GLFW_MOUSE_BUTTON_LEFT:

@@ -1,5 +1,6 @@
 #include "textured_rect.h"
 #include <glm/ext/matrix_transform.hpp>
+#include "assert.h"
 #include "glad/glad.h"
 #include "shader.h"
 #include "texture.h"
@@ -8,7 +9,7 @@
 namespace StintaEngine {
     using namespace Types;
     TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName, GLenum textureFilter, GLenum imageType) {
-        assert(textureName != nullptr);
+        Assert(textureName != nullptr, "Passed in null for the texture name");
         this->pos = pos;
         this->w = w;
         this->h = h;

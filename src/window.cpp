@@ -3,6 +3,7 @@
 
 #include "window.h"
 #include "GLFW/glfw3.h"
+#include "assert.h"
 #include "shader.h"
 #include "types.h"
 #include <iostream>
@@ -10,9 +11,9 @@
 
 namespace StintaEngine {
     Window::Window(u16 width, u16 height, const char* title, bool vSync) : window(nullptr), shader(nullptr), fontSystem(nullptr) {
-        assert(width != 0);
-        assert(height != 0);
-        assert(title != nullptr);
+        Assert(width != 0, "Window width can't be 0");
+        Assert(height != 0, "Window height can't be 0");
+        Assert(title != nullptr, "Window title can't be null");
 
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);

@@ -1,3 +1,4 @@
+#include "assert.h"
 #include <iostream>
 
 #define GLFW_INCLUDE_NONE
@@ -81,7 +82,7 @@ namespace StintaEngine::Core {
         Use();
     }
     u32 Shader::GetUniformLocation(const char* name) {
-        assert(name != nullptr);
+        Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = glGetUniformLocation(currentID, name); 
 
         if (uniform_location < 0) {
@@ -92,7 +93,7 @@ namespace StintaEngine::Core {
     }
 
     void Shader::SetUniform(glm::mat4 data, const char* name) {
-        assert(name != nullptr);
+        Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
 
 
@@ -102,7 +103,7 @@ namespace StintaEngine::Core {
     }
 
     void Shader::SetUniform(glm::vec3 data, const char* name) {
-        assert(name != nullptr);
+        Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
 
         Use();
@@ -111,7 +112,7 @@ namespace StintaEngine::Core {
 
 
     void Shader::SetUniform(glm::vec2 data, const char* name) {
-        assert(name != nullptr);
+        Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
 
         Use();
@@ -119,7 +120,7 @@ namespace StintaEngine::Core {
     }
 
     void Shader::SetUniform(f32 x, f32 y, f32 z, const char* name) {
-        assert(name != nullptr);
+        Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
 
         Use();
