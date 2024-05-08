@@ -18,6 +18,7 @@
 
 
 namespace StintaEngine::Core {
+    // Struct for storing data about a character from a font
     struct Character {
         Texture texture;
         glm::ivec2 size; 
@@ -25,12 +26,15 @@ namespace StintaEngine::Core {
         u32 advance;
     };
 
+    /*
+    Contains all cached glyphs of a font, loads a font
+    */
     class Font {
     public:
         std::unordered_map<char, Character> chars;
-
     public:
         Font() = default;
-        Font(FT_Library& freetype, const char* fontName, u16 height);
+        // Loads a font from `fontName`, and initializes the first 128 ASCII characters with the `height`
+        Font(FT_Library& freetype, const char* font_name, u16 height);
     };
 }

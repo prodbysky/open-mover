@@ -12,52 +12,52 @@ namespace StintaEngine::Core {
     using namespace Types;
 
     Shader::Shader() {
-        const char* vertName = "assets/shaders/quad_vertex.glsl";
-        const char* defaultFragName = "assets/shaders/default_quad_fragment.glsl";
-        const char* textureFragName = "assets/shaders/texture_quad_fragment.glsl";
-        const char* fontVertexName = "assets/shaders/font_vertex.glsl";
-        const char* fontFragName = "assets/shaders/font_fragment.glsl";
+        const char* vert_name = "assets/shaders/quad_vertex.glsl";
+        const char* default_frag_name = "assets/shaders/default_quad_fragment.glsl";
+        const char* texture_frag_name = "assets/shaders/texture_quad_fragment.glsl";
+        const char* font_vertex_name = "assets/shaders/font_vertex.glsl";
+        const char* font_frag_name = "assets/shaders/font_fragment.glsl";
 
-        u32 vertexShader = CompileShader(vertName, GL_VERTEX_SHADER);
-        u32 defaultFragShader = CompileShader(defaultFragName, GL_FRAGMENT_SHADER);
-        u32 textureFragShader = CompileShader(textureFragName, GL_FRAGMENT_SHADER);
-        u32 fontVertShader = CompileShader(fontVertexName, GL_VERTEX_SHADER);
-        u32 fontFragShader = CompileShader(fontFragName, GL_FRAGMENT_SHADER);
+        u32 vertex_shader = CompileShader(vert_name, GL_VERTEX_SHADER);
+        u32 default_frag_shader = CompileShader(default_frag_name, GL_FRAGMENT_SHADER);
+        u32 texture_frag_shader = CompileShader(texture_frag_name, GL_FRAGMENT_SHADER);
+        u32 font_vert_shader = CompileShader(font_vertex_name, GL_VERTEX_SHADER);
+        u32 font_frag_shader = CompileShader(font_frag_name, GL_FRAGMENT_SHADER);
 
-        defaultID = glCreateProgram();
-        glAttachShader(defaultID, vertexShader);
-        glAttachShader(defaultID, defaultFragShader);
-        glLinkProgram(defaultID);
-        glDeleteShader(defaultFragShader);
+        default_id = glCreateProgram();
+        glAttachShader(default_id, vertex_shader);
+        glAttachShader(default_id, default_frag_shader);
+        glLinkProgram(default_id);
+        glDeleteShader(default_frag_shader);
 
-        textureID = glCreateProgram();
-        glAttachShader(textureID, vertexShader);
-        glAttachShader(textureID, textureFragShader);
-        glLinkProgram(textureID);
-        glDeleteShader(vertexShader);
-        glDeleteShader(textureFragShader);
+        texture_id = glCreateProgram();
+        glAttachShader(texture_id, vertex_shader);
+        glAttachShader(texture_id, texture_frag_shader);
+        glLinkProgram(texture_id);
+        glDeleteShader(vertex_shader);
+        glDeleteShader(texture_frag_shader);
 
-        fontID = glCreateProgram();
-        glAttachShader(fontID, fontVertShader);
-        glAttachShader(fontID, fontFragShader);
-        glLinkProgram(fontID);
-        glDeleteShader(fontVertShader);
-        glDeleteShader(fontFragShader);
+        font_id = glCreateProgram();
+        glAttachShader(font_id, font_vert_shader);
+        glAttachShader(font_id, font_frag_shader);
+        glLinkProgram(font_id);
+        glDeleteShader(font_vert_shader);
+        glDeleteShader(font_frag_shader);
     }
 
     u32 Shader::CompileShader(const char* name, GLenum type) {
         i32 success;
-        char infoLog[512];
+        char info_log[512];
 
         u32 shader = glCreateShader(type);
-        std::string src = Utilities::read_entire_file(name);
+        std::string src = Utilities::ReadEntireFile(name);
         const char* s = src.c_str();
         glShaderSource(shader, 1, &s, NULL);
         glCompileShader(shader);
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
-            glGetShaderInfoLog(shader, 512, NULL, infoLog);
-            std::cerr << "Failed to compile " << name << ": " << infoLog << '\n';
+            glGetShaderInfoLog(shader, 512, NULL, info_log);
+            std::cerr << "Failed to compile " << name << ": " << info_log << '\n';
         }
         
         return shader;
@@ -66,15 +66,15 @@ namespace StintaEngine::Core {
     void Shader::SetShader(ShaderType type) {
         switch (type) {
             case ShaderType::SHADER_DEFAULT: {
-                    currentID = defaultID;    
+                    current_id = default_id;    
                     break;
             }
             case ShaderType::SHADER_TEXTURE: {
-                    currentID = textureID;    
+                    current_id = texture_id;    
                     break;
             }
             case ShaderType::SHADER_FONT: {
-                    currentID = fontID;
+                    current_id = font_id;
                     break;
             }
         } 
@@ -83,7 +83,7 @@ namespace StintaEngine::Core {
     }
     u32 Shader::GetUniformLocation(const char* name) {
         Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
-        i32 uniform_location = glGetUniformLocation(currentID, name); 
+        i32 uniform_location = glGetUniformLocation(current_id, name); 
 
         if (uniform_location < 0) {
             std::cerr << "Tried to get non-existant shader uniform: " << name << '\n';
@@ -128,7 +128,7 @@ namespace StintaEngine::Core {
     }
 
     void Shader::Use() {
-        glUseProgram(currentID);
+        glUseProgram(current_id);
     }
 
     void Shader::SetProjection(glm::vec2 size, glm::vec2 zBounds) {

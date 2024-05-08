@@ -5,13 +5,13 @@
 #include <iostream>
 
 namespace StintaEngine::Core {
-    Font::Font(FT_Library& freetype, const char* fontName, u16 height) {
-        Assert(fontName != nullptr, "Passed in null pointer");
+    Font::Font(FT_Library& freetype, const char* font_name, u16 height) {
+        Assert(font_name != nullptr, "Passed in null pointer");
         FT_Face face;
-        if (FT_New_Face(freetype, fontName, 0, &face)) {
-            std::cerr << "Failed to load font: " << fontName << '\n';
+        if (FT_New_Face(freetype, font_name, 0, &face)) {
+            std::cerr << "Failed to load font: " << font_name << '\n';
         }
-        std::cerr << "Loaded font " << fontName << '\n';
+        std::cerr << "Loaded font " << font_name << '\n';
 
         FT_Set_Pixel_Sizes(face, 0, height);
 

@@ -12,13 +12,15 @@ namespace StintaEngine::Core {
     private:
         u64 nextAttribOffset;
         u32 stride;
-        u8 nextAttrib;
         u32 ID;
+        u8 nextAttrib;
     private:
         void EnableAttribute(u32 attribute);
     public:
         VAO();
+        // Binds the VAO for drawing or other purposes
         void Bind();
+        // Adds a attribute of `size`, and of `type`
         void AddAttribute(u32 size, GLenum type);
         // Use when drawing with glDrawElements()
         void LinkVBOAndEBO(const VBO& vbo, const EBO& ebo);

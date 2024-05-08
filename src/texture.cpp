@@ -7,18 +7,18 @@
 
 
 namespace StintaEngine::Core {
-    Texture::Texture(const char* name, GLenum wrapMode, 
-                     GLenum textureFilter, GLenum imageType,
+    Texture::Texture(const char* name, GLenum wrap_mode, 
+                     GLenum texture_filter, GLenum image_type,
                      FT_Face face, TextureType type) {
 
         Assert(name != nullptr, "Passed in null pointer for the name of the texture");
 
         glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 
-        glTextureParameteri(ID, GL_TEXTURE_WRAP_S, wrapMode);
-        glTextureParameteri(ID, GL_TEXTURE_WRAP_T, wrapMode);
-        glTextureParameteri(ID, GL_TEXTURE_MIN_FILTER, textureFilter);
-        glTextureParameteri(ID, GL_TEXTURE_MAG_FILTER, textureFilter);
+        glTextureParameteri(ID, GL_TEXTURE_WRAP_S, wrap_mode);
+        glTextureParameteri(ID, GL_TEXTURE_WRAP_T, wrap_mode);
+        glTextureParameteri(ID, GL_TEXTURE_MIN_FILTER, texture_filter);
+        glTextureParameteri(ID, GL_TEXTURE_MAG_FILTER, texture_filter);
 
         if (type == TextureType::TEXTURE_IMAGE) {
             i32 width, height, nChannels;
@@ -26,7 +26,7 @@ namespace StintaEngine::Core {
             u8* data = stbi_load(name, &width, &height, &nChannels, 0);
 
             if (data) {
-                glTextureStorage2D(ID, 1, imageType, width, height);
+                glTextureStorage2D(ID, 1, image_type, width, height);
                 glTextureSubImage2D(ID, 0, 0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, data);
                 glGenerateTextureMipmap(ID);
             } else {
@@ -39,8 +39,8 @@ namespace StintaEngine::Core {
         }
     }
 
-    Texture::Texture(GLenum wrapMode, GLenum textureFilter, FT_Face face)
-        : Texture("", wrapMode, textureFilter, GL_SRGB8, face, TextureType::TEXTURE_GLYPH) {};
+    Texture::Texture(GLenum wrap_mode, GLenum texture_filter, FT_Face face)
+        : Texture("", wrap_mode, texture_filter, GL_SRGB8, face, TextureType::TEXTURE_GLYPH) {};
 
     void Texture::Bind() {
         glBindTextureUnit(0, ID);

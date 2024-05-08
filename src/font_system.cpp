@@ -19,10 +19,10 @@ namespace StintaEngine::Core {
         vao->LinkVBO(vbo);
     }
 
-    void FontSystem::LoadFont(const char* fontName, u16 height) {
-        Assert(fontName != nullptr, "Passed in null pointer");
+    void FontSystem::LoadFont(const char* font_name, u16 height) {
+        Assert(font_name != nullptr, "Passed in null pointer");
         Assert(height >= 0, "Non-positive font height passed in");
-        fonts[std::string(fontName)] = Font(freetype, fontName, height);
+        fonts[std::string(font_name)] = Font(freetype, font_name, height);
     }
 
     void FontSystem::Draw(std::string font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {

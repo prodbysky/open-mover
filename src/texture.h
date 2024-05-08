@@ -7,11 +7,13 @@
 namespace StintaEngine::Core {
     using namespace Types;
 
+    // All texture types
     enum class TextureType {
         TEXTURE_GLYPH,
         TEXTURE_IMAGE,
     };
 
+    // Loads and manages a texture
     class Texture {
     private:
         u32 ID;
@@ -20,11 +22,13 @@ namespace StintaEngine::Core {
         // TODO: Fully featured texture function
         Texture() = default;
 
-        Texture(const char* name, GLenum wrapMode = GL_MIRRORED_REPEAT, 
-                         GLenum textureFilter = GL_NEAREST, GLenum imageType = GL_SRGB8,
+        // Loads a texture or a glyph, based on passed in `type`
+        Texture(const char* name, GLenum wrap_mode = GL_MIRRORED_REPEAT, 
+                         GLenum texture_filter = GL_NEAREST, GLenum image_type = GL_SRGB8,
                          FT_Face face = {}, TextureType type = TextureType::TEXTURE_IMAGE);
 
-        Texture(GLenum wrapMode, GLenum textureFilter, FT_Face face);
+        // Loads a glyph from a font
+        Texture(GLenum wrap_mode, GLenum texture_filter, FT_Face face);
         void Bind();
         void Unbind();
     };

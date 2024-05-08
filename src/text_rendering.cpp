@@ -6,7 +6,7 @@ using namespace StintaEngine::Types;
 
 int main() {
     StintaEngine::Window window(800, 800, "Hello world!", true);
-    window.fontSystem->LoadFont("assets/fonts/arial.ttf", 96);
+    window.font_system->LoadFont("assets/fonts/arial.ttf", 96);
     
     if (window.window == nullptr) {
         return -1;
@@ -20,7 +20,7 @@ int main() {
         f64 yOffset = sin(window.GetTotalTime() * frequency) * amplitude * window.GetDeltaTime();
         pos.y += yOffset;
         window.Clear(24, 24, 24, 255);
-        window.fontSystem->Draw("assets/fonts/arial.ttf", *window.shader, "2024 MUSIC", pos, 1, glm::vec3(1, 1, 1));
+        window.font_system->Draw("assets/fonts/arial.ttf", *window.shader, "2024 MUSIC", pos, 1, glm::vec3(1, 1, 1));
         window.Swap();
     }
     return 0;

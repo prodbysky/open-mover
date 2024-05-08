@@ -11,11 +11,11 @@ namespace StintaEngine::Core {
         Assert(engine != nullptr, "Failed to initialize audio engine!");
     }
 
-    void Audio::Play(const char* filename) {
-        Assert(filename != nullptr, "Passed in null pointer");
-        ma_result result = ma_engine_play_sound(engine, filename, nullptr);
+    void Audio::Play(const char* file_name) {
+        Assert(file_name != nullptr, "Passed in null pointer");
+        ma_result result = ma_engine_play_sound(engine, file_name, nullptr);
         if (result != MA_SUCCESS) {
-            std::cerr << "Failed to play sound: " << filename << '\n';
+            std::cerr << "Failed to play sound: " << file_name << '\n';
         }
     }
 }

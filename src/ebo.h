@@ -5,6 +5,7 @@
 namespace StintaEngine::Core {
     using namespace Types;
 
+    // Manages index buffers
     class EBO {
     public:
         u32 ID;

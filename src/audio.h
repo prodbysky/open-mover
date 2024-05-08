@@ -3,6 +3,8 @@
 #include <miniaudio.h>
 
 namespace StintaEngine::Core {
+
+    // Manages miniaudio and plays audio on demand
     class Audio {
     private:
         ma_engine* engine;
@@ -10,6 +12,7 @@ namespace StintaEngine::Core {
     public:
         Audio();
         ~Audio() = default;
-        void Play(const char* filename);
+        // Loads a sound file from `file_name` and instantly plays it
+        void Play(const char* file_name);
     };
 }

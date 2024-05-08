@@ -10,31 +10,33 @@
 namespace StintaEngine::Core {
     using namespace Types; 
 
+    // All types of shaders
     enum class ShaderType {
         SHADER_DEFAULT,
         SHADER_TEXTURE,
         SHADER_FONT,
     };
 
+    // Loads, compiles, links, manages shaders. Also can set uniforms on the current shader
     class Shader {
     private:
-        u32 defaultID;
-        u32 textureID;
-        u32 fontID;
-        u32 currentID;
+        u32 default_id;
+        u32 texture_id;
+        u32 font_id;
+        u32 current_id;
 
         u32 CompileShader(const char* name, GLenum type);
         u32 GetUniformLocation(const char* name);
     public:
         Shader();
-        void SetProjection(glm::vec2 size, glm::vec2 zBounds);
+        // Sets the projection uniform for the current set shader
+        void SetProjection(glm::vec2 size, glm::vec2 z_bounds);
         void Use();
         // TODO: Functions for all uniforms
         void SetUniform(glm::mat4 data, const char* name);
         void SetUniform(glm::vec3 data, const char* name);
         void SetUniform(glm::vec2 data, const char* name);
         void SetUniform(f32 x, f32 y, f32 z, const char* name);
-
         void SetShader(ShaderType type);
     };
 }

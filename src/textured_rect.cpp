@@ -5,11 +5,10 @@
 #include "shader.h"
 #include "texture.h"
 
-
 namespace StintaEngine {
     using namespace Types;
-    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* textureName, GLenum textureFilter, GLenum imageType) {
-        Assert(textureName != nullptr, "Passed in null for the texture name");
+    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const char* texture_name, GLenum texture_filter, GLenum image_type) {
+        Assert(texture_name != nullptr, "Passed in null for the texture name");
         this->pos = pos;
         this->w = w;
         this->h = h;
@@ -31,7 +30,7 @@ namespace StintaEngine {
         vao.AddAttribute(2, GL_FLOAT);
         vao.LinkVBOAndEBO(vbo, ebo);
 
-        texture = Core::Texture(textureName, GL_MIRRORED_REPEAT, textureFilter, imageType, {}, Core::TextureType::TEXTURE_IMAGE);
+        texture = Core::Texture(texture_name, GL_MIRRORED_REPEAT, texture_filter, image_type, {}, Core::TextureType::TEXTURE_IMAGE);
     }
 
     void TexturedRect::Draw(Core::Shader& shader) {

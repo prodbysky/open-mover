@@ -7,6 +7,7 @@
 #include "window.h"
 
 namespace StintaEngine {
+    // Solid colored rectangle
     class Rect {
     private:
         Core::VAO vao;
