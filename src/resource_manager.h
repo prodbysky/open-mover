@@ -2,23 +2,27 @@
 
 #include <unordered_map>
 #include <variant>
-#include "texture.h"
+#include <string>
+#include "input.h"
 
-namespace StintaEngine {
-    using namespace Types;
+namespace StintaEngine::Core {
+    using namespace StintaEngine::Types;
 
     struct TextureData {
         u8* data;
         i32 width, height, nChannels;
+        ~TextureData();
     };
 
     class ResourceManager {
-        std::unordered_map<const char*, TextureData> resources;
+        std::unordered_map<std::string, TextureData> resources;
 
     public:
-        ResourceManager() = default;
+        ResourceManager();
         ~ResourceManager() = default;
-        void LoadTexture(const char* name);
-        TextureData GetTexture(const char* name);
+        const TextureData& LoadTexture(std::string name);
+        // Get the texture with a const reference
+        const TextureData& GetTexture(std::string name);
+        TextureData& GetMutTexture(std::string name);
     };
 }
