@@ -37,4 +37,3 @@ namespace StintaEngine::Core {
         (void) input;
     }
 }
-
