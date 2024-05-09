@@ -9,6 +9,7 @@
 #include "audio.h"
 #include "shader.h"
 #include "font_system.h"
+#include "resource_manager.h"
 
 namespace StintaEngine {
     using namespace Types;
@@ -19,6 +20,7 @@ namespace StintaEngine {
         Core::Input input;
         std::unique_ptr<Core::FontSystem> font_system;
         Core::Audio audio;
+        Core::ResourceManager resource_manager;
     public:
         // Initializes GLFW context, all subsystems, setups debugging messages, sets projection matrices for all of the shaders
         Window(u16 width, u16 height, const char* title, bool vSync = true);
