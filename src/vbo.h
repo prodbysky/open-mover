@@ -1,6 +1,7 @@
 #pragma once
 
-#include "glad/glad.h"
+#include <glad/glad.h>
+
 #include "types.h"
 
 namespace StintaEngine::Core {

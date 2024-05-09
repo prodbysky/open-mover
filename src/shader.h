@@ -1,12 +1,10 @@
 #pragma once
 
 #include <glad/glad.h>
-#include <optional>
-#include <glm/mat4x4.hpp>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
+#include <glm/glm.hpp>
 
 #include "types.h"
+
 namespace StintaEngine::Core {
     // All types of shaders
     enum class ShaderType {
@@ -22,7 +20,7 @@ namespace StintaEngine::Core {
         u32 texture_id;
         u32 font_id;
         u32 current_id;
-
+    private:
         u32 CompileShader(const char* name, GLenum type) const;
         u32 GetUniformLocation(const char* name) const;
     public:

@@ -1,6 +1,7 @@
 #include "resource_manager.h"
 #include "resources.h"
 #include "stb_image.h"
+#include <unordered_map>
 
 namespace StintaEngine::Core {
     ResourceManager::ResourceManager() {
@@ -28,7 +29,6 @@ namespace StintaEngine::Core {
         sounds.insert({name, Sound(name)});
         return sounds.at(name);
     }
-
 
     const Sound& ResourceManager::GetSound(std::string name) {
         return sounds.at(name);

@@ -1,17 +1,12 @@
 #pragma once
 
-#include <iostream>
 #include <unordered_map>
-#include <vector>
-#include <string>
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
-#include <glad/glad.h>
 #include <glm/glm.hpp>
 
 #include "texture.h"
-#include "shader.h"
 #include "types.h"
 
 namespace StintaEngine {

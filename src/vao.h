@@ -1,10 +1,10 @@
 #pragma once
 
-#include "ebo.h"
-#include "types.h"
-#include "vbo.h"
-
 #include <glad/glad.h>
+
+#include "types.h"
+#include "ebo.h"
+#include "vbo.h"
 
 namespace StintaEngine::Core {
     class VAO {

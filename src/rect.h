@@ -1,10 +1,12 @@
 #pragma once
 
+#include <glm/glm.hpp>
+#include "shader.h"
+
 #include "ebo.h"
 #include "types.h"
 #include "vao.h"
 #include "vbo.h"
-#include "window.h"
 
 namespace StintaEngine {
     // Solid colored rectangle

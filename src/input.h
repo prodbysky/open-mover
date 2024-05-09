@@ -1,11 +1,11 @@
 #pragma once
 
-#include "glm/ext/vector_float2.hpp"
 #include <array>
 
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 
 #include "types.h"
 

@@ -1,18 +1,15 @@
 #pragma once
 
 #include <unordered_map>
-#include <variant>
 #include <string>
-#include "input.h"
-#include "texture.h"
+
 #include "resources.h"
 
 namespace StintaEngine::Core {
-
     class ResourceManager {
+    private:
         std::unordered_map<std::string, TextureData> textures;
         std::unordered_map<std::string, Sound> sounds;
-
     public:
         ResourceManager();
         ~ResourceManager() = default;

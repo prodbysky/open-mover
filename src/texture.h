@@ -1,12 +1,12 @@
 #pragma once
 
-#include "types.h"
 #include <glad/glad.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
 #include "resource_manager.h"
 #include "resources.h"
+#include "types.h"
 
 namespace StintaEngine::Core {
     // All texture types

@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "miniaudio.h"
+#include <miniaudio.h>
 
 #include "types.h"
 

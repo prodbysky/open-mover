@@ -1,8 +1,6 @@
 #pragma once
 
-
 #include <memory>
-#include <unordered_map>
 #include <string>
 #include "font.h"
 #include "shader.h"

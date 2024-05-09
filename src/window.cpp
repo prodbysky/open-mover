@@ -21,7 +21,7 @@ namespace StintaEngine {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        window = glfwCreateWindow(width, height, title, NULL, NULL);
+        window = glfwCreateWindow(width, height, title, nullptr, nullptr);
 
         Assert(window != nullptr, "Failed to create GLFW window!");
 
