@@ -1,6 +1,7 @@
 #include "font_system.h"
 #include "assert.h"
 #include "font.h"
+#include "freetype/freetype.h"
 #include "glad/glad.h"
 #include "shader.h"
 #include <cassert>
@@ -20,13 +21,17 @@ namespace StintaEngine::Core {
         vao->LinkVBO(vbo);
     }
 
+    FontSystem::~FontSystem() {
+        FT_Done_FreeType(freetype);
+    }
+
     Font FontSystem::LoadFont(const char* font_name, u16 height) {
         Assert(font_name != nullptr, "Passed in null pointer");
         Assert(height >= 0, "Non-positive font height passed in");
         return Font(freetype, font_name, height);
     }
 
-    void FontSystem::Draw(const Font& font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
+    void FontSystem::Draw(const Font font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
         shader.SetShader(Core::ShaderType::SHADER_FONT);
         
         shader.SetUniform(color.r, color.g, color.b, "uColor");

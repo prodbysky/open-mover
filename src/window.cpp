@@ -4,6 +4,7 @@
 #include "window.h"
 #include "GLFW/glfw3.h"
 #include "assert.h"
+#include "font_system.h"
 #include "shader.h"
 #include "types.h"
 #include <iostream>
@@ -38,10 +39,8 @@ namespace StintaEngine {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
-        input = Core::Input();
         input.Setup(window);
-        audio = Core::Audio();
-        font_system = std::make_unique<Core::FontSystem>(); 
+        font_system = std::make_unique<Core::FontSystem>();
 
         shader = std::make_unique<Core::Shader>();
         shader->SetShader(Core::ShaderType::SHADER_DEFAULT);

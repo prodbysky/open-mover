@@ -23,8 +23,9 @@ namespace StintaEngine::Core {
 
     public:
         FontSystem();
+        ~FontSystem();
         // Loads a font from `fontName`
         Font LoadFont(const char* font_name, u16 height = 48);
-        void Draw(const Font& font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color);
+        void Draw(const Font font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color);
     };
 }

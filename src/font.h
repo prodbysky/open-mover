@@ -33,6 +33,6 @@ namespace StintaEngine {
     public:
         Font() = default;
         // Loads a font from `fontName`, and initializes the first 128 ASCII characters with the `height`
-        Font(FT_Library& freetype, const char* font_name, u16 height);
+        Font(FT_Library freetype, const char* font_name, u16 height);
     };
 }

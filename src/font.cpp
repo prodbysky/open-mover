@@ -5,7 +5,7 @@
 #include <iostream>
 
 namespace StintaEngine {
-    Font::Font(FT_Library& freetype, const char* font_name, u16 height) {
+    Font::Font(FT_Library freetype, const char* font_name, u16 height) {
         Assert(font_name != nullptr, "Passed in null pointer");
         FT_Face face;
         if (FT_New_Face(freetype, font_name, 0, &face)) {
