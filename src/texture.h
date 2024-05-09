@@ -6,9 +6,9 @@
 #include FT_FREETYPE_H
 
 #include "resource_manager.h"
+#include "resources.h"
 
 namespace StintaEngine::Core {
-
     // All texture types
     enum class TextureType {
         TEXTURE_GLYPH,
