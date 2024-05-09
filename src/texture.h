@@ -1,8 +1,11 @@
 #pragma once
+
 #include "types.h"
 #include <glad/glad.h>
 #include <ft2build.h>
 #include FT_FREETYPE_H
+
+#include "resource_manager.h"
 
 namespace StintaEngine::Core {
     using namespace Types;
@@ -23,7 +26,7 @@ namespace StintaEngine::Core {
         Texture() = default;
 
         // Loads a texture or a glyph, based on passed in `type`
-        Texture(const char* name, GLenum wrap_mode = GL_MIRRORED_REPEAT, 
+        Texture(TextureData data, GLenum wrap_mode = GL_MIRRORED_REPEAT, 
                          GLenum texture_filter = GL_NEAREST, GLenum image_type = GL_SRGB8,
                          FT_Face face = {}, TextureType type = TextureType::TEXTURE_IMAGE);
 
