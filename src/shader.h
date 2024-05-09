@@ -8,8 +8,6 @@
 
 #include "types.h"
 namespace StintaEngine::Core {
-    using namespace Types; 
-
     // All types of shaders
     enum class ShaderType {
         SHADER_DEFAULT,

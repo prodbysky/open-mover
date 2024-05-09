@@ -4,7 +4,6 @@
 #include "types.h"
 
 namespace StintaEngine::Core {
-    using namespace Types;
     class VBO {
     public:
         u32 ID;

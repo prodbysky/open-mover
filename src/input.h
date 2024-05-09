@@ -10,7 +10,6 @@
 #include "types.h"
 
 namespace StintaEngine::Core {
-    using namespace Types;
 
     // Manages all input, provides api for getting mouse and keyboard state
     class Input {

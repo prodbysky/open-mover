@@ -15,7 +15,6 @@
 #include "types.h"
 
 namespace StintaEngine {
-    using namespace Types;
     // Struct for storing data about a character from a font
     struct Character {
         Core::Texture texture;

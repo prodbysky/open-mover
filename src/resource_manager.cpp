@@ -2,7 +2,6 @@
 #include "stb_image.h"
 
 namespace StintaEngine::Core {
-    using namespace Types;
 
     TextureData::~TextureData() {
         stbi_image_free(data);

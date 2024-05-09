@@ -6,7 +6,6 @@
 #include "input.h"
 
 namespace StintaEngine::Core {
-    using namespace StintaEngine::Types;
 
     struct TextureData {
         u8* data;

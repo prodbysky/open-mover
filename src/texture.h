@@ -8,7 +8,6 @@
 #include "resource_manager.h"
 
 namespace StintaEngine::Core {
-    using namespace Types;
 
     // All texture types
     enum class TextureType {

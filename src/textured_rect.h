@@ -13,7 +13,6 @@
 #include "types.h"
 
 namespace StintaEngine {
-    using namespace Types;
 
     // Rectangle that also has a texture to draw
     class TexturedRect {

@@ -7,7 +7,6 @@
 #include <glad/glad.h>
 
 namespace StintaEngine::Core {
-    using namespace Types;
     class VAO {
     private:
         u64 nextAttribOffset;

@@ -12,7 +12,6 @@
 #include "resource_manager.h"
 
 namespace StintaEngine {
-    using namespace Types;
     class Window {
     public:
         GLFWwindow* window;

@@ -3,8 +3,6 @@
 #include "glm/ext/vector_float3.hpp"
 #include "window.h"
 
-using namespace StintaEngine::Types;
-
 int main() {
     StintaEngine::Window window(800, 800, "Hello world!", true);
     StintaEngine::Font arial = window.font_system->LoadFont("assets/fonts/arial.ttf", 96);

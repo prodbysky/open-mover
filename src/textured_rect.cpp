@@ -6,7 +6,6 @@
 #include "resource_manager.h"
 
 namespace StintaEngine {
-    using namespace Types;
     TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const Core::TextureData& data, GLenum texture_filter, GLenum image_type) {
         this->pos = pos;
         this->w = w;
