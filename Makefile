@@ -2,10 +2,10 @@ CC = g++
 
 CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -ggdb lib/miniaudio.o lib/stb_image.o lib/glad.o
 
-SRC = src/shader.cpp src/util.cpp src/rect.cpp src/window.cpp \
-      src/input.cpp src/vao.cpp src/vbo.cpp src/ebo.cpp src/texture.cpp \
-      src/textured_rect.cpp src/audio.cpp src/font.cpp src/font_system.cpp src/assert.cpp \
-	  src/resource_manager.cpp src/resources.cpp
+SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Window/window.cpp \
+      src/Core/input.cpp src/Core/vao.cpp src/Core/vbo.cpp src/Core/ebo.cpp src/Core/texture.cpp \
+      src/Shapes/textured_rect.cpp src/Core/audio.cpp src/Resource/font.cpp src/Core/font_system.cpp src/Utilities/assert.cpp \
+	  src/Resource/resource_manager.cpp src/Resource/resources.cpp
 
 OBJ = $(SRC:.cpp=.o)
 

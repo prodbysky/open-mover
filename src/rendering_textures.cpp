@@ -1,5 +1,5 @@
-#include "textured_rect.h"
-#include "window.h"
+#include "Shapes/textured_rect.h"
+#include "Window/window.h"
 
 int main() {
     StintaEngine::Window window(800, 800, "Hello world!");
