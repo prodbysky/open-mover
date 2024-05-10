@@ -4,7 +4,7 @@
 #include "../Core/shader.h"
 #include "../Core/vao.h"
 
-namespace StintaEngine {
+namespace StintaEngine::Shapes {
     Rect::Rect(glm::vec2 pos, f32 w, f32 h, glm::vec3 color) {
         this->pos = pos;
         this->w = w;

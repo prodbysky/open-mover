@@ -4,7 +4,7 @@
 #include "../Core/texture.h"
 #include "../Shapes/textured_rect.h"
 
-namespace StintaEngine {
+namespace StintaEngine::Shapes {
     TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const Core::TextureData& data, GLenum texture_filter, GLenum image_type) {
         this->pos = pos;
         this->w = w;

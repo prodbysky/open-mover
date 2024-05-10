@@ -8,7 +8,7 @@
 #include "../Core/vao.h"
 #include "../Core/vbo.h"
 
-namespace StintaEngine {
+namespace StintaEngine::Shapes {
     // Solid colored rectangle
     class Rect {
     private:

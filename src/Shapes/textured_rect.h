@@ -12,8 +12,7 @@
 #include "../Window/window.h"
 #include "../Utilities/types.h"
 
-namespace StintaEngine {
-
+namespace StintaEngine::Shapes {
     // Rectangle that also has a texture to draw
     class TexturedRect {
     public:
