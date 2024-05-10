@@ -9,7 +9,6 @@
 #include "util.h"
 
 namespace StintaEngine::Core {
-    using namespace Types;
 
     Shader::Shader() {
         const char* vert_name = "assets/shaders/quad_vertex.glsl";
