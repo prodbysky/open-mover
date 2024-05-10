@@ -14,17 +14,17 @@ all: hello_window text_rendering playing_sounds rendering_textures
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
 
-hello_window: $(OBJ) src/hello_window.cpp
-	$(CC) $(OBJ) src/hello_window.cpp -o bin/hello_window $(CPPFLAGS) 
+hello_window: $(OBJ) src/Examples/hello_window.cpp
+	$(CC) $(OBJ) src/Examples/hello_window.cpp -o bin/hello_window $(CPPFLAGS) 
 
-text_rendering: $(OBJ) src/text_rendering.cpp 
-	$(CC) $(OBJ) src/text_rendering.cpp -o bin/text_rendering $(CPPFLAGS) 
+text_rendering: $(OBJ) src/Examples/text_rendering.cpp 
+	$(CC) $(OBJ) src/Examples/text_rendering.cpp -o bin/text_rendering $(CPPFLAGS) 
 
-playing_sounds: $(OBJ) src/playing_sounds.cpp 
-	$(CC) $(OBJ) src/playing_sounds.cpp -o bin/playing_sounds $(CPPFLAGS) 
+playing_sounds: $(OBJ) src/Examples/playing_sounds.cpp 
+	$(CC) $(OBJ) src/Examples/playing_sounds.cpp -o bin/playing_sounds $(CPPFLAGS) 
 
-rendering_textures: $(OBJ) src/rendering_textures.cpp
-	$(CC) $(OBJ) src/rendering_textures.cpp -o bin/rendering_textures $(CPPFLAGS) 
+rendering_textures: $(OBJ) src/Examples/rendering_textures.cpp
+	$(CC) $(OBJ) src/Examples/rendering_textures.cpp -o bin/rendering_textures $(CPPFLAGS) 
 
 clean:
 	rm -f src/*.o bin/*
