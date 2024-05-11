@@ -1,3 +1,0 @@
-# Fix for neovim include paths
-CompileFlags:
-  Add: [-I../include/, -Wall, -Wextra, -Werror]

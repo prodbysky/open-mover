@@ -4,12 +4,12 @@ CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -We
 
 SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Window/window.cpp \
       src/Core/input.cpp src/Core/vao.cpp src/Core/vbo.cpp src/Core/ebo.cpp src/Core/texture.cpp \
-      src/Shapes/textured_rect.cpp src/Core/audio.cpp src/Resource/font.cpp src/Core/font_system.cpp src/Utilities/assert.cpp \
-	  src/Resource/resource_manager.cpp src/Resource/resources.cpp
+      src/Shapes/textured_rect.cpp src/Core/audio.cpp src/Resource/font.cpp src/Utilities/assert.cpp \
+	  src/Resource/resource_manager.cpp src/Resource/resources.cpp src/UI/text.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -25,6 +25,9 @@ playing_sounds: $(OBJ) src/Examples/playing_sounds.cpp
 
 rendering_textures: $(OBJ) src/Examples/rendering_textures.cpp
 	$(CC) $(OBJ) src/Examples/rendering_textures.cpp -o bin/rendering_textures $(CPPFLAGS) 
+
+top_down_movement: $(OBJ) src/Examples/top_down_movement.cpp
+	$(CC) $(OBJ) src/Examples/top_down_movement.cpp -o bin/top_down_movement $(CPPFLAGS) 
 
 clean:
 	rm -f src/*.o bin/*

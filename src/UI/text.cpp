@@ -24,6 +24,14 @@ namespace StintaEngine::UI {
         this->color = color;
     }
 
+    void Text::SetText(std::string text) {
+        this->text = text;
+    }
+    
+    void Text::SetScale(f32 scale) {
+        this->scale = scale;
+    }
+
     void Text::Draw(Core::Shader& shader) {
         shader.SetShader(Core::ShaderType::SHADER_FONT);
         
