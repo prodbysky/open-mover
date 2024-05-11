@@ -12,6 +12,8 @@ Game framework in C++ using OpenGL (GLAD GLFW CGLM)
  - text_rendering
  - playing_sounds
  - rendering_textures
+ - top_down_movement
+ - flappy_bird
 
 ## Dependencies
  - Freetype2 [< 2.13]

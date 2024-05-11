@@ -9,7 +9,7 @@ SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Window/
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -28,6 +28,9 @@ rendering_textures: $(OBJ) src/Examples/rendering_textures.cpp
 
 top_down_movement: $(OBJ) src/Examples/top_down_movement.cpp
 	$(CC) $(OBJ) src/Examples/top_down_movement.cpp -o bin/top_down_movement $(CPPFLAGS) 
+
+flappy_bird: $(OBJ) src/Examples/flappy_bird.cpp
+	$(CC) $(OBJ) src/Examples/flappy_bird.cpp -o bin/flappy_bird $(CPPFLAGS) 
 
 clean:
 	rm -f src/*.o bin/*
