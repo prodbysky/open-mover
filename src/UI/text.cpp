@@ -1,38 +1,30 @@
-#include <iostream>
-#include <cassert>
+#include "text.h"
+#include "glad/glad.h"
 #include <memory>
 
-#include "freetype/freetype.h"
-
-#include "../Core/font_system.h"
-#include "../Utilities/assert.h"
-#include "../Resource/font.h"
-#include "../Core/shader.h"
-
-namespace StintaEngine::Core {
-    FontSystem::FontSystem() : vao(nullptr) {
-        if (FT_Init_FreeType(&freetype)) {
-            std::cerr << "Failed to initialize Freetype library\n";
-        }
-
+namespace StintaEngine::UI {
+    Text::Text(const Font& font, std::string text, glm::vec2 pos, glm::vec3 color, f32 scale) 
+               : font(font), text(text), color(color), pos(pos), scale(scale) {
         vao = std::make_unique<Core::VAO>();
-        vbo = Core::VBO(NULL, 24, GL_DYNAMIC_DRAW); // Reserve space for vertices
+        vbo = std::make_unique<Core::VBO>(nullptr, 24, GL_DYNAMIC_DRAW);
 
         vao->AddAttribute(4, GL_FLOAT);
-        vao->LinkVBO(vbo);
+        vao->LinkVBO(*vbo);
     }
 
-    FontSystem::~FontSystem() {
-        FT_Done_FreeType(freetype);
+    void Text::Move(glm::vec2 move) {
+        pos += move;
+    }
+    
+    void Text::SetPos(glm::vec2 move) {
+        pos = move;
     }
 
-    Font FontSystem::LoadFont(const char* font_name, u16 height) {
-        Assert(font_name != nullptr, "Passed in null pointer");
-        Assert(height >= 0, "Non-positive font height passed in");
-        return Font(freetype, font_name, height);
+    void Text::SetColor(glm::vec3 color) {
+        this->color = color;
     }
 
-    void FontSystem::Draw(const Font font, Core::Shader& shader, std::string text, glm::vec2 pos, float scale, glm::vec3 color) {
+    void Text::Draw(Core::Shader& shader) {
         shader.SetShader(Core::ShaderType::SHADER_FONT);
         
         shader.SetUniform(color.r, color.g, color.b, "uColor");
@@ -58,7 +50,7 @@ namespace StintaEngine::Core {
             vao->Bind();
             ch.texture.Bind();
 
-            glNamedBufferSubData(vbo.ID, 0, 24 * sizeof(f32), vertices);
+            glNamedBufferSubData(vbo->ID, 0, 24 * sizeof(f32), vertices);
 
             glDrawArrays(GL_TRIANGLES, 0, 6);
 

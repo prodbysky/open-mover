@@ -1,16 +1,15 @@
-#include <glad/glad.h>
 #include <iostream>
 #include <memory>
 
 #include "window.h"
 #include "GLFW/glfw3.h"
 #include "../Utilities/assert.h"
-#include "../Core/font_system.h"
 #include "../Core/shader.h"
 #include "../Utilities/types.h"
+#include "freetype/freetype.h"
 
 namespace StintaEngine {
-    Window::Window(u16 width, u16 height, const char* title, bool vSync) : window(nullptr), shader(nullptr), font_system(nullptr) {
+    Window::Window(u16 width, u16 height, const char* title, bool vSync) : window(nullptr), shader(nullptr) {
         Assert(width != 0, "Window width can't be 0");
         Assert(height != 0, "Window height can't be 0");
         Assert(title != nullptr, "Window title can't be null");
@@ -39,7 +38,6 @@ namespace StintaEngine {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
         input.Setup(window);
-        font_system = std::make_unique<Core::FontSystem>();
 
         shader = std::make_unique<Core::Shader>();
         shader->SetShader(Core::ShaderType::SHADER_DEFAULT);
@@ -51,6 +49,7 @@ namespace StintaEngine {
 
         deltaTime = 0;
         lastFrame = 0;
+        FT_Init_FreeType(&freetype);
     }
 
     bool Window::ShouldClose() const {

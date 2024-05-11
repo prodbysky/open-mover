@@ -3,12 +3,13 @@
 #include <memory>
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <ft2build.h>
+#include FT_FREETYPE_H
 
 #include "../Utilities/types.h"
 #include "../Core/input.h"
 #include "../Core/audio.h"
 #include "../Core/shader.h"
-#include "../Core/font_system.h"
 #include "../Resource/resource_manager.h"
 
 namespace StintaEngine {
@@ -17,9 +18,9 @@ namespace StintaEngine {
         GLFWwindow* window;
         std::unique_ptr<Core::Shader> shader;
         Core::Input input;
-        std::unique_ptr<Core::FontSystem> font_system;
         Core::Audio audio;
         Core::ResourceManager resource_manager;
+        FT_Library freetype; 
     public:
         // Initializes GLFW context, all subsystems, setups debugging messages, sets projection matrices for all of the shaders
         Window(u16 width, u16 height, const char* title, bool vSync = true);
