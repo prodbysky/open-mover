@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <memory>
-#include "../Resource/font.h"
+#include "../Resource/resources.h"
 #include "../Core/shader.h"
 #include "../Core/vao.h"
 #include "../Core/vbo.h"

@@ -3,7 +3,7 @@
 
 int main() {
     StintaEngine::Window window(800, 800, "Hello world!", true);
-    StintaEngine::Font arial = StintaEngine::Font(window.freetype, "assets/fonts/arial.ttf", 96);
+    StintaEngine::Font arial = window.resource_manager.LoadFont("assets/fonts/arial.ttf", 96);
     StintaEngine::UI::Text text(arial, "2024 MUSIC", glm::vec2(300, 200), glm::vec3(1, 1, 1), 1);
     
     f64 amplitude = 500.0;

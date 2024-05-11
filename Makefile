@@ -4,8 +4,8 @@ CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -We
 
 SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Window/window.cpp \
       src/Core/input.cpp src/Core/vao.cpp src/Core/vbo.cpp src/Core/ebo.cpp src/Core/texture.cpp \
-      src/Shapes/textured_rect.cpp src/Core/audio.cpp src/Resource/font.cpp src/Utilities/assert.cpp \
-	  src/Resource/resource_manager.cpp src/Resource/resources.cpp src/UI/text.cpp
+      src/Shapes/textured_rect.cpp src/Core/audio.cpp src/Utilities/assert.cpp \
+	  src/Resource/resource_manager.cpp src/Resource/resources.cpp src/UI/text.cpp src/Resource/texture_data.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
@@ -33,4 +33,4 @@ flappy_bird: $(OBJ) src/Examples/flappy_bird.cpp
 	$(CC) $(OBJ) src/Examples/flappy_bird.cpp -o bin/flappy_bird $(CPPFLAGS) 
 
 clean:
-	rm -f src/*.o bin/*
+	rm -f src/**/*.o bin/*

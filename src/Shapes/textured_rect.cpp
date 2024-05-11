@@ -1,11 +1,10 @@
 #include <glm/ext/matrix_transform.hpp>
-#include "glad/glad.h"
-#include "../Core/shader.h"
-#include "../Core/texture.h"
 #include "../Shapes/textured_rect.h"
+#include "../Core/texture.h"
+#include "glad/glad.h"
 
 namespace StintaEngine::Shapes {
-    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const Core::TextureData& data, GLenum texture_filter, GLenum image_type) {
+    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const StintaEngine::Core::TextureData& data, GLenum texture_filter, GLenum image_type) {
         this->pos = pos;
         this->w = w;
         this->h = h;
@@ -27,6 +26,7 @@ namespace StintaEngine::Shapes {
         vao.AddAttribute(2, GL_FLOAT);
         vao.LinkVBOAndEBO(vbo, ebo);
 
+        // Loads a glyph from a font
         texture = Core::Texture(data, GL_MIRRORED_REPEAT, texture_filter, image_type, {}, Core::TextureType::TEXTURE_IMAGE);
     }
 

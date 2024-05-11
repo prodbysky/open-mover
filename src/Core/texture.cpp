@@ -1,15 +1,14 @@
 #include <cstring>
 
 #include "../Core/texture.h"
-#include "../Resource/resources.h"
+#include "../Resource/texture_data.h"
 #include <glad/glad.h>
 #include <stb_image.h>
 
-
 namespace StintaEngine::Core {
-    Texture::Texture(TextureData data, GLenum wrap_mode, 
-                     GLenum texture_filter, GLenum image_type,
-                     FT_Face face, TextureType type) {
+    Texture::Texture(const TextureData& data, GLenum wrap_mode, 
+                         GLenum texture_filter, GLenum image_type,
+                         FT_Face face, TextureType type) {
 
         glCreateTextures(GL_TEXTURE_2D, 1, &ID);
 
@@ -29,7 +28,10 @@ namespace StintaEngine::Core {
     }
 
     Texture::Texture(GLenum wrap_mode, GLenum texture_filter, FT_Face face)
-        : Texture({}, wrap_mode, texture_filter, GL_SRGB8, face, TextureType::TEXTURE_GLYPH) {};
+        : Texture({}, wrap_mode, texture_filter, GL_SRGB8, face, TextureType::TEXTURE_GLYPH) {}
+
+    Texture::Texture(const TextureData& data, GLenum wrap_mode, GLenum texture_filter, GLenum image_type) 
+        : Texture(data, wrap_mode, texture_filter, image_type, {}, TextureType::TEXTURE_IMAGE) {}
 
     void Texture::Bind() const {
         glBindTextureUnit(0, ID);

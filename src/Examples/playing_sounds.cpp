@@ -3,7 +3,7 @@
 
 int main() {
     StintaEngine::Window window(800, 800, "Hello world!");
-    StintaEngine::Core::Sound synth = window.resource_manager.LoadSound("assets/sounds/synth.wav");
+    StintaEngine::Sound synth = window.resource_manager.LoadSound("assets/sounds/synth.wav");
     
     window.audio.Play(synth);
     while (!window.ShouldClose()) {
