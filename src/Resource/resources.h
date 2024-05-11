@@ -24,11 +24,6 @@ namespace StintaEngine {
         u32 advance;
     };
 
-    struct TextureData {
-        u8* data;
-        i32 width, height, nChannels;
-        ~TextureData();
-    };
 
     /*
     Contains all cached glyphs of a font, loads a font
