@@ -1,7 +1,6 @@
 #include "rect.h"
 #include "glm/trigonometric.hpp"
 #include <glm/ext/matrix_transform.hpp>
-#include <iostream>
 
 namespace StintaEngine::Shapes {
     Rect::Rect(glm::vec2 pos, f32 w, f32 h) {
@@ -30,5 +29,20 @@ namespace StintaEngine::Shapes {
 
     void Rect::RotateY(f32 degrees) {
         model = glm::rotate(model, glm::radians(degrees), glm::vec3(0, 1, 0));
+    }
+    
+    bool Rect::AABBCollision(const Rect& other) {
+        return this->pos.x < other.pos.x + other.w &&
+               this->pos.x + this->w > other.pos.x &&
+               this->pos.y < other.pos.y + other.h &&
+               this->pos.y + this->h > other.pos.y;
+    }
+
+    bool Rect::PointCollision(glm::vec2 point) {
+        point.y += h;
+        return point.x >= pos.x &&
+               point.x <= pos.x + w &&
+               point.y <= pos.y &&
+               point.y >= pos.y - h;
     }
 }

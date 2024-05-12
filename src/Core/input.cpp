@@ -50,7 +50,7 @@ namespace StintaEngine::Core {
 
     void Input::CursorPositionCallback(GLFWwindow* window, double xpos, double ypos) {
         Input* input = (Input*)glfwGetWindowUserPointer(window);
-        input->mouse_pos = glm::vec2(xpos, ypos);
+        input->mouse_pos = glm::vec2(xpos, 800 - ypos);
     }
 
     void Input::MouseButtonCallback(GLFWwindow* window, int button, int action, int mods) {

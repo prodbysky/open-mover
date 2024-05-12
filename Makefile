@@ -10,7 +10,7 @@ SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird 
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -32,6 +32,12 @@ top_down_movement: $(OBJ) src/Examples/top_down_movement.cpp
 
 flappy_bird: $(OBJ) src/Examples/flappy_bird.cpp
 	$(CC) $(OBJ) src/Examples/flappy_bird.cpp -o bin/flappy_bird $(CPPFLAGS) 
+
+point_vs_rect: $(OBJ) src/Examples/point_vs_rect.cpp
+	$(CC) $(OBJ) src/Examples/point_vs_rect.cpp -o bin/point_vs_rect $(CPPFLAGS) 
+
+aabb_collision: $(OBJ) src/Examples/aabb_collision.cpp
+	$(CC) $(OBJ) src/Examples/aabb_collision.cpp -o bin/aabb_collision $(CPPFLAGS) 
 
 clean:
 	rm -f src/**/*.o bin/*

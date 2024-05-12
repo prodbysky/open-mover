@@ -25,6 +25,8 @@ namespace StintaEngine::Shapes {
         void SetPos(glm::vec2 move);
         void RotateX(f32 degrees);
         void RotateY(f32 degrees);
+        bool AABBCollision(const Rect& other);
+        bool PointCollision(glm::vec2 point);
     };
 
 }
