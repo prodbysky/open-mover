@@ -14,31 +14,33 @@ namespace StintaEngine {
         Assert(height != 0, "Window height can't be 0");
         Assert(title != nullptr, "Window title can't be null");
 
+
+        // Initialize glfw, glad, and load opengl (4.6 core)
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
+
+        // Setup window
         window = glfwCreateWindow(width, height, title, nullptr, nullptr);
-
         Assert(window != nullptr, "Failed to create GLFW window!");
-
         glfwMakeContextCurrent(window);
         glfwSwapInterval(vSync);
 
         gladLoadGL();
+        glViewport(0, 0, width, height);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
+        // Setup debug loggin
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
         glDebugMessageCallback(MessageCallback, nullptr);
 
-        glViewport(0, 0, width, height);
-        
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
-
         input.Setup(window);
 
+        // TODO: Remove repetition
         shader = std::make_unique<Core::Shader>();
         shader->SetShader(Core::ShaderType::SHADER_DEFAULT);
         shader->SetProjection(glm::vec2(f32(width), f32(height)), glm::vec2(-1.5, 1.5));
@@ -61,7 +63,7 @@ namespace StintaEngine {
         glfwPollEvents();
     }
 
-    void Window::Clear(u16 r, u16 b, u16 g, u16 a) {
+    void Window::Clear(u8 r, u8 b, u8 g, u8 a) {
         f64 currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
@@ -74,7 +76,6 @@ namespace StintaEngine {
         return deltaTime;
     }
 
-
     f64 Window::GetFPS() const {
         return 1/deltaTime;
     }
@@ -84,6 +85,7 @@ namespace StintaEngine {
     }
 
     Window::~Window() {
+        FT_Done_FreeType(freetype);
         glfwTerminate();
     }
 

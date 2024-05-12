@@ -12,6 +12,11 @@
 #include "../Core/shader.h"
 #include "../Resource/resource_manager.h"
 
+
+/* TODO: Simplify
+   I do not like that Window owns shaders, input management, audio system, ...
+   So probably move it into global variable, or something else
+*/
 namespace StintaEngine {
     class Window {
     public:
@@ -25,7 +30,7 @@ namespace StintaEngine {
         // Initializes GLFW context, all subsystems, setups debugging messages, sets projection matrices for all of the shaders
         Window(u16 width, u16 height, const char* title, bool vSync = true);
         ~Window();
-        void Clear(u16 r, u16 b, u16 g, u16 a);
+        void Clear(u8 r, u8 b, u8 g, u8 a);
         // Swaps buffers, and polls for inputs
         void Swap() const;
         bool ShouldClose() const;

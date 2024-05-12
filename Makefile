@@ -1,6 +1,7 @@
 CC = g++
 
-CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -ggdb lib/miniaudio.o lib/stb_image.o lib/glad.o
+# CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -ggdb lib/miniaudio.o lib/stb_image.o lib/glad.o
+CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -O3 lib/miniaudio.o lib/stb_image.o lib/glad.o
 
 SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/colored_rect.cpp src/Window/window.cpp \
       src/Core/input.cpp src/Core/vao.cpp src/Core/vbo.cpp src/Core/ebo.cpp src/Core/texture.cpp \
@@ -9,7 +10,7 @@ SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird 
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
