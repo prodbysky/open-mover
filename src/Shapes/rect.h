@@ -26,4 +26,5 @@ namespace StintaEngine::Shapes {
         void RotateX(f32 degrees);
         void RotateY(f32 degrees);
     };
+
 }
