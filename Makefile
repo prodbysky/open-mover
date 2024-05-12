@@ -1,6 +1,5 @@
 CC = g++
 
-# CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -ggdb lib/miniaudio.o lib/stb_image.o lib/glad.o
 CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -O3 lib/miniaudio.o lib/stb_image.o lib/glad.o
 
 SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/colored_rect.cpp src/Window/window.cpp \
@@ -19,25 +18,25 @@ hello_window: $(OBJ) src/Examples/hello_window.cpp
 	$(CC) $(OBJ) src/Examples/hello_window.cpp -o bin/hello_window $(CPPFLAGS) 
 
 text_rendering: $(OBJ) src/Examples/text_rendering.cpp 
-	$(CC) $(OBJ) src/Examples/text_rendering.cpp -o bin/text_rendering $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/text_rendering.cpp -o bin/text_rendering $(CPPFLAGS) 
 
 playing_sounds: $(OBJ) src/Examples/playing_sounds.cpp 
-	$(CC) $(OBJ) src/Examples/playing_sounds.cpp -o bin/playing_sounds $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/playing_sounds.cpp -o bin/playing_sounds $(CPPFLAGS) 
 
 rendering_textures: $(OBJ) src/Examples/rendering_textures.cpp
-	$(CC) $(OBJ) src/Examples/rendering_textures.cpp -o bin/rendering_textures $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/rendering_textures.cpp -o bin/rendering_textures $(CPPFLAGS) 
 
 top_down_movement: $(OBJ) src/Examples/top_down_movement.cpp
-	$(CC) $(OBJ) src/Examples/top_down_movement.cpp -o bin/top_down_movement $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/top_down_movement.cpp -o bin/top_down_movement $(CPPFLAGS) 
 
 flappy_bird: $(OBJ) src/Examples/flappy_bird.cpp
-	$(CC) $(OBJ) src/Examples/flappy_bird.cpp -o bin/flappy_bird $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/flappy_bird.cpp -o bin/flappy_bird $(CPPFLAGS) 
 
 point_vs_rect: $(OBJ) src/Examples/point_vs_rect.cpp
-	$(CC) $(OBJ) src/Examples/point_vs_rect.cpp -o bin/point_vs_rect $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/point_vs_rect.cpp -o bin/point_vs_rect $(CPPFLAGS) 
 
 aabb_collision: $(OBJ) src/Examples/aabb_collision.cpp
-	$(CC) $(OBJ) src/Examples/aabb_collision.cpp -o bin/aabb_collision $(CPPFLAGS) 
+	$(shell) $(CC) $(OBJ) src/Examples/aabb_collision.cpp -o bin/aabb_collision $(CPPFLAGS) 
 
 clean:
 	rm -f src/**/*.o bin/*
