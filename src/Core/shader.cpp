@@ -1,4 +1,5 @@
 #include "assert.h"
+#include "glm/ext/quaternion_transform.hpp"
 #include <iostream>
 
 #define GLFW_INCLUDE_NONE
@@ -81,6 +82,8 @@ namespace StintaEngine::Core {
 
         Use();
     }
+
+
     u32 Shader::GetUniformLocation(const char* name) const {
         Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = glGetUniformLocation(current_id, name); 

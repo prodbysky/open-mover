@@ -33,3 +33,4 @@ Game framework in C++ using OpenGL (GLAD GLFW CGLM)
 ## TODO:
  - Don't include dependencies directly so use packages from package managers (APT PACMAN...)
  - Remove debug messages from release builds
+ - More examples

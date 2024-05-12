@@ -49,7 +49,6 @@ namespace StintaEngine {
                 glm::ivec2(face->glyph->bitmap_left, face->glyph->bitmap_top),
                 u32(face->glyph->advance.x)
             };
-
             chars[c] = character;
         }
 
