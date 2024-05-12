@@ -42,4 +42,12 @@ namespace StintaEngine::Shapes {
     void ColoredRect::SetPos(glm::vec2 move) {
         rect.SetPos(move);
     }
+
+    void ColoredRect::RotateX(f32 degrees) {
+        rect.RotateX(degrees);
+    }
+
+    void ColoredRect::RotateY(f32 degrees) {
+        rect.RotateY(degrees);
+    }
 }

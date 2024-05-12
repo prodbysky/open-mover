@@ -23,5 +23,7 @@ namespace StintaEngine::Shapes {
         Rect(glm::vec2 pos, f32 w, f32 h);
         void Move(glm::vec3 move);
         void SetPos(glm::vec2 move);
+        void RotateX(f32 degrees);
+        void RotateY(f32 degrees);
     };
 }

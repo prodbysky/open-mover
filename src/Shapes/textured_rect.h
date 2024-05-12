@@ -21,5 +21,8 @@ namespace StintaEngine::Shapes {
         void Draw(Core::Shader& shader) const;
         void Move(glm::vec2 move);
         void SetPos(glm::vec2 move);
+
+        void RotateX(f32 degrees);
+        void RotateY(f32 degrees);
     };
 }

@@ -40,4 +40,12 @@ namespace StintaEngine::Shapes {
     void TexturedRect::SetPos(glm::vec2 move) {
         rect.SetPos(move);
     }
+
+    void TexturedRect::RotateX(f32 degrees) {
+        rect.RotateX(degrees);
+    }
+
+    void TexturedRect::RotateY(f32 degrees) {
+        rect.RotateY(degrees);
+    }
 }

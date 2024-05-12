@@ -21,5 +21,7 @@ namespace StintaEngine::Shapes {
         void Move(glm::vec3 move);
         void SetPos(glm::vec2 move);
         void SetColor(glm::vec3 color);
+        void RotateX(f32 degrees);
+        void RotateY(f32 degrees);
     };
 }
