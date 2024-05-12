@@ -23,6 +23,7 @@ namespace StintaEngine::Core {
     private:
         u32 CompileShader(const char* name, GLenum type) const;
         u32 GetUniformLocation(const char* name) const;
+        u32 LinkShader(u32 shader1, u32 shader2) const;
     public:
         Shader();
         // Sets the projection uniform for the current set shader

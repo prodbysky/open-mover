@@ -25,23 +25,14 @@ namespace StintaEngine::Core {
         u32 font_vert_shader = CompileShader(font_vertex_name, GL_VERTEX_SHADER);
         u32 font_frag_shader = CompileShader(font_frag_name, GL_FRAGMENT_SHADER);
 
-        default_id = glCreateProgram();
-        glAttachShader(default_id, vertex_shader);
-        glAttachShader(default_id, default_frag_shader);
-        glLinkProgram(default_id);
+        default_id = LinkShader(vertex_shader, default_frag_shader);
         glDeleteShader(default_frag_shader);
 
-        texture_id = glCreateProgram();
-        glAttachShader(texture_id, vertex_shader);
-        glAttachShader(texture_id, texture_frag_shader);
-        glLinkProgram(texture_id);
+        texture_id = LinkShader(vertex_shader, texture_frag_shader);
         glDeleteShader(vertex_shader);
         glDeleteShader(texture_frag_shader);
 
-        font_id = glCreateProgram();
-        glAttachShader(font_id, font_vert_shader);
-        glAttachShader(font_id, font_frag_shader);
-        glLinkProgram(font_id);
+        font_id = LinkShader(font_vert_shader, font_frag_shader);
         glDeleteShader(font_vert_shader);
         glDeleteShader(font_frag_shader);
     }
@@ -83,6 +74,13 @@ namespace StintaEngine::Core {
         Use();
     }
 
+    u32 Shader::LinkShader(u32 shader1, u32 shader2) const {
+        u32 shader = glCreateProgram();
+        glAttachShader(shader, shader1);
+        glAttachShader(shader, shader2);
+        glLinkProgram(shader);
+        return shader;
+    }
 
     u32 Shader::GetUniformLocation(const char* name) const {
         Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
@@ -98,7 +96,6 @@ namespace StintaEngine::Core {
     void Shader::SetUniform(glm::mat4 data, const char* name) {
         Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
-
 
         Use();
         glUniformMatrix4fv(uniform_location, 1, false, glm::value_ptr(data));
