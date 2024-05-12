@@ -1,6 +1,6 @@
-#include <iostream>
 #include "../Core/audio.h"
 #include "../Resource/resources.h"
+#include "../Utilities/assert.h"
 
 namespace StintaEngine::Core {
     Audio::Audio() {};
@@ -13,17 +13,8 @@ namespace StintaEngine::Core {
         device_config.dataCallback      = DataCallback;
         device_config.pUserData         = (void*)&sound.decoder;
 
-        ma_result result = ma_device_init(nullptr, &device_config, &device);
-
-        if (result != MA_SUCCESS) {
-            std::cerr << "Failed to open playback device \n";
-            return;
-        }
-
-        if (ma_device_start(&device) != MA_SUCCESS) {
-            std::cerr << "Failed to start playback device.\n";
-            ma_device_uninit(&device);
-        }
+        Assert(ma_device_init(nullptr, &device_config, &device) == MA_SUCCESS, "Failed to open playback device");
+        Assert(ma_device_start(&device) == MA_SUCCESS, "Failed to start playback device");
     }
     void Audio::DataCallback(ma_device* device, void* output, const void* input, u32 frame_count) {
         ma_decoder* decoder = (ma_decoder*)device->pUserData;
