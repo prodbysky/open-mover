@@ -37,8 +37,4 @@ namespace ZipLib::Shapes {
     void ColoredRect::SetColor(glm::vec4 color) { this->color = color; }
 
     void ColoredRect::SetPos(glm::vec2 move) { rect.SetPos(move); }
-
-    void ColoredRect::RotateX(f32 degrees) { rect.RotateX(degrees); }
-
-    void ColoredRect::RotateY(f32 degrees) { rect.RotateY(degrees); }
 } // namespace ZipLib::Shapes

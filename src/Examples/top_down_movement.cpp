@@ -12,6 +12,7 @@ i32 main() {
     Window window(800, 800, "Top-Down Movement", false);
     Core::TextureData orange_texture =
         window.resource_manager.LoadTexture("assets/sprites/orange.png");
+
     Shapes::TexturedRect orange(glm::vec2(368, 432), 128, 128, orange_texture,
                                 GL_NEAREST, GL_RGBA8);
 

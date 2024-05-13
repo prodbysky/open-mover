@@ -26,14 +26,6 @@ namespace ZipLib::Shapes {
         pos.y = move.y;
     }
 
-    void Rect::RotateX(f32 degrees) {
-        model = glm::rotate(model, glm::radians(degrees), glm::vec3(1, 0, 0));
-    }
-
-    void Rect::RotateY(f32 degrees) {
-        model = glm::rotate(model, glm::radians(degrees), glm::vec3(0, 1, 0));
-    }
-
     bool Rect::AABBCollision(const Rect& other) const {
         return this->pos.x<other.pos.x + other.w&& this->pos.x + this->w> other
                    .pos.x &&

@@ -24,8 +24,6 @@ namespace ZipLib::Shapes {
         void Draw(Core::Shader& shader) const;
         void Move(glm::vec3 move);
         void SetPos(glm::vec2 move);
-        void RotateX(f32 degrees);
-        void RotateY(f32 degrees);
         void SetColor(glm::vec4 color);
     };
 } // namespace ZipLib::Shapes
