@@ -7,6 +7,6 @@
 
 namespace ZipLib {
     // Assert function that calls `std::exit(0)` when `condition` is false
-    void Assert_(bool condition, const char *message, i32 line,
-                 const char *file);
+    void Assert_(bool condition, const char* message, i32 line,
+                 const char* file);
 } // namespace ZipLib

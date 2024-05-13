@@ -27,13 +27,13 @@ namespace ZipLib {
     Contains all cached glyphs of a font, loads a font
     */
     class Font {
-      public:
+    public:
         std::unordered_map<char, Character> chars;
 
-      public:
+    public:
         Font() = default;
         // Loads a font from `fontName`, and initializes the first 128 ASCII
         // characters with the `height`
-        Font(FT_Library freetype, const char *font_name, u16 height);
+        Font(FT_Library freetype, const char* font_name, u16 height);
     };
 } // namespace ZipLib

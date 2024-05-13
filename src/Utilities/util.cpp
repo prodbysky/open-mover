@@ -1,8 +1,8 @@
-#include <string>
+#include "util.h"
+
 #include <fstream>
 #include <sstream>
-
-#include "util.h"
+#include <string>
 
 namespace ZipLib::Utilities {
     std::string ReadEntireFile(const char* file_name) {
@@ -12,7 +12,7 @@ namespace ZipLib::Utilities {
         return buffer.str();
     }
 
-    f32 RandomFloat(f32 min, f32 max) { 
-        return ((f32)rand() / RAND_MAX) * (max - min) + min; 
+    f32 RandomFloat(f32 min, f32 max) {
+        return ((f32) rand() / RAND_MAX) * (max - min) + min;
     };
-}
+} // namespace ZipLib::Utilities

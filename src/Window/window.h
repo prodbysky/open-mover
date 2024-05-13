@@ -18,18 +18,18 @@
 */
 namespace ZipLib {
     class Window {
-      public:
-        GLFWwindow *window;
+    public:
+        GLFWwindow* window;
         std::unique_ptr<Core::Shader> shader;
         Core::Input input;
         Core::Audio audio;
         Core::ResourceManager resource_manager;
         FT_Library freetype;
 
-      public:
+    public:
         // Initializes GLFW context, all subsystems, setups debugging messages,
         // sets projection matrices for all of the shaders
-        Window(u16 width, u16 height, const char *title, bool vSync = true);
+        Window(u16 width, u16 height, const char* title, bool vSync = true);
         ~Window();
         void Clear(u8 r, u8 b, u8 g, u8 a);
         // Swaps buffers, and polls for inputs
@@ -39,15 +39,15 @@ namespace ZipLib {
         f64 GetFPS() const;
         f64 GetTotalTime() const;
 
-      private:
+    private:
         f64 deltaTime;
         f64 lastFrame;
         f64 totalTime;
 
-      private:
+    private:
         static void MessageCallback(GLenum src, GLenum type, GLuint id,
                                     GLenum severity, GLsizei len,
-                                    GLchar const *message,
-                                    void const *user_param);
+                                    GLchar const* message,
+                                    void const* user_param);
     };
 } // namespace ZipLib

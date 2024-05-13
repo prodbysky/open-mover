@@ -1,12 +1,14 @@
-#include "../Window/window.h"
 #include "../Shapes/colored_rect.h"
+#include "../Window/window.h"
+
 #include <iostream>
 
 using namespace ZipLib;
 
 i32 main() {
     Window window(800, 800, "Point vs rect", true);
-    Shapes::ColoredRect rect(glm::vec2(200, 600), 200, 200, glm::vec4(1, 0, 0, 1));
+    Shapes::ColoredRect rect(glm::vec2(200, 600), 200, 200,
+                             glm::vec4(1, 0, 0, 1));
 
     while (!window.ShouldClose()) {
         if (rect.rect.PointCollision(window.input.GetMousePos())) {

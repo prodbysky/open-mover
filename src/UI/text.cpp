@@ -1,10 +1,13 @@
 #include "text.h"
+
 #include "glad/glad.h"
+
 #include <memory>
 
 namespace ZipLib::UI {
-    Text::Text(const Font& font, std::string text, glm::vec2 pos, glm::vec3 color, f32 scale) 
-               : font(font), text(text), color(color), pos(pos), scale(scale) {
+    Text::Text(const Font& font, std::string text, glm::vec2 pos,
+               glm::vec3 color, f32 scale) :
+        font(font), text(text), color(color), pos(pos), scale(scale) {
         vao = std::make_unique<Core::VAO>();
         vbo = std::make_unique<Core::VBO>(nullptr, 24, GL_DYNAMIC_DRAW);
 
@@ -12,29 +15,19 @@ namespace ZipLib::UI {
         vao->LinkVBO(*vbo);
     }
 
-    void Text::Move(glm::vec2 move) {
-        pos += move;
-    }
-    
-    void Text::SetPos(glm::vec2 move) {
-        pos = move;
-    }
+    void Text::Move(glm::vec2 move) { pos += move; }
 
-    void Text::SetColor(glm::vec3 color) {
-        this->color = color;
-    }
+    void Text::SetPos(glm::vec2 move) { pos = move; }
 
-    void Text::SetText(std::string text) {
-        this->text = text;
-    }
-    
-    void Text::SetScale(f32 scale) {
-        this->scale = scale;
-    }
+    void Text::SetColor(glm::vec3 color) { this->color = color; }
+
+    void Text::SetText(std::string text) { this->text = text; }
+
+    void Text::SetScale(f32 scale) { this->scale = scale; }
 
     void Text::Draw(Core::Shader& shader) {
         shader.SetShader(Core::ShaderType::SHADER_FONT);
-        
+
         shader.SetUniform(color.r, color.g, color.b, "uColor");
         vao->Bind();
 
@@ -48,13 +41,9 @@ namespace ZipLib::UI {
             float h = ch.size.y * scale;
 
             float vertices[24] = {
-                 xpos,     ypos + h,   0.0f, 0.0f,            
-                 xpos,     ypos,       0.0f, 1.0f,
-                 xpos + w, ypos,       1.0f, 1.0f,
-                 xpos,     ypos + h,   0.0f, 0.0f,
-                 xpos + w, ypos,       1.0f, 1.0f,
-                 xpos + w, ypos + h,   1.0f, 0.0f            
-            };
+                xpos,     ypos + h, 0.0f, 0.0f, xpos,     ypos,     0.0f, 1.0f,
+                xpos + w, ypos,     1.0f, 1.0f, xpos,     ypos + h, 0.0f, 0.0f,
+                xpos + w, ypos,     1.0f, 1.0f, xpos + w, ypos + h, 1.0f, 0.0f};
             vao->Bind();
             ch.texture.Bind();
 
@@ -65,4 +54,4 @@ namespace ZipLib::UI {
             pos.x += (ch.advance >> 6) * scale;
         }
     }
-}
+} // namespace ZipLib::UI

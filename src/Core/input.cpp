@@ -12,7 +12,7 @@ namespace ZipLib::Core {
         mouse_state[1] = 0;
     }
 
-    void Input::Setup(GLFWwindow *window) {
+    void Input::Setup(GLFWwindow* window) {
         glfwSetWindowUserPointer(window, this);
         glfwSetKeyCallback(window, InputCallback);
         glfwSetCursorPosCallback(window, CursorPositionCallback);
@@ -31,13 +31,13 @@ namespace ZipLib::Core {
         return false;
     }
 
-    glm::vec2 Input::GetMousePos() { return mouse_pos; }
+    glm::vec2 Input::GetMousePos() const { return mouse_pos; }
 
-    void Input::InputCallback(GLFWwindow *window, i32 key, i32 scancode,
+    void Input::InputCallback(GLFWwindow* window, i32 key, i32 scancode,
                               i32 action, i32 mods) {
-        (void)scancode;
-        (void)mods;
-        Input *input = (Input *)glfwGetWindowUserPointer(window);
+        (void) scancode;
+        (void) mods;
+        Input* input = (Input*) glfwGetWindowUserPointer(window);
 
         if (action == GLFW_PRESS) {
             input->key_states[key - 32] = 1;
@@ -46,16 +46,16 @@ namespace ZipLib::Core {
         }
     }
 
-    void Input::CursorPositionCallback(GLFWwindow *window, double xpos,
+    void Input::CursorPositionCallback(GLFWwindow* window, double xpos,
                                        double ypos) {
-        Input *input     = (Input *)glfwGetWindowUserPointer(window);
+        Input* input     = (Input*) glfwGetWindowUserPointer(window);
         input->mouse_pos = glm::vec2(xpos, 800 - ypos);
     }
 
-    void Input::MouseButtonCallback(GLFWwindow *window, int button, int action,
+    void Input::MouseButtonCallback(GLFWwindow* window, int button, int action,
                                     int mods) {
-        (void)mods;
-        Input *input = (Input *)glfwGetWindowUserPointer(window);
+        (void) mods;
+        Input* input = (Input*) glfwGetWindowUserPointer(window);
         if (button == GLFW_MOUSE_BUTTON_LEFT) {
             input->mouse_state[0] = action == GLFW_PRESS;
         }

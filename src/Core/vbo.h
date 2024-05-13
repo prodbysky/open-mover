@@ -6,10 +6,10 @@
 
 namespace ZipLib::Core {
     class VBO {
-      public:
+    public:
         u32 ID;
 
-      public:
+    public:
         VBO() = default;
         VBO(f32 vertices[], u32 n, GLenum type = GL_STATIC_DRAW);
     };

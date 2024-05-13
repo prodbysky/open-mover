@@ -1,5 +1,4 @@
 #include "assert.h"
-#include "glm/ext/quaternion_transform.hpp"
 
 #include <iostream>
 
@@ -15,13 +14,13 @@
 namespace ZipLib::Core {
 
     Shader::Shader() {
-        const char *vert_name = "assets/shaders/quad_vertex.glsl";
-        const char *default_frag_name =
+        const char* vert_name = "assets/shaders/quad_vertex.glsl";
+        const char* default_frag_name =
             "assets/shaders/default_quad_fragment.glsl";
-        const char *texture_frag_name =
+        const char* texture_frag_name =
             "assets/shaders/texture_quad_fragment.glsl";
-        const char *font_vertex_name = "assets/shaders/font_vertex.glsl";
-        const char *font_frag_name   = "assets/shaders/font_fragment.glsl";
+        const char* font_vertex_name = "assets/shaders/font_vertex.glsl";
+        const char* font_frag_name   = "assets/shaders/font_fragment.glsl";
 
         u32 vertex_shader = CompileShader(vert_name, GL_VERTEX_SHADER);
         u32 default_frag_shader =
@@ -45,13 +44,13 @@ namespace ZipLib::Core {
         glDeleteShader(font_frag_shader);
     }
 
-    u32 Shader::CompileShader(const char *name, GLenum type) const {
+    u32 Shader::CompileShader(const char* name, GLenum type) const {
         i32 success;
         char info_log[512];
 
         u32 shader      = glCreateShader(type);
         std::string src = Utilities::ReadEntireFile(name);
-        const char *s   = src.c_str();
+        const char* s   = src.c_str();
         glShaderSource(shader, 1, &s, NULL);
         glCompileShader(shader);
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
@@ -91,7 +90,7 @@ namespace ZipLib::Core {
         return shader;
     }
 
-    u32 Shader::GetUniformLocation(const char *name) const {
+    u32 Shader::GetUniformLocation(const char* name) const {
         Assert(name != nullptr,
                "Passed in null pointer for the name of the uniform");
         i32 uniform_location = glGetUniformLocation(current_id, name);
@@ -104,7 +103,7 @@ namespace ZipLib::Core {
         return uniform_location;
     }
 
-    void Shader::SetUniform(glm::mat4 data, const char *name) {
+    void Shader::SetUniform(glm::mat4 data, const char* name) {
         Assert(name != nullptr,
                "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
@@ -113,7 +112,7 @@ namespace ZipLib::Core {
         glUniformMatrix4fv(uniform_location, 1, false, glm::value_ptr(data));
     }
 
-    void Shader::SetUniform(glm::vec4 data, const char *name) {
+    void Shader::SetUniform(glm::vec4 data, const char* name) {
         Assert(name != nullptr,
                "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
@@ -122,7 +121,7 @@ namespace ZipLib::Core {
         glUniform4fv(uniform_location, 1, glm::value_ptr(data));
     }
 
-    void Shader::SetUniform(glm::vec3 data, const char *name) {
+    void Shader::SetUniform(glm::vec3 data, const char* name) {
         Assert(name != nullptr,
                "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
@@ -131,7 +130,7 @@ namespace ZipLib::Core {
         glUniform3fv(uniform_location, 1, glm::value_ptr(data));
     }
 
-    void Shader::SetUniform(glm::vec2 data, const char *name) {
+    void Shader::SetUniform(glm::vec2 data, const char* name) {
         Assert(name != nullptr,
                "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);
@@ -140,7 +139,7 @@ namespace ZipLib::Core {
         glUniform2fv(uniform_location, 1, glm::value_ptr(data));
     }
 
-    void Shader::SetUniform(f32 x, f32 y, f32 z, const char *name) {
+    void Shader::SetUniform(f32 x, f32 y, f32 z, const char* name) {
         Assert(name != nullptr,
                "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);

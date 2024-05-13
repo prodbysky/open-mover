@@ -1,17 +1,21 @@
-#include <glm/ext/matrix_transform.hpp>
 #include "../Shapes/textured_rect.h"
+
 #include "../Core/texture.h"
 #include "glad/glad.h"
 
+#include <glm/ext/matrix_transform.hpp>
+
 namespace ZipLib::Shapes {
-    TexturedRect::TexturedRect() {};
-    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const ZipLib::Core::TextureData& data, GLenum texture_filter, GLenum image_type) : rect(pos, w, h) {
-        u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
+    TexturedRect::TexturedRect(){};
+    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h,
+                               const ZipLib::Core::TextureData& data,
+                               GLenum texture_filter, GLenum image_type) :
+        rect(pos, w, h) {
+        u32 temp_indices[]  = {0, 1, 2, 0, 2, 3};
         f32 temp_vertices[] = {
-            pos.x,     pos.y,     1.0f, 0.0f, 1.0f,
-            pos.x + w, pos.y,     1.0f, 1.0f, 1.0f,
-            pos.x + w, pos.y - h, 1.0f, 1.0f, 0.0f,
-            pos.x,     pos.y - h, 1.0f, 0.0f, 0.0f,
+            pos.x, pos.y, 1.0f,      0.0f,      1.0f,      pos.x + w, pos.y,
+            1.0f,  1.0f,  1.0f,      pos.x + w, pos.y - h, 1.0f,      1.0f,
+            0.0f,  pos.x, pos.y - h, 1.0f,      0.0f,      0.0f,
         };
 
         rect.vbo = Core::VBO(temp_vertices, 20);
@@ -21,7 +25,9 @@ namespace ZipLib::Shapes {
         rect.vao.AddAttribute(2, GL_FLOAT);
         rect.vao.LinkVBOAndEBO(rect.vbo, rect.ebo);
         // Loads a glyph from a font
-        texture = Core::Texture(data, GL_MIRRORED_REPEAT, texture_filter, image_type, {}, Core::TextureType::TEXTURE_IMAGE);
+        texture =
+            Core::Texture(data, GL_MIRRORED_REPEAT, texture_filter, image_type,
+                          {}, Core::TextureType::TEXTURE_IMAGE);
     }
 
     void TexturedRect::Draw(Core::Shader& shader) const {
@@ -37,15 +43,9 @@ namespace ZipLib::Shapes {
         rect.Move(glm::vec3(move.x, move.y, 0));
     }
 
-    void TexturedRect::SetPos(glm::vec2 move) {
-        rect.SetPos(move);
-    }
+    void TexturedRect::SetPos(glm::vec2 move) { rect.SetPos(move); }
 
-    void TexturedRect::RotateX(f32 degrees) {
-        rect.RotateX(degrees);
-    }
+    void TexturedRect::RotateX(f32 degrees) { rect.RotateX(degrees); }
 
-    void TexturedRect::RotateY(f32 degrees) {
-        rect.RotateY(degrees);
-    }
-}
+    void TexturedRect::RotateY(f32 degrees) { rect.RotateY(degrees); }
+} // namespace ZipLib::Shapes

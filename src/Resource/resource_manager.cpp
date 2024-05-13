@@ -1,21 +1,24 @@
 #include "resource_manager.h"
+
+#include "../Utilities/assert.h"
 #include "freetype/freetype.h"
 #include "stb_image.h"
+
 #include <unordered_map>
-#include "../Utilities/assert.h"
 
 namespace ZipLib::Core {
     ResourceManager::ResourceManager() {
         textures = std::unordered_map<std::string, TextureData>();
-        sounds = std::unordered_map<std::string, Sound>();
-        fonts = std::unordered_map<std::string, Font>();
+        sounds   = std::unordered_map<std::string, Sound>();
+        fonts    = std::unordered_map<std::string, Font>();
         FT_Init_FreeType(&freetype);
     }
 
     const TextureData& ResourceManager::LoadTexture(std::string name) {
         TextureData texture;
         stbi_set_flip_vertically_on_load(1);
-        texture.data = stbi_load(name.c_str(), &texture.width, &texture.height, &texture.nChannels, 0);       
+        texture.data = stbi_load(name.c_str(), &texture.width, &texture.height,
+                                 &texture.nChannels, 0);
         Assert(texture.data != nullptr, "Failed to load texture");
         textures.insert({name, texture});
         return textures.at(name);
@@ -54,4 +57,4 @@ namespace ZipLib::Core {
     Font& ResourceManager::GetMutFont(std::string name) {
         return fonts.at(name);
     }
-}
+} // namespace ZipLib::Core

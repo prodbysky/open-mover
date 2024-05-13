@@ -44,11 +44,11 @@ namespace ZipLib::Core {
         glEnableVertexArrayAttrib(ID, attribute);
     }
 
-    void VAO::LinkVBOAndEBO(const VBO &vbo, const EBO &ebo) const {
+    void VAO::LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) const {
         glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
         glVertexArrayElementBuffer(ID, ebo.ID);
     }
-    void VAO::LinkVBO(const VBO &vbo) const {
+    void VAO::LinkVBO(const VBO& vbo) const {
         glVertexArrayVertexBuffer(ID, 0, vbo.ID, 0, stride);
     }
 } // namespace ZipLib::Core
