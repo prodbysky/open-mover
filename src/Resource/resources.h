@@ -1,14 +1,13 @@
 #pragma once
 
-#include <string>
-
-#include <miniaudio.h>
-#include <unordered_map>
-
+#include "../Core/texture.h"
 #include "../Utilities/types.h"
 #include "freetype/freetype.h"
 #include "glm/ext/vector_int2.hpp"
-#include "../Core/texture.h"
+
+#include <miniaudio.h>
+#include <string>
+#include <unordered_map>
 
 namespace ZipLib {
     struct Sound {
@@ -19,21 +18,22 @@ namespace ZipLib {
 
     struct Character {
         Core::Texture texture;
-        glm::ivec2 size; 
-        glm::ivec2 bearing; 
+        glm::ivec2 size;
+        glm::ivec2 bearing;
         u32 advance;
     };
-
 
     /*
     Contains all cached glyphs of a font, loads a font
     */
     class Font {
-    public:
+      public:
         std::unordered_map<char, Character> chars;
-    public:
+
+      public:
         Font() = default;
-        // Loads a font from `fontName`, and initializes the first 128 ASCII characters with the `height`
-        Font(FT_Library freetype, const char* font_name, u16 height);
+        // Loads a font from `fontName`, and initializes the first 128 ASCII
+        // characters with the `height`
+        Font(FT_Library freetype, const char *font_name, u16 height);
     };
-}
+} // namespace ZipLib

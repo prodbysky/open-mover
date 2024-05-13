@@ -1,15 +1,16 @@
 #pragma once
 
-#include "../Utilities/types.h"
 #include "../Utilities/assert.h"
+#include "../Utilities/types.h"
 
 namespace ZipLib::Core {
     // Manages index buffers
     class EBO {
-    public:
+      public:
         u32 ID;
-    public:
+
+      public:
         EBO() = default;
         EBO(u32 indices[], u32 n);
     };
-}
+} // namespace ZipLib::Core

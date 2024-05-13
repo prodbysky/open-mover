@@ -1,5 +1,7 @@
 #include "ebo.h"
+
 #include "assert.h"
+
 #include <glad/glad.h>
 
 namespace ZipLib::Core {
@@ -8,4 +10,4 @@ namespace ZipLib::Core {
         glCreateBuffers(1, &ID);
         glNamedBufferData(ID, n * sizeof(u32), indices, GL_STATIC_DRAW);
     }
-}
+} // namespace ZipLib::Core
