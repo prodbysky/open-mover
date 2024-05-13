@@ -1,5 +1,5 @@
-#include "../Shapes/textured_rect.h"
-#include "../Utilities/util.h"
+#include "../Shapes/shapes.h"
+#include "../Utilities/utilities.h"
 #include "../Window/window.h"
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"

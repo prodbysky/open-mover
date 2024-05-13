@@ -1,7 +1,5 @@
-#include "../Shapes/colored_rect.h"
+#include "../Shapes/shapes.h"
 #include "../Window/window.h"
-
-#include <iostream>
 
 using namespace ZipLib;
 

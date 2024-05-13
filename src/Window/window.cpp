@@ -1,8 +1,7 @@
 #include "window.h"
 
-#include "../Core/shader.h"
-#include "../Utilities/assert.h"
-#include "../Utilities/types.h"
+#include "../Core/core.h"
+#include "../Utilities/utilities.h"
 #include "GLFW/glfw3.h"
 #include "freetype/freetype.h"
 

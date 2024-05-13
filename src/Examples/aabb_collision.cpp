@@ -1,4 +1,4 @@
-#include "../Shapes/colored_rect.h"
+#include "../Shapes/shapes.h"
 #include "../Window/window.h"
 
 using namespace ZipLib;

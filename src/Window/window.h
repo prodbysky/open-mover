@@ -6,11 +6,9 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
-#include "../Core/audio.h"
-#include "../Core/input.h"
-#include "../Core/shader.h"
+#include "../Core/core.h"
 #include "../Resource/resource_manager.h"
-#include "../Utilities/types.h"
+#include "../Utilities/utilities.h"
 
 /* TODO: Simplify
    I do not like that Window owns shaders, input management, audio system, ...

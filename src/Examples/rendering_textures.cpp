@@ -1,4 +1,4 @@
-#include "../Shapes/textured_rect.h"
+#include "../Shapes/shapes.h"
 #include "../Window/window.h"
 
 int main() {
