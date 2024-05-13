@@ -6,7 +6,7 @@
 
 #define G -25
 
-using namespace StintaEngine;
+using namespace ZipLib;
 
 class Bird {
 private:

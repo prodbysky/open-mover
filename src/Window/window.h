@@ -17,7 +17,7 @@
    I do not like that Window owns shaders, input management, audio system, ...
    So probably move it into global variable, or something else
 */
-namespace StintaEngine {
+namespace ZipLib {
     class Window {
     public:
         GLFWwindow* window;

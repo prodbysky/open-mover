@@ -1,2 +1,2 @@
 #include "texture_data.h"
-StintaEngine::Core::TextureData::~TextureData() {};
+ZipLib::Core::TextureData::~TextureData() {};

@@ -2,8 +2,8 @@
 #include "../Resource/resources.h"
 
 int main() {
-    StintaEngine::Window window(800, 800, "Hello world!");
-    StintaEngine::Sound synth = window.resource_manager.LoadSound("assets/sounds/synth.wav");
+    ZipLib::Window window(800, 800, "Hello world!");
+    ZipLib::Sound synth = window.resource_manager.LoadSound("assets/sounds/synth.wav");
     
     window.audio.Play(synth);
     while (!window.ShouldClose()) {

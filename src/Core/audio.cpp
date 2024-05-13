@@ -2,7 +2,7 @@
 #include "../Resource/resources.h"
 #include "../Utilities/assert.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     Audio::Audio() {};
 
     void Audio::Play(const Sound& sound) {

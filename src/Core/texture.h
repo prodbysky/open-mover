@@ -7,7 +7,7 @@
 #include "../Utilities/types.h"
 #include "../Resource/texture_data.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     // All texture types
     enum class TextureType {
         TEXTURE_GLYPH,

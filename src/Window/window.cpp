@@ -8,7 +8,7 @@
 #include "../Utilities/types.h"
 #include "freetype/freetype.h"
 
-namespace StintaEngine {
+namespace ZipLib {
     Window::Window(u16 width, u16 height, const char* title, bool vSync) : window(nullptr), shader(nullptr) {
         Assert(width != 0, "Window width can't be 0");
         Assert(height != 0, "Window height can't be 0");

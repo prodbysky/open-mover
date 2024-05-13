@@ -4,7 +4,7 @@
 #include "GLFW/glfw3.h"
 #include <algorithm>
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     Input::Input() {
         std::fill(key_states.begin(), key_states.end(), 0);
         mouse_state[0] = 0;

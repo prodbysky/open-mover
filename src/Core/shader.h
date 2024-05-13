@@ -5,7 +5,7 @@
 
 #include "../Utilities/types.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     // All types of shaders
     enum class ShaderType {
         SHADER_DEFAULT,

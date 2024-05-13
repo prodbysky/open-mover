@@ -3,7 +3,7 @@
 #include "../Utilities/types.h"
 #include "../Utilities/assert.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     // Manages index buffers
     class EBO {
     public:

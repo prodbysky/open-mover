@@ -9,7 +9,7 @@
 
 #include "../Utilities/types.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
 
     // Manages all input, provides api for getting mouse and keyboard state
     class Input {

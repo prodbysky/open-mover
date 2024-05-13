@@ -10,7 +10,7 @@
 #include "glm/ext/vector_int2.hpp"
 #include "../Core/texture.h"
 
-namespace StintaEngine {
+namespace ZipLib {
     struct Sound {
         ma_decoder decoder;
         Sound(std::string name);

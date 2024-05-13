@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include "../Utilities/assert.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     ResourceManager::ResourceManager() {
         textures = std::unordered_map<std::string, TextureData>();
         sounds = std::unordered_map<std::string, Sound>();

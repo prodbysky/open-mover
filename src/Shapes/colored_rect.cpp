@@ -4,7 +4,7 @@
 #include "../Core/shader.h"
 #include "../Core/vao.h"
 
-namespace StintaEngine::Shapes {
+namespace ZipLib::Shapes {
     ColoredRect::ColoredRect(glm::vec2 pos, f32 w, f32 h, glm::vec4 color) : rect(pos, w, h) {
         this->color = color;
 

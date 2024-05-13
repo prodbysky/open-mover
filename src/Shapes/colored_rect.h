@@ -9,7 +9,7 @@
 #include "../Core/vbo.h"
 #include "rect.h"
 
-namespace StintaEngine::Shapes {
+namespace ZipLib::Shapes {
     // Solid colored rectangle
     class ColoredRect {
     private:

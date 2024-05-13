@@ -3,9 +3,9 @@
 #include "../Core/texture.h"
 #include "glad/glad.h"
 
-namespace StintaEngine::Shapes {
+namespace ZipLib::Shapes {
     TexturedRect::TexturedRect() {};
-    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const StintaEngine::Core::TextureData& data, GLenum texture_filter, GLenum image_type) : rect(pos, w, h) {
+    TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h, const ZipLib::Core::TextureData& data, GLenum texture_filter, GLenum image_type) : rect(pos, w, h) {
         u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
         f32 temp_vertices[] = {
             pos.x,     pos.y,     1.0f, 0.0f, 1.0f,

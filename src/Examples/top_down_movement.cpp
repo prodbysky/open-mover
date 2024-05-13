@@ -4,7 +4,7 @@
 
 #define SPEED 300
 
-using namespace StintaEngine;
+using namespace ZipLib;
 
 void OrangeUpdate(Shapes::TexturedRect &orange, const Window& window);
 

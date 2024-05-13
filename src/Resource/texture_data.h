@@ -1,7 +1,7 @@
 #pragma once
 #include "../Utilities/types.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     struct TextureData {
         u8* data;
         i32 width, height, nChannels;

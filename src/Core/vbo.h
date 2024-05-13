@@ -4,7 +4,7 @@
 
 #include "../Utilities/types.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     class VBO {
     public:
         u32 ID;

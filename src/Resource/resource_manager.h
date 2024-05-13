@@ -6,7 +6,7 @@
 #include "../Resource/texture_data.h"
 #include "resources.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     class ResourceManager {
     private:
         std::unordered_map<std::string, TextureData> textures;

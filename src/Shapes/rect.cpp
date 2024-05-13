@@ -2,7 +2,7 @@
 #include "glm/trigonometric.hpp"
 #include <glm/ext/matrix_transform.hpp>
 
-namespace StintaEngine::Shapes {
+namespace ZipLib::Shapes {
     Rect::Rect(glm::vec2 pos, f32 w, f32 h) {
         this->pos = pos;
         this->w = w;

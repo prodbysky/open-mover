@@ -3,7 +3,7 @@
 
 #include "../Resource/resources.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     // Manages miniaudio and plays audio on demand
     class Audio {
     private:

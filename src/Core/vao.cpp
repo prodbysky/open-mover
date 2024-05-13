@@ -5,7 +5,7 @@
 #include "glad/glad.h"
 #include "../Core/vbo.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     VAO::VAO() {
         glCreateVertexArrays(1, &ID);
         nextAttribOffset = 0;

@@ -8,7 +8,7 @@
 #include "../Core/vao.h"
 #include "../Core/vbo.h"
 
-namespace StintaEngine::UI {
+namespace ZipLib::UI {
     class Text {
     private:
         const Font& font;

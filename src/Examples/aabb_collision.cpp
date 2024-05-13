@@ -1,7 +1,7 @@
 #include "../Window/window.h"
 #include "../Shapes/colored_rect.h"
 
-using namespace StintaEngine;
+using namespace ZipLib;
 
 i32 main() {
     Window window(800, 800, "Point vs rect", true);

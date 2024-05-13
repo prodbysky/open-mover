@@ -10,7 +10,7 @@
 #include "../Utilities/util.h"
 #include "../Utilities/assert.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
 
     Shader::Shader() {
         const char* vert_name = "assets/shaders/quad_vertex.glsl";

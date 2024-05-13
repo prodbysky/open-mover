@@ -2,7 +2,7 @@
 #include "glad/glad.h"
 #include <memory>
 
-namespace StintaEngine::UI {
+namespace ZipLib::UI {
     Text::Text(const Font& font, std::string text, glm::vec2 pos, glm::vec3 color, f32 scale) 
                : font(font), text(text), color(color), pos(pos), scale(scale) {
         vao = std::make_unique<Core::VAO>();

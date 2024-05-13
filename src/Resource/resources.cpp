@@ -6,7 +6,7 @@
 #include "../Core/texture.h"
 #include <iostream>
 
-namespace StintaEngine {
+namespace ZipLib {
     Sound::Sound(std::string name) {
         Assert(ma_decoder_init_file(name.c_str(), nullptr, &decoder) == MA_SUCCESS, "Failed to load file");
     }

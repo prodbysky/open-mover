@@ -5,7 +5,7 @@
 #include <glad/glad.h>
 #include <stb_image.h>
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     Texture::Texture(const TextureData& data, GLenum wrap_mode, 
                          GLenum texture_filter, GLenum image_type,
                          FT_Face face, TextureType type) {

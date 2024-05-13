@@ -6,7 +6,7 @@
 #include "../Core/ebo.h"
 #include "../Core/vbo.h"
 
-namespace StintaEngine::Core {
+namespace ZipLib::Core {
     class VAO {
     private:
         u64 nextAttribOffset;

@@ -4,7 +4,7 @@
 
 #include "util.h"
 
-namespace StintaEngine::Utilities {
+namespace ZipLib::Utilities {
     std::string ReadEntireFile(const char* file_name) {
         std::ifstream t(file_name);
         std::stringstream buffer;
