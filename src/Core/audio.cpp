@@ -1,33 +1,19 @@
 #include "../Core/audio.h"
 
-#include "../Resource/resources.h"
-#include "../Utilities/assert.h"
+#include "../Utilities/utilities.h"
+#include "../include/miniaudio.h"
+
+#include <cstdlib>
 
 namespace ZipLib::Core {
-    Audio::Audio(){};
-
-    void Audio::Play(const Sound& sound) {
-        device_config = ma_device_config_init(ma_device_type_playback);
-        device_config.playback.format   = sound.decoder.outputFormat;
-        device_config.playback.channels = sound.decoder.outputChannels;
-        device_config.sampleRate        = sound.decoder.outputSampleRate;
-        device_config.dataCallback      = DataCallback;
-        device_config.pUserData         = (void*) &sound.decoder;
-
-        Assert(ma_device_init(nullptr, &device_config, &device) == MA_SUCCESS,
-               "Failed to open playback device");
-        Assert(ma_device_start(&device) == MA_SUCCESS,
-               "Failed to start playback device");
+    Audio::Audio() {
+        engine = (ma_engine*) malloc(sizeof(ma_engine));
+        Assert(ma_engine_init(nullptr, engine) == MA_SUCCESS,
+               "Failed to initialize the engine");
     }
-    void Audio::DataCallback(ma_device* device, void* output, const void* input,
-                             u32 frame_count) {
-        ma_decoder* decoder = (ma_decoder*) device->pUserData;
-        if (decoder == nullptr) {
-            return;
-        }
+    Audio::~Audio() {}
 
-        ma_decoder_read_pcm_frames(decoder, output, frame_count, nullptr);
-
-        (void) input;
+    void Audio::Play(const char* sound) {
+        ma_engine_play_sound(engine, sound, nullptr);
     }
 } // namespace ZipLib::Core

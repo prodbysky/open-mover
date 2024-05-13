@@ -10,12 +10,6 @@
 #include <unordered_map>
 
 namespace ZipLib {
-    struct Sound {
-        ma_decoder decoder;
-        Sound(std::string name);
-        ~Sound();
-    };
-
     struct Character {
         Core::Texture texture;
         glm::ivec2 size;

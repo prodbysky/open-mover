@@ -8,14 +8,6 @@
 #include <iostream>
 
 namespace ZipLib {
-    Sound::Sound(std::string name) {
-        Assert(ma_decoder_init_file(name.c_str(), nullptr, &decoder) ==
-                   MA_SUCCESS,
-               "Failed to load file");
-    }
-
-    Sound::~Sound(){};
-
     Font::Font(FT_Library freetype, const char* font_name, u16 height) {
         Assert(font_name != nullptr, "Passed in null pointer");
         FT_Face face;

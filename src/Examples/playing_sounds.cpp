@@ -1,12 +1,9 @@
-#include "../Resource/resources.h"
 #include "../Window/window.h"
 
 int main() {
     ZipLib::Window window(800, 800, "Hello world!");
-    ZipLib::Sound synth =
-        window.resource_manager.LoadSound("assets/sounds/synth.wav");
 
-    window.audio.Play(synth);
+    window.audio.Play("assets/sounds/synth.wav");
     while (!window.ShouldClose()) {
         window.Clear(24, 24, 24, 255);
         window.Swap();

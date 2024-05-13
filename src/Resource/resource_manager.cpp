@@ -9,7 +9,6 @@
 namespace ZipLib::Core {
     ResourceManager::ResourceManager() {
         textures = std::unordered_map<std::string, TextureData>();
-        sounds   = std::unordered_map<std::string, Sound>();
         fonts    = std::unordered_map<std::string, Font>();
         FT_Init_FreeType(&freetype);
     }
@@ -30,19 +29,6 @@ namespace ZipLib::Core {
 
     TextureData& ResourceManager::GetMutTexture(std::string name) {
         return textures.at(name);
-    }
-
-    const Sound& ResourceManager::LoadSound(std::string name) {
-        sounds.insert({name, Sound(name)});
-        return sounds.at(name);
-    }
-
-    const Sound& ResourceManager::GetSound(std::string name) {
-        return sounds.at(name);
-    }
-
-    Sound& ResourceManager::GetMutSound(std::string name) {
-        return sounds.at(name);
     }
 
     const Font& ResourceManager::LoadFont(std::string name, u16 height) {
