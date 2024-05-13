@@ -9,8 +9,8 @@
 #include <memory>
 
 namespace ZipLib {
-    Window::Window(u16 width, u16 height, const char* title, bool vSync) :
-        window(nullptr), shader(nullptr) {
+    Window::Window(u16 width, u16 height, const char* title, bool vSync,
+                   bool debug) : window(nullptr), shader(nullptr) {
         Assert(width != 0, "Window width can't be 0");
         Assert(height != 0, "Window height can't be 0");
         Assert(title != nullptr, "Window title can't be null");
@@ -33,9 +33,11 @@ namespace ZipLib {
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         // Setup debug loggin
-        glEnable(GL_DEBUG_OUTPUT);
-        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-        glDebugMessageCallback(MessageCallback, nullptr);
+        if (debug) {
+            glEnable(GL_DEBUG_OUTPUT);
+            glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+            glDebugMessageCallback(MessageCallback, nullptr);
+        }
 
         input.Setup(window);
 

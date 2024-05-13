@@ -14,6 +14,7 @@
    I do not like that Window owns shaders, input management, audio system, ...
    So probably move it into global variable, or something else
 */
+
 namespace ZipLib {
     class Window {
     public:
@@ -27,7 +28,8 @@ namespace ZipLib {
     public:
         // Initializes GLFW context, all subsystems, setups debugging messages,
         // sets projection matrices for all of the shaders
-        Window(u16 width, u16 height, const char* title, bool vSync = true);
+        Window(u16 width, u16 height, const char* title, bool vSync = true,
+               bool debug = true);
         ~Window();
         void Clear(u8 r, u8 b, u8 g, u8 a);
         // Swaps buffers, and polls for inputs

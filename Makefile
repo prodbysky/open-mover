@@ -1,6 +1,6 @@
 CC = g++
 
-CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -O3 lib/miniaudio.o lib/stb_image.o lib/glad.o
+CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -Wextra -ggdb lib/miniaudio.o lib/stb_image.o lib/glad.o
 
 SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/colored_rect.cpp src/Window/window.cpp \
       src/Core/input.cpp src/Core/vao.cpp src/Core/vbo.cpp src/Core/ebo.cpp src/Core/texture.cpp \
@@ -9,7 +9,7 @@ SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -37,6 +37,9 @@ point_vs_rect: $(OBJ) src/Examples/point_vs_rect.cpp
 
 aabb_collision: $(OBJ) src/Examples/aabb_collision.cpp
 	$(shell) $(CC) $(OBJ) src/Examples/aabb_collision.cpp -o bin/aabb_collision $(CPPFLAGS) 
+
+delayed_sound: $(OBJ) src/Examples/delayed_sound.cpp
+	$(shell) $(CC) $(OBJ) src/Examples/delayed_sound.cpp -o bin/delayed_sound $(CPPFLAGS) 
 
 clean:
 	rm -f src/**/*.o bin/*
