@@ -102,6 +102,14 @@ namespace StintaEngine::Core {
         
     }
 
+    void Shader::SetUniform(glm::vec4 data, const char* name) {
+        Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
+        i32 uniform_location = GetUniformLocation(name);
+
+        Use();
+        glUniform4fv(uniform_location, 1, glm::value_ptr(data));
+    }
+
     void Shader::SetUniform(glm::vec3 data, const char* name) {
         Assert(name != nullptr, "Passed in null pointer for the name of the uniform");
         i32 uniform_location = GetUniformLocation(name);

@@ -31,6 +31,7 @@ namespace StintaEngine::Core {
         void Use() const;
         // TODO: Functions for all uniforms
         void SetUniform(glm::mat4 data, const char* name);
+        void SetUniform(glm::vec4 data, const char* name);
         void SetUniform(glm::vec3 data, const char* name);
         void SetUniform(glm::vec2 data, const char* name);
         void SetUniform(f32 x, f32 y, f32 z, const char* name);

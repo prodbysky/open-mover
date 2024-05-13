@@ -5,7 +5,7 @@
 #include "../Core/vao.h"
 
 namespace StintaEngine::Shapes {
-    ColoredRect::ColoredRect(glm::vec2 pos, f32 w, f32 h, glm::vec3 color) : rect(pos, w, h) {
+    ColoredRect::ColoredRect(glm::vec2 pos, f32 w, f32 h, glm::vec4 color) : rect(pos, w, h) {
         this->color = color;
 
         u32 temp_indices[] = {0, 1, 2, 0, 2, 3};
@@ -35,7 +35,7 @@ namespace StintaEngine::Shapes {
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
     }
 
-    void ColoredRect::SetColor(glm::vec3 color) {
+    void ColoredRect::SetColor(glm::vec4 color) {
         this->color = color;
     }
 

@@ -1,9 +1,12 @@
 #version 460 core
 
-in vec3 outColor;
+in vec4 outColor;
 out vec4 oColor;
 
 void main() {
-    oColor = vec4(outColor, 1.0f);
+    if (outColor.a < 0.1) {
+        discard;
+    }
+    oColor = outColor;
 }
 

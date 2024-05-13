@@ -5,9 +5,9 @@ layout (location = 1) in vec2 lTextureCoordinate;
 
 uniform mat4 uProjection;
 uniform mat4 uModel;
-uniform vec3 uColor;
+uniform vec4 uColor;
 
-out vec3 outColor;
+out vec4 outColor;
 out vec2 outTextureCoordinate;
 
 void main() {
