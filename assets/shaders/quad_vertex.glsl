@@ -1,7 +1,7 @@
 #version 460 core
 
-layout (location = 0) in vec3 lPos;
-layout (location = 1) in vec2 lTextureCoordinate;
+layout(location = 0) in vec3 lPos;
+layout(location = 1) in vec2 lTextureCoordinate;
 
 uniform mat4 uProjection;
 uniform mat4 uModel;
