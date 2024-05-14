@@ -33,5 +33,10 @@ namespace ZipLib::Core {
                 GLenum texture_filter, GLenum image_type);
         void Bind() const;
         void Unbind() const;
+
+    private:
+        void WriteImage(const TextureData& data, GLenum image_type);
+        void WriteGlyph(FT_Face face);
+        void Setup(GLenum wrap_mode, GLenum texture_filter);
     };
 } // namespace ZipLib::Core

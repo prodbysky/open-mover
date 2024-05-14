@@ -8,6 +8,7 @@ namespace ZipLib::UI {
     Text::Text(const Font& font, std::string text, glm::vec2 pos,
                glm::vec3 color, f32 scale) :
         font(font), text(text), color(color), pos(pos), scale(scale) {
+
         vao = std::make_unique<Core::VAO>();
         vbo = std::make_unique<Core::VBO>(nullptr, 24, GL_DYNAMIC_DRAW);
 
