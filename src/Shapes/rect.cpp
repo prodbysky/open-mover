@@ -1,6 +1,6 @@
 #include "rect.h"
 
-#include "glm/trigonometric.hpp"
+#include "glm/ext/vector_float3.hpp"
 
 #include <glm/ext/matrix_transform.hpp>
 
@@ -13,17 +13,17 @@ namespace ZipLib::Shapes {
         vao       = Core::VAO();
     }
 
-    void Rect::Move(glm::vec3 move) {
-        model  = glm::translate(model, move);
+    void Rect::Move(glm::vec2 move) {
+        model  = glm::translate(model, glm::vec3(move.x, move.y, 0));
         pos.x += move.x;
         pos.y += move.y;
     }
 
-    void Rect::SetPos(glm::vec2 move) {
-        model = glm::translate(model,
-                               glm::vec3(move.x - pos.x, move.y - pos.y, 0.0f));
-        pos.x = move.x;
-        pos.y = move.y;
+    void Rect::SetPos(glm::vec2 new_pos) {
+        model = glm::translate(
+            model, glm::vec3(new_pos.x - pos.x, new_pos.y - pos.y, 0.0f));
+        pos.x = new_pos.x;
+        pos.y = new_pos.y;
     }
 
     bool Rect::AABBCollision(const Rect& other) const {
@@ -34,7 +34,6 @@ namespace ZipLib::Shapes {
     }
 
     bool Rect::PointCollision(glm::vec2 point) const {
-        point.y += h;
         return point.x >= pos.x && point.x <= pos.x + w && point.y <= pos.y &&
                point.y >= pos.y - h;
     }

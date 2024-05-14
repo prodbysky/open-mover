@@ -24,7 +24,7 @@ namespace ZipLib::Shapes {
         rect.vao.LinkVBOAndEBO(rect.vbo, rect.ebo);
     }
 
-    void ColoredRect::Move(glm::vec3 move) { rect.Move(move); }
+    void ColoredRect::Move(glm::vec2 move) { rect.Move(move); }
 
     void ColoredRect::Draw(Core::Shader& shader) const {
         shader.SetShader(Core::ShaderType::SHADER_DEFAULT);
