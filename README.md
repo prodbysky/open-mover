@@ -17,6 +17,16 @@ Game framework in C++ using OpenGL (GLAD GLFW CGLM)
  - point_vs_rect
  - aabb_collision
 
+## Features
+ - Solid, and textured rectangles
+ - Font rendering
+ - Playing audio
+ - Input management
+
+## References
+ - [Learn OpenGL](learnopengl.com)
+ - [Paroj OpenGL tutorial (https://paroj.github.io/gltut/)
+
 ## Dependencies
  - Freetype2 [< 2.13]
  - Miniaudio
@@ -26,13 +36,8 @@ Game framework in C++ using OpenGL (GLAD GLFW CGLM)
  - GLFW
  - OpenGL [< 4.6]
 
-## Features
- - Solid, and textured rectangles
- - Font rendering
- - Playing audio
- - Input management
-
 ## TODO:
- - Don't include dependencies directly so use packages from package managers (APT PACMAN...)
  - Remove debug messages from release builds
  - More examples
+ - Lighting
+ - Camera transforming
