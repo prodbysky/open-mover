@@ -5,11 +5,11 @@ CPPFLAGS = -Llib/ -lfreetype -lglfw3 -lGL -lm -lglm -Iinclude/ -Wall -Werror -We
 SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/colored_rect.cpp src/Window/window.cpp \
       src/Core/input.cpp src/Core/vao.cpp src/Core/vbo.cpp src/Core/ebo.cpp src/Core/texture.cpp \
       src/Shapes/textured_rect.cpp src/Core/audio.cpp src/Utilities/assert.cpp \
-	  src/Resource/resource_manager.cpp src/Resource/resources.cpp src/UI/text.cpp src/Window/timer.cpp src/Resource/texture_data.cpp
+	  src/Resource/resource_manager.cpp src/Resource/resources.cpp src/UI/text.cpp src/Window/timer.cpp src/Resource/texture_data.cpp src/Resource/animation.cpp
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound fps_display
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound fps_display animation_example
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -43,6 +43,9 @@ delayed_sound: $(OBJ) src/Examples/delayed_sound.cpp
 
 fps_display: $(OBJ) src/Examples/fps_display.cpp
 	$(shell) $(CC) $(OBJ) src/Examples/fps_display.cpp -o bin/fps_display $(CPPFLAGS) 
+
+animation_example: $(OBJ) src/Examples/animation_example.cpp
+	$(shell) $(CC) $(OBJ) src/Examples/animation_example.cpp -o bin/animation_example $(CPPFLAGS) 
 
 clean:
 	rm -f src/**/*.o bin/*
