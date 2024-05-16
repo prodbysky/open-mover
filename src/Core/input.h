@@ -14,7 +14,7 @@ namespace ZipLib::Core {
     class Input {
     private:
         std::array<bool, 316> key_states;
-        bool mouse_state[2];
+        std::array<bool, 2> mouse_state;
         glm::vec2 mouse_pos;
 
     private:

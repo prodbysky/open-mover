@@ -1,5 +1,7 @@
 #include "input.h"
 
+#include "../Utilities/assert.h"
+
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 
@@ -8,8 +10,7 @@
 namespace ZipLib::Core {
     Input::Input() {
         std::fill(key_states.begin(), key_states.end(), 0);
-        mouse_state[0] = 0;
-        mouse_state[1] = 0;
+        std::fill(mouse_state.begin(), mouse_state.end(), 0);
     }
 
     void Input::Setup(GLFWwindow* window) {
@@ -19,14 +20,17 @@ namespace ZipLib::Core {
         glfwSetMouseButtonCallback(window, MouseButtonCallback);
     }
 
-    bool Input::KeyDown(GLenum key) const { return key_states[key - 32]; }
+    bool Input::KeyDown(GLenum key) const {
+        Assert(key - 32 < key_states.size(), "Invalid key given");
+        return key_states.at(key - 32);
+    }
 
     bool Input::MouseKeyDown(GLenum button) const {
         switch (button) {
         case GLFW_MOUSE_BUTTON_LEFT:
-            return mouse_state[0];
+            return mouse_state.at(0);
         case GLFW_MOUSE_BUTTON_RIGHT:
-            return mouse_state[1];
+            return mouse_state.at(1);
         }
         return false;
     }
@@ -40,9 +44,9 @@ namespace ZipLib::Core {
         Input* input = (Input*) glfwGetWindowUserPointer(window);
 
         if (action == GLFW_PRESS) {
-            input->key_states[key - 32] = 1;
+            input->key_states.at(key - 32) = 1;
         } else if (action == GLFW_RELEASE) {
-            input->key_states[key - 32] = 0;
+            input->key_states.at(key - 32) = 0;
         }
     }
 
@@ -57,10 +61,10 @@ namespace ZipLib::Core {
         (void) mods;
         Input* input = (Input*) glfwGetWindowUserPointer(window);
         if (button == GLFW_MOUSE_BUTTON_LEFT) {
-            input->mouse_state[0] = action == GLFW_PRESS;
+            input->mouse_state.at(0) = action == GLFW_PRESS;
         }
         if (button == GLFW_MOUSE_BUTTON_RIGHT) {
-            input->mouse_state[1] = action == GLFW_PRESS;
+            input->mouse_state.at(1) = action == GLFW_PRESS;
         }
     }
 } // namespace ZipLib::Core
