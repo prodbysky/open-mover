@@ -2,6 +2,7 @@
 
 #include "glad/glad.h"
 
+#include <iostream>
 #include <memory>
 
 namespace ZipLib::UI {
@@ -32,6 +33,8 @@ namespace ZipLib::UI {
         shader.SetUniform(color.r, color.g, color.b, "uColor");
         vao->Bind();
 
+        glm::vec2 saved_pos = pos;
+
         for (const char& c : text) {
             Character ch = font.chars.at(c);
 
@@ -54,5 +57,6 @@ namespace ZipLib::UI {
 
             pos.x += (ch.advance >> 6) * scale;
         }
+        pos = saved_pos;
     }
 } // namespace ZipLib::UI
