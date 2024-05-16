@@ -3,14 +3,14 @@
 #include "../Resource/texture_data.h"
 #include "resources.h"
 
+#include <map>
 #include <string>
-#include <unordered_map>
 
 namespace ZipLib::Core {
     class ResourceManager {
     private:
-        std::unordered_map<std::string, TextureData> textures;
-        std::unordered_map<std::string, Font> fonts;
+        std::map<std::string, TextureData> textures;
+        std::map<std::string, Font> fonts;
         FT_Library freetype;
 
     public:

@@ -40,8 +40,6 @@ namespace ZipLib {
         }
 
         input.Setup(window);
-        audio = Core::Audio();
-
         // TODO: Remove repetition
         shader = std::make_unique<Core::Shader>();
         shader->SetShader(Core::ShaderType::SHADER_DEFAULT);

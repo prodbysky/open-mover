@@ -5,9 +5,9 @@
 #include "freetype/freetype.h"
 #include "glm/ext/vector_int2.hpp"
 
+#include <map>
 #include <miniaudio.h>
 #include <string>
-#include <unordered_map>
 
 namespace ZipLib {
     struct Character {
@@ -22,7 +22,7 @@ namespace ZipLib {
     */
     class Font {
     public:
-        std::unordered_map<char, Character> chars;
+        std::map<char, Character> chars;
 
     public:
         Font() = default;

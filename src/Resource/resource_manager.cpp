@@ -4,12 +4,13 @@
 #include "freetype/freetype.h"
 #include "stb_image.h"
 
-#include <unordered_map>
+#include <algorithm>
+#include <iterator>
 
 namespace ZipLib::Core {
     ResourceManager::ResourceManager() {
-        textures = std::unordered_map<std::string, TextureData>();
-        fonts    = std::unordered_map<std::string, Font>();
+        textures = std::map<std::string, TextureData>();
+        fonts    = std::map<std::string, Font>();
         FT_Init_FreeType(&freetype);
     }
 

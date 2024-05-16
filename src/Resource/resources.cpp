@@ -10,6 +10,8 @@
 namespace ZipLib {
     Font::Font(FT_Library freetype, const char* font_name, u16 height) {
         Assert(font_name != nullptr, "Passed in null pointer");
+        chars = std::map<char, Character>();
+
         FT_Face face;
         if (FT_New_Face(freetype, font_name, 0, &face)) {
             std::cerr << "Failed to load font: " << font_name << '\n';
