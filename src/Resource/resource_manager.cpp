@@ -5,6 +5,7 @@
 #include "stb_image.h"
 
 #include <algorithm>
+#include <array>
 #include <iterator>
 
 namespace ZipLib::Core {

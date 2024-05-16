@@ -9,7 +9,7 @@ SRC = src/Core/shader.cpp src/Utilities/util.cpp src/Shapes/rect.cpp src/Shapes/
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound fps_display
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -40,6 +40,9 @@ aabb_collision: $(OBJ) src/Examples/aabb_collision.cpp
 
 delayed_sound: $(OBJ) src/Examples/delayed_sound.cpp
 	$(shell) $(CC) $(OBJ) src/Examples/delayed_sound.cpp -o bin/delayed_sound $(CPPFLAGS) 
+
+fps_display: $(OBJ) src/Examples/fps_display.cpp
+	$(shell) $(CC) $(OBJ) src/Examples/fps_display.cpp -o bin/fps_display $(CPPFLAGS) 
 
 clean:
 	rm -f src/**/*.o bin/*

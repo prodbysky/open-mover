@@ -9,8 +9,6 @@
 namespace ZipLib::Shapes {
     ColoredRect::ColoredRect(glm::vec2 pos, f32 w, f32 h, glm::vec4 color) :
         color(color), rect(pos, w, h) {
-        this->color = color;
-
         u32 temp_indices[]  = {0, 1, 2, 0, 2, 3};
         f32 temp_vertices[] = {
             pos.x,     pos.y,     1.0f, pos.x + w, pos.y,     1.0f,
