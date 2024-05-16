@@ -1,15 +1,16 @@
 #pragma once
+#include <memory>
 #include <miniaudio.h>
 
 namespace ZipLib::Core {
     // Manages miniaudio and plays audio on demand
     class Audio {
     public:
-        ma_engine* engine;
+        std::unique_ptr<ma_engine> engine;
 
     public:
         Audio();
-        ~Audio();
+        ~Audio() = default;
         void Play(const char* sound);
     };
 } // namespace ZipLib::Core
