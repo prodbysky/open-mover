@@ -4,10 +4,6 @@
 #include "freetype/freetype.h"
 #include "stb_image.h"
 
-#include <algorithm>
-#include <array>
-#include <iterator>
-
 namespace ZipLib::Core {
     ResourceManager::ResourceManager() {
         textures = std::map<std::string, TextureData>();
