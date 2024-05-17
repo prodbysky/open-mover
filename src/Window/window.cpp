@@ -40,17 +40,16 @@ namespace ZipLib {
         }
 
         input.Setup(window);
-        // TODO: Remove repetition
         shader = std::make_unique<Core::Shader>();
-        shader->SetShader(Core::ShaderType::SHADER_DEFAULT);
-        shader->SetProjection(glm::vec2(f32(width), f32(height)),
-                              glm::vec2(-1.5, 1.5));
-        shader->SetShader(Core::ShaderType::SHADER_TEXTURE);
-        shader->SetProjection(glm::vec2(f32(width), f32(height)),
-                              glm::vec2(-1.5, 1.5));
-        shader->SetShader(Core::ShaderType::SHADER_FONT);
-        shader->SetProjection(glm::vec2(f32(width), f32(height)),
-                              glm::vec2(-1.5, 1.5));
+
+        for (auto type : {Core::ShaderType::SHADER_DEFAULT,
+                          Core::ShaderType::SHADER_TEXTURE,
+                          Core::ShaderType::SHADER_FONT}) {
+
+            shader->SetShader(type);
+            shader->SetProjection(glm::vec2(f32(width), f32(height)),
+                                  glm::vec2(-1.5, 1.5));
+        }
 
         deltaTime = 0;
         lastFrame = 0;
