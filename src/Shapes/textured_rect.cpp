@@ -44,4 +44,5 @@ namespace ZipLib::Shapes {
     }
 
     void TexturedRect::SetPos(glm::vec2 move) { rect.SetPos(move); }
+    void TexturedRect::Rotate(f32 degrees) { rect.Rotate(degrees); }
 } // namespace ZipLib::Shapes
