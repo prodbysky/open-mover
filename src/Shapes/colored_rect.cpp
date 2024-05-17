@@ -24,6 +24,8 @@ namespace ZipLib::Shapes {
 
     void ColoredRect::Move(glm::vec2 move) { rect.Move(move); }
 
+    void ColoredRect::Rotate(f32 degrees) { rect.Rotate(degrees); }
+
     void ColoredRect::Draw(Core::Shader& shader) const {
         shader.SetShader(Core::ShaderType::SHADER_DEFAULT);
         shader.SetUniform(color, "uColor");

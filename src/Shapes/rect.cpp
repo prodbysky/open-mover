@@ -1,6 +1,8 @@
 #include "rect.h"
 
+#include "glm/ext/matrix_float4x4.hpp"
 #include "glm/ext/vector_float3.hpp"
+#include "glm/trigonometric.hpp"
 
 #include <glm/ext/matrix_transform.hpp>
 
@@ -17,6 +19,15 @@ namespace ZipLib::Shapes {
         model  = glm::translate(model, glm::vec3(move.x, move.y, 0));
         pos.x += move.x;
         pos.y += move.y;
+    }
+
+    void Rect::Rotate(f32 degrees) {
+        glm::vec3 center = glm::vec3(w / 2, h / 2, 0.0f);
+
+        model = glm::translate(model, center);
+        model =
+            glm::rotate(model, glm::radians(degrees), glm::vec3(0.0, 0.0, 1.0));
+        model = glm::translate(model, -center);
     }
 
     void Rect::SetPos(glm::vec2 new_pos) {

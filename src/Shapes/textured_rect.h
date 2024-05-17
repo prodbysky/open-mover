@@ -23,6 +23,7 @@ namespace ZipLib::Shapes {
                      GLenum texture_filter, GLenum image_type);
         void Draw(Core::Shader& shader) const;
         void Move(glm::vec2 move);
+        void Rotate(f32 degrees);
         void SetPos(glm::vec2 move);
     };
 } // namespace ZipLib::Shapes

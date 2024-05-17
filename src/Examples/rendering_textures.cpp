@@ -8,7 +8,6 @@ int main() {
         window.resource_manager.LoadTexture("assets/sprites/orange.png");
     ZipLib::Shapes::TexturedRect texture(glm::vec2(0, 800), 800, 800, orange,
                                          GL_NEAREST, GL_RGBA8);
-
     while (!window.ShouldClose()) {
         window.Clear(24, 24, 24, 255);
         texture.Draw(*window.shader);

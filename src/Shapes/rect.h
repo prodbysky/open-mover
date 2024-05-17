@@ -23,6 +23,7 @@ namespace ZipLib::Shapes {
         Rect() = default;
         Rect(glm::vec2 pos, f32 w, f32 h);
         void Move(glm::vec2 move);
+        void Rotate(f32 degrees);
         void SetPos(glm::vec2 new_pos);
         bool AABBCollision(const Rect& other) const;
         bool PointCollision(glm::vec2 point) const;

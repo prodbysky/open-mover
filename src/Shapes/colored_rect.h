@@ -23,6 +23,7 @@ namespace ZipLib::Shapes {
                     glm::vec4 color = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f));
         void Draw(Core::Shader& shader) const;
         void Move(glm::vec2 move);
+        void Rotate(f32 degrees);
         void SetPos(glm::vec2 move);
         void SetColor(glm::vec4 color);
     };
