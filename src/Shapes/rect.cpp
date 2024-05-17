@@ -11,6 +11,7 @@ namespace ZipLib::Shapes {
         this->pos = pos;
         this->w   = w;
         this->h   = h;
+        rotation  = 0;
         model     = glm::identity<glm::mat4>();
         vao       = Core::VAO();
     }
@@ -27,6 +28,28 @@ namespace ZipLib::Shapes {
         model = glm::translate(model, center);
         model =
             glm::rotate(model, glm::radians(degrees), glm::vec3(0.0, 0.0, 1.0));
+        model    = glm::translate(model, -center);
+        rotation = degrees;
+    }
+
+    void Rect::SetRotation(f32 degrees) {
+        Rotate(-rotation);
+        Rotate(degrees);
+    }
+
+    void Rect::FlipX() {
+        glm::vec3 center = glm::vec3(w / 2, h / 2, 0.0);
+        model            = glm::translate(model, center);
+        model =
+            glm::rotate(model, glm::radians(180.0f), glm::vec3(0.0, 1.0, 0.0));
+        model = glm::translate(model, -center);
+    }
+
+    void Rect::FlipY() {
+        glm::vec3 center = glm::vec3(w / 2, h / 2, 0.0);
+        model            = glm::translate(model, center);
+        model =
+            glm::rotate(model, glm::radians(180.0f), glm::vec3(1.0, 0.0, 0.0));
         model = glm::translate(model, -center);
     }
 

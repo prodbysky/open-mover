@@ -38,6 +38,9 @@ namespace ZipLib::Shapes {
 
     void AnimatedRect::Move(glm::vec2 move) { rect.Move(move); }
     void AnimatedRect::Rotate(f32 degrees) { rect.Rotate(degrees); }
+    void AnimatedRect::SetRotation(f32 degrees) { rect.SetRotation(degrees); }
+    void AnimatedRect::FlipX() { rect.FlipX(); }
+    void AnimatedRect::FlipY() { rect.FlipY(); }
     void AnimatedRect::SetPos(glm::vec2 move) { rect.SetPos(move); }
     void AnimatedRect::Advance() { animation.Advance(); }
 }; // namespace ZipLib::Shapes

@@ -2,7 +2,7 @@
 #include "../Window/window.h"
 
 int main() {
-    ZipLib::Window window(800, 800, "Hello world!", false);
+    ZipLib::Window window(800, 800, "Hello world!", true);
 
     const ZipLib::Core::TextureData& orange =
         window.resource_manager.LoadTexture("assets/sprites/orange.png");

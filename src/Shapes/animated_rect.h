@@ -18,6 +18,9 @@ namespace ZipLib::Shapes {
         void Draw(Core::Shader& shader);
         void Move(glm::vec2 move);
         void Rotate(f32 degrees);
+        void SetRotation(f32 degrees);
+        void FlipX();
+        void FlipY();
         void SetPos(glm::vec2 move);
         void Advance();
         const Core::Texture& GetCurrentFrame();

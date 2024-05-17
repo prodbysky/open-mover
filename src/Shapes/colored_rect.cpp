@@ -25,6 +25,9 @@ namespace ZipLib::Shapes {
     void ColoredRect::Move(glm::vec2 move) { rect.Move(move); }
 
     void ColoredRect::Rotate(f32 degrees) { rect.Rotate(degrees); }
+    void ColoredRect::SetRotation(f32 degrees) { rect.SetRotation(degrees); }
+    void ColoredRect::FlipX() { rect.FlipX(); }
+    void ColoredRect::FlipY() { rect.FlipY(); }
 
     void ColoredRect::Draw(Core::Shader& shader) const {
         shader.SetShader(Core::ShaderType::SHADER_DEFAULT);
