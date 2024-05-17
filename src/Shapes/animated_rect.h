@@ -5,9 +5,8 @@
 
 namespace ZipLib::Shapes {
     // Rectangle that also has a texture to draw
-    class AnimatedRect {
+    class AnimatedRect : public Rect {
     public:
-        Rect rect;
         Animation animation;
 
     public:
@@ -16,12 +15,6 @@ namespace ZipLib::Shapes {
                      u32 frame_count, GLenum texture_filter, GLenum image_type,
                      Core::ResourceManager& manager);
         void Draw(Core::Shader& shader);
-        void Move(glm::vec2 move);
-        void Rotate(f32 degrees);
-        void SetRotation(f32 degrees);
-        void FlipX();
-        void FlipY();
-        void SetPos(glm::vec2 move);
         void Advance();
         const Core::Texture& GetCurrentFrame();
     };

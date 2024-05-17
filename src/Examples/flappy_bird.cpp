@@ -58,7 +58,7 @@ public:
         lower_pipe.Move(glm::vec2(-300 * delta, 0));
         upper_pipe.Move(glm::vec2(-300 * delta, 0));
 
-        if (lower_pipe.rect.pos.x < -140) {
+        if (lower_pipe.pos.x < -140) {
             lower_pipe.Move(glm::vec2(1000, Utilities::RandomFloat(-100, 100)));
             upper_pipe.Move(glm::vec2(1000, Utilities::RandomFloat(-100, 100)));
         }

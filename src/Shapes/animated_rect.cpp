@@ -9,7 +9,7 @@ namespace ZipLib::Shapes {
                                std::string frame_base_name, u32 frame_count,
                                GLenum texture_filter, GLenum image_type,
                                Core::ResourceManager& manager) :
-        rect(pos, w, h),
+        Rect(pos, w, h),
         animation(frame_base_name, frame_count, GL_MIRRORED_REPEAT,
                   texture_filter, image_type, manager) {
 
@@ -20,27 +20,21 @@ namespace ZipLib::Shapes {
             0.0f,  pos.x, pos.y - h, 1.0f,      0.0f,      0.0f,
         };
 
-        rect.vbo = Core::VBO(temp_vertices, 20);
-        rect.ebo = Core::EBO(temp_indices, 6);
+        vbo = Core::VBO(temp_vertices, 20);
+        ebo = Core::EBO(temp_indices, 6);
 
-        rect.vao.AddAttribute(3, GL_FLOAT);
-        rect.vao.AddAttribute(2, GL_FLOAT);
-        rect.vao.LinkVBOAndEBO(rect.vbo, rect.ebo);
+        vao.AddAttribute(3, GL_FLOAT);
+        vao.AddAttribute(2, GL_FLOAT);
+        vao.LinkVBOAndEBO(vbo, ebo);
     }
     void AnimatedRect::Draw(Core::Shader& shader) {
         shader.SetShader(Core::ShaderType::SHADER_TEXTURE);
-        shader.SetUniform(rect.model, "uModel");
+        shader.SetUniform(model, "uModel");
         animation.GetCurrentFrame().Bind();
-        rect.vao.Bind();
+        vao.Bind();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         animation.GetCurrentFrame().Unbind();
     }
 
-    void AnimatedRect::Move(glm::vec2 move) { rect.Move(move); }
-    void AnimatedRect::Rotate(f32 degrees) { rect.Rotate(degrees); }
-    void AnimatedRect::SetRotation(f32 degrees) { rect.SetRotation(degrees); }
-    void AnimatedRect::FlipX() { rect.FlipX(); }
-    void AnimatedRect::FlipY() { rect.FlipY(); }
-    void AnimatedRect::SetPos(glm::vec2 move) { rect.SetPos(move); }
     void AnimatedRect::Advance() { animation.Advance(); }
 }; // namespace ZipLib::Shapes

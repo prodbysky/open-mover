@@ -10,9 +10,8 @@
 
 namespace ZipLib::Shapes {
     // Rectangle that also has a texture to draw
-    class TexturedRect {
+    class TexturedRect : public Rect {
     public:
-        Rect rect;
         Core::Texture texture;
 
     public:
@@ -22,11 +21,5 @@ namespace ZipLib::Shapes {
                      const ZipLib::Core::TextureData& data,
                      GLenum texture_filter, GLenum image_type);
         void Draw(Core::Shader& shader) const;
-        void Move(glm::vec2 move);
-        void Rotate(f32 degrees);
-        void SetRotation(f32 degrees);
-        void FlipX();
-        void FlipY();
-        void SetPos(glm::vec2 move);
     };
 } // namespace ZipLib::Shapes

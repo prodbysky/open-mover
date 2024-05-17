@@ -9,7 +9,7 @@ i32 main() {
                              glm::vec4(1, 0, 0, 1));
 
     while (!window.ShouldClose()) {
-        if (rect.rect.PointCollision(window.input.GetMousePos())) {
+        if (rect.PointCollision(window.input.GetMousePos())) {
             rect.SetColor(glm::vec4(0, 1, 0, 1));
         } else {
             rect.SetColor(glm::vec4(1, 0, 0, 1));

@@ -12,7 +12,7 @@ i32 main() {
 
     while (!window.ShouldClose()) {
         rect2.SetPos(glm::vec3(window.input.GetMousePos(), 0));
-        if (rect1.rect.AABBCollision(rect2.rect)) {
+        if (rect1.AABBCollision(rect2)) {
             rect1.SetColor(glm::vec4(0, 1, 0, 1));
         } else {
             rect1.SetColor(glm::vec4(1, 0, 0, 1));

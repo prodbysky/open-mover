@@ -1,9 +1,6 @@
 #pragma once
 
-#include "../Core/ebo.h"
-#include "../Core/shader.h"
-#include "../Core/vao.h"
-#include "../Core/vbo.h"
+#include "../Core/core.h"
 #include "../Utilities/types.h"
 
 #include <glm/glm.hpp>

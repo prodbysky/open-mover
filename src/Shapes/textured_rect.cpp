@@ -10,7 +10,7 @@ namespace ZipLib::Shapes {
     TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h,
                                const ZipLib::Core::TextureData& data,
                                GLenum texture_filter, GLenum image_type) :
-        rect(pos, w, h) {
+        Rect(pos, w, h) {
         u32 temp_indices[]  = {0, 1, 2, 0, 2, 3};
         f32 temp_vertices[] = {
             pos.x, pos.y, 1.0f,      0.0f,      1.0f,      pos.x + w, pos.y,
@@ -18,12 +18,12 @@ namespace ZipLib::Shapes {
             0.0f,  pos.x, pos.y - h, 1.0f,      0.0f,      0.0f,
         };
 
-        rect.vbo = Core::VBO(temp_vertices, 20);
-        rect.ebo = Core::EBO(temp_indices, 6);
+        vbo = Core::VBO(temp_vertices, 20);
+        ebo = Core::EBO(temp_indices, 6);
 
-        rect.vao.AddAttribute(3, GL_FLOAT);
-        rect.vao.AddAttribute(2, GL_FLOAT);
-        rect.vao.LinkVBOAndEBO(rect.vbo, rect.ebo);
+        vao.AddAttribute(3, GL_FLOAT);
+        vao.AddAttribute(2, GL_FLOAT);
+        vao.LinkVBOAndEBO(vbo, ebo);
         // Loads a glyph from a font
         texture =
             Core::Texture(data, GL_MIRRORED_REPEAT, texture_filter, image_type,
@@ -32,20 +32,10 @@ namespace ZipLib::Shapes {
 
     void TexturedRect::Draw(Core::Shader& shader) const {
         shader.SetShader(Core::ShaderType::SHADER_TEXTURE);
-        shader.SetUniform(rect.model, "uModel");
+        shader.SetUniform(model, "uModel");
         texture.Bind();
-        rect.vao.Bind();
+        vao.Bind();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         texture.Unbind();
     }
-
-    void TexturedRect::Move(glm::vec2 move) {
-        rect.Move(glm::vec3(move.x, move.y, 0));
-    }
-
-    void TexturedRect::SetPos(glm::vec2 move) { rect.SetPos(move); }
-    void TexturedRect::Rotate(f32 degrees) { rect.Rotate(degrees); }
-    void TexturedRect::SetRotation(f32 degrees) { rect.SetRotation(degrees); }
-    void TexturedRect::FlipX() { rect.FlipX(); }
-    void TexturedRect::FlipY() { rect.FlipY(); }
 } // namespace ZipLib::Shapes
