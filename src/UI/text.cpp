@@ -7,8 +7,10 @@
 
 namespace ZipLib::UI {
     Text::Text(const Font& font, std::string text, glm::vec2 pos,
-               glm::vec3 color, f32 scale) :
-        font(font), text(text), color(color), pos(pos), scale(scale) {
+               glm::vec3 color, f32 scale,
+               std::shared_ptr<Core::Shader> shader) :
+        font(font), text(text), color(color), pos(pos), scale(scale),
+        shader(shader) {
 
         vao = std::make_unique<Core::VAO>();
         vbo = std::make_unique<Core::VBO>(nullptr, 24, GL_DYNAMIC_DRAW);
@@ -27,10 +29,10 @@ namespace ZipLib::UI {
 
     void Text::SetScale(f32 scale) { this->scale = scale; }
 
-    void Text::Draw(Core::Shader& shader) {
-        shader.SetShader(Core::ShaderType::SHADER_FONT);
+    void Text::Draw() {
+        shader->SetShader(Core::ShaderType::SHADER_FONT);
 
-        shader.SetUniform(color.r, color.g, color.b, "uColor");
+        shader->SetUniform(color.r, color.g, color.b, "uColor");
         vao->Bind();
 
         glm::vec2 saved_pos = pos;
