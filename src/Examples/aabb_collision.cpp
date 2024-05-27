@@ -5,9 +5,9 @@ using namespace ZipLib;
 
 i32 main() {
     Window window(800, 800, "Point vs rect", true);
-    Shapes::ColoredRect rect1(glm::vec2(200, 600), 200, 200,
+    Shapes::ColoredRect rect1(glm::vec2(200, 600), 200, 200, window.shader,
                               glm::vec4(1, 0, 0, 1));
-    Shapes::ColoredRect rect2(glm::vec2(500, 600), 200, 200,
+    Shapes::ColoredRect rect2(glm::vec2(500, 600), 200, 200, window.shader,
                               glm::vec4(1, 0, 0, 0.25));
 
     while (!window.ShouldClose()) {
@@ -18,8 +18,8 @@ i32 main() {
             rect1.SetColor(glm::vec4(1, 0, 0, 1));
         }
         window.Clear(10, 10, 10, 255);
-        rect1.Draw(*window.shader);
-        rect2.Draw(*window.shader);
+        rect1.Draw();
+        rect2.Draw();
         window.Swap();
     }
 }

@@ -4,6 +4,8 @@
 #include "GLFW/glfw3.h"
 #include "glad/glad.h"
 
+#include <memory>
+
 #define G -25
 
 using namespace ZipLib;
@@ -15,9 +17,10 @@ private:
     f32 jump_power;
 
 public:
-    Bird(glm::vec2 pos, f32 power, Core::ResourceManager& resource_manager) {
+    Bird(glm::vec2 pos, f32 power, Core::ResourceManager& resource_manager,
+         std::shared_ptr<Core::Shader> shader) {
         rect = Shapes::TexturedRect(
-            pos, 64, 64,
+            pos, 64, 64, shader,
             resource_manager.LoadTexture("assets/sprites/orange.png"),
             GL_NEAREST, GL_RGBA8);
         velocity   = 0.0;
@@ -34,7 +37,7 @@ public:
         rect.Move(glm::vec2(0, velocity));
     }
 
-    void Draw(Core::Shader& shader) { rect.Draw(shader); }
+    void Draw() { rect.Draw(); }
 };
 
 class Pipe {
@@ -43,13 +46,14 @@ private:
     Shapes::TexturedRect upper_pipe;
 
 public:
-    Pipe(glm::vec2 pos, Core::ResourceManager& resource_manager) {
+    Pipe(glm::vec2 pos, Core::ResourceManager& resource_manager,
+         std::shared_ptr<Core::Shader> shader) {
         lower_pipe = Shapes::TexturedRect(
-            pos, 140, 1400,
+            pos, 140, 1400, shader,
             resource_manager.LoadTexture("assets/sprites/pipe.png"), GL_NEAREST,
             GL_RGBA8);
         upper_pipe = Shapes::TexturedRect(
-            glm::vec2(pos.x, pos.y + 180 + 1400), 140, 1400,
+            glm::vec2(pos.x, pos.y + 180 + 1400), 140, 1400, shader,
             resource_manager.LoadTexture("assets/sprites/pipe_flipped.png"),
             GL_NEAREST, GL_RGBA8);
     }
@@ -64,28 +68,28 @@ public:
         }
     }
 
-    void Draw(Core::Shader& shader) {
-        lower_pipe.Draw(shader);
-        upper_pipe.Draw(shader);
+    void Draw() {
+        lower_pipe.Draw();
+        upper_pipe.Draw();
     }
 };
 
 i32 main() {
     Window window(800, 800, "Flappy bird", true);
     Shapes::TexturedRect background(
-        glm::vec2(0, 800), 800, 800,
+        glm::vec2(0, 800), 800, 800, window.shader,
         window.resource_manager.LoadTexture("assets/sprites/bg.png"), GL_LINEAR,
         GL_RGBA8);
-    Bird bird(glm::vec2(200, 300), 500, window.resource_manager);
-    Pipe pipe(glm::vec2(400, 200), window.resource_manager);
+    Bird bird(glm::vec2(200, 300), 500, window.resource_manager, window.shader);
+    Pipe pipe(glm::vec2(400, 200), window.resource_manager, window.shader);
 
     while (!window.ShouldClose()) {
         bird.Update(window.input, window.GetDeltaTime());
         pipe.Update(window.GetDeltaTime());
         window.Clear(24, 24, 24, 255);
-        background.Draw(*window.shader);
-        bird.Draw(*window.shader);
-        pipe.Draw(*window.shader);
+        background.Draw();
+        bird.Draw();
+        pipe.Draw();
         window.Swap();
     }
 }
