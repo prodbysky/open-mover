@@ -40,7 +40,7 @@ namespace ZipLib {
         }
 
         input.Setup(window);
-        shader = std::make_unique<Core::Shader>();
+        shader = std::make_shared<Core::Shader>();
 
         for (auto type : {Core::ShaderType::SHADER_DEFAULT,
                           Core::ShaderType::SHADER_TEXTURE,

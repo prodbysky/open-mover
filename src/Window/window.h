@@ -19,7 +19,7 @@ namespace ZipLib {
     class Window {
     public:
         GLFWwindow* window;
-        std::unique_ptr<Core::Shader> shader;
+        std::shared_ptr<Core::Shader> shader;
         Core::Input input;
         Core::Audio audio;
         Core::ResourceManager resource_manager;

@@ -4,12 +4,15 @@
 #include "glad/glad.h"
 #include "rect.h"
 
+#include <memory>
+
 namespace ZipLib::Shapes {
     AnimatedRect::AnimatedRect(glm::vec2 pos, f32 w, f32 h,
+                               std::shared_ptr<Core::Shader> shader,
                                std::string frame_base_name, u32 frame_count,
                                GLenum texture_filter, GLenum image_type,
                                Core::ResourceManager& manager) :
-        Rect(pos, w, h),
+        Rect(pos, w, h), shader(shader),
         animation(frame_base_name, frame_count, GL_MIRRORED_REPEAT,
                   texture_filter, image_type, manager) {
 
@@ -27,9 +30,9 @@ namespace ZipLib::Shapes {
         vao.AddAttribute(2, GL_FLOAT);
         vao.LinkVBOAndEBO(vbo, ebo);
     }
-    void AnimatedRect::Draw(Core::Shader& shader) {
-        shader.SetShader(Core::ShaderType::SHADER_TEXTURE);
-        shader.SetUniform(model, "uModel");
+    void AnimatedRect::Draw() {
+        shader->SetShader(Core::ShaderType::SHADER_TEXTURE);
+        shader->SetUniform(model, "uModel");
         animation.GetCurrentFrame().Bind();
         vao.Bind();
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
