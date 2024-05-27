@@ -12,6 +12,7 @@ namespace ZipLib {
                          GLenum wrap, GLenum filter, GLenum type,
                          Core::ResourceManager& manager) {
         current_frame = 0;
+
         for (u32 i = 0; i < frame_count; i++) {
             std::string name =
                 sprite_base_name + "_" + std::to_string(i) + ".png";
