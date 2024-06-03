@@ -1,5 +1,6 @@
 #include "animation.h"
 
+#include "../Core/log.h"
 #include "../Core/texture.h"
 #include "../Resource/resource_manager.h"
 #include "../Utilities/assert.h"
@@ -7,6 +8,7 @@
 
 #include <string>
 #include <vector>
+
 namespace ZipLib {
     Animation::Animation(std::string sprite_base_name, u32 frame_count,
                          GLenum wrap, GLenum filter, GLenum type,
@@ -20,6 +22,7 @@ namespace ZipLib {
                                            filter, type, {},
                                            Core::TextureType::TEXTURE_IMAGE));
         }
+        Log::Info("Succesfully loaded animation:", sprite_base_name);
     }
 
     void Animation::Advance() {

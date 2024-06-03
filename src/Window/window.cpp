@@ -1,12 +1,14 @@
 #include "window.h"
 
 #include "../Core/core.h"
+#include "../Core/log.h"
 #include "../Utilities/utilities.h"
 #include "GLFW/glfw3.h"
 #include "freetype/freetype.h"
 
-#include <iostream>
 #include <memory>
+#include <ostream>
+#include <sstream>
 
 namespace ZipLib {
     Window::Window(u16 width, u16 height, const char* title, bool vSync,
@@ -32,6 +34,8 @@ namespace ZipLib {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+        Log::Info("Succesfully initialized OpenGL, and created a window");
+
         // Setup debug loggin
         if (debug) {
             glEnable(GL_DEBUG_OUTPUT);
@@ -50,6 +54,8 @@ namespace ZipLib {
             shader->SetProjection(glm::vec2(f32(width), f32(height)),
                                   glm::vec2(-1.5, 1.5));
         }
+
+        Log::Info("Succesfully initialized shaders");
 
         deltaTime = 0;
         lastFrame = 0;
@@ -89,58 +95,65 @@ namespace ZipLib {
                                  void const* user_param) {
         (void) user_param;
         (void) len;
+        (void) id;
         auto const src_str = [src]() {
             switch (src) {
             case GL_DEBUG_SOURCE_API:
                 return "API";
             case GL_DEBUG_SOURCE_WINDOW_SYSTEM:
-                return "WINDOW SYSTEM";
+                return "Window system";
             case GL_DEBUG_SOURCE_SHADER_COMPILER:
-                return "SHADER COMPILER";
+                return "Shader compiler";
             case GL_DEBUG_SOURCE_THIRD_PARTY:
-                return "THIRD PARTY";
+                return "Third party";
             case GL_DEBUG_SOURCE_APPLICATION:
-                return "APPLICATION";
+                return "Application";
             case GL_DEBUG_SOURCE_OTHER:
-                return "OTHER";
+                return "Other";
             }
-            return "UNKNOWN";
+            return "Unknown";
         }();
 
         auto const type_str = [type]() {
             switch (type) {
             case GL_DEBUG_TYPE_ERROR:
-                return "ERROR";
+                return "Error";
             case GL_DEBUG_TYPE_DEPRECATED_BEHAVIOR:
-                return "DEPRECATED_BEHAVIOR";
+                return "Deprecated";
             case GL_DEBUG_TYPE_UNDEFINED_BEHAVIOR:
-                return "UNDEFINED_BEHAVIOR";
+                return "Undefined";
             case GL_DEBUG_TYPE_PORTABILITY:
-                return "PORTABILITY";
+                return "Portability";
             case GL_DEBUG_TYPE_PERFORMANCE:
-                return "PERFORMANCE";
+                return "Performance";
             case GL_DEBUG_TYPE_MARKER:
-                return "MARKER";
+                return "Marker";
             case GL_DEBUG_TYPE_OTHER:
-                return "OTHER";
+                return "Other";
             }
-            return "UNKNOWN";
+            return "Unknown";
         }();
 
-        auto const severity_str = [severity]() {
+        std::stringstream ss;
+        ss << src_str << " " << type_str << " " << message;
+
+        [severity, &ss]() {
             switch (severity) {
             case GL_DEBUG_SEVERITY_NOTIFICATION:
-                return "NOTIFICATION";
+                Log::Trace(ss.str());
+                break;
             case GL_DEBUG_SEVERITY_LOW:
-                return "LOW";
+                Log::Info(ss.str());
+                break;
             case GL_DEBUG_SEVERITY_MEDIUM:
-                return "MEDIUM";
+                Log::Warn(ss.str());
+                break;
             case GL_DEBUG_SEVERITY_HIGH:
-                return "HIGH";
+                Log::Critical(ss.str());
+                break;
+            default:
+                return;
             }
-            return "UNKNOWN";
         }();
-        std::cerr << src_str << ", " << type_str << ", " << severity_str << ", "
-                  << id << ": " << message << '\n';
     }
 } // namespace ZipLib

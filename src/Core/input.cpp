@@ -3,6 +3,7 @@
 #include "../Utilities/assert.h"
 
 #define GLFW_INCLUDE_NONE
+#include "../Core/log.h"
 #include "GLFW/glfw3.h"
 
 #include <algorithm>
@@ -18,6 +19,7 @@ namespace ZipLib::Core {
         glfwSetKeyCallback(window, InputCallback);
         glfwSetCursorPosCallback(window, CursorPositionCallback);
         glfwSetMouseButtonCallback(window, MouseButtonCallback);
+        Log::Info("Succesfully setup input callbacks");
     }
 
     bool Input::KeyDown(GLenum key) const {

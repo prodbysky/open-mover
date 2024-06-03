@@ -1,4 +1,5 @@
 #include "assert.h"
+#include "log.h"
 
 #include <iostream>
 
@@ -42,6 +43,8 @@ namespace ZipLib::Core {
         font_id = LinkShader(font_vert_shader, font_frag_shader);
         glDeleteShader(font_vert_shader);
         glDeleteShader(font_frag_shader);
+
+        Log::Info("Succesfully compiled all shaders");
     }
 
     u32 Shader::CompileShader(const char* name, GLenum type) const {
@@ -56,8 +59,7 @@ namespace ZipLib::Core {
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
             glGetShaderInfoLog(shader, 512, NULL, info_log);
-            std::cerr << "Failed to compile " << name << ": " << info_log
-                      << '\n';
+            Log::Error("Failed to compile", name, ":", info_log);
         }
 
         return shader;
@@ -96,8 +98,7 @@ namespace ZipLib::Core {
         i32 uniform_location = glGetUniformLocation(current_id, name);
 
         if (uniform_location < 0) {
-            std::cerr << "Tried to get non-existant shader uniform: " << name
-                      << '\n';
+            Log::Error("Tried to get non-existant shader uniform:", name);
             return -1;
         }
         return uniform_location;

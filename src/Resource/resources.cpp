@@ -1,11 +1,10 @@
 #include "../Resource/resources.h"
 
+#include "../Core/log.h"
 #include "../Core/texture.h"
 #include "../Utilities/assert.h"
 #include "glad/glad.h"
 #include "stb_image.h"
-
-#include <iostream>
 
 namespace ZipLib {
     Font::Font(FT_Library freetype, const char* font_name, u16 height) {
@@ -14,17 +13,17 @@ namespace ZipLib {
 
         FT_Face face;
         if (FT_New_Face(freetype, font_name, 0, &face)) {
-            std::cerr << "Failed to load font: " << font_name << '\n';
+            Log::Error("Failed to load font:", font_name);
         }
-        std::cerr << "Loaded font " << font_name << '\n';
+        Log::Info("Succesfully loaded font:", font_name);
 
         FT_Set_Pixel_Sizes(face, 0, height);
 
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
-        for (i64 c = 0; c < 128; c++) {
+        for (i64 c = 32; c < 127; c++) {
             if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
-                std::cerr << "Failed to load glyph: " << char(c) << '\n';
+                Log::Error("Failed to load glyph:", char(c));
                 continue;
             }
             Character character = {
