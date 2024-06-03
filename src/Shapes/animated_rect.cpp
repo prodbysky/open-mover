@@ -1,5 +1,6 @@
 #include "animated_rect.h"
 
+#include "../Core/ZipLib.h"
 #include "../Resource/animation.h"
 #include "glad/glad.h"
 #include "rect.h"
@@ -10,11 +11,10 @@ namespace ZipLib::Shapes {
     AnimatedRect::AnimatedRect(glm::vec2 pos, f32 w, f32 h,
                                std::shared_ptr<Core::Shader> shader,
                                std::string frame_base_name, u32 frame_count,
-                               GLenum texture_filter, GLenum image_type,
-                               Core::ResourceManager& manager) :
+                               GLenum texture_filter, GLenum image_type) :
         Rect(pos, w, h), shader(shader),
         animation(frame_base_name, frame_count, GL_MIRRORED_REPEAT,
-                  texture_filter, image_type, manager) {
+                  texture_filter, image_type, ZipLib::ResourceManager) {
 
         u32 temp_indices[]  = {0, 1, 2, 0, 2, 3};
         f32 temp_vertices[] = {

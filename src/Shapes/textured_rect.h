@@ -11,12 +11,6 @@
 namespace ZipLib::Shapes {
     // Rectangle that also has a texture to draw
     class TexturedRect : public Rect {
-    private:
-        std::shared_ptr<Core::Shader> shader;
-
-    public:
-        Core::Texture texture;
-
     public:
         TexturedRect();
         // Creates a rectangle with an associated texture that is loaded too
@@ -25,5 +19,11 @@ namespace ZipLib::Shapes {
                      const ZipLib::Core::TextureData& data,
                      GLenum texture_filter, GLenum image_type);
         void Draw() const;
+
+    private:
+        std::shared_ptr<Core::Shader> shader;
+
+    public:
+        Core::Texture texture;
     };
 } // namespace ZipLib::Shapes

@@ -2,6 +2,8 @@
 
 #include "../Utilities/assert.h"
 
+#include <iostream>
+
 #define GLFW_INCLUDE_NONE
 #include "../Core/log.h"
 #include "GLFW/glfw3.h"
@@ -41,10 +43,11 @@ namespace ZipLib::Core {
 
     void Input::InputCallback(GLFWwindow* window, i32 key, i32 scancode,
                               i32 action, i32 mods) {
+
         (void) scancode;
         (void) mods;
-        Input* input = (Input*) glfwGetWindowUserPointer(window);
 
+        Input* input = (Input*) glfwGetWindowUserPointer(window);
         if (action == GLFW_PRESS) {
             input->key_states.at(key - 32) = 1;
         } else if (action == GLFW_RELEASE) {

@@ -3,9 +3,13 @@
 #include "spdlog/sinks/stdout_color_sinks-inl.h"
 
 namespace ZipLib {
+    Log::Log() {}
     void Log::Init() {
-        Log::initialized = true;
-        Log::logger      = spdlog::stdout_color_mt("ZipLib");
+        static bool initialized = false;
+        if (!initialized) {
+            Log::logger = spdlog::stdout_color_mt("ZipLib");
+        }
+        initialized = true;
     }
 
     void Log::SetLevel(spdlog::level::level_enum level) {

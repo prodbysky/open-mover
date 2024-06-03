@@ -1,8 +1,6 @@
 #include "assert.h"
 #include "log.h"
 
-#include <iostream>
-
 #define GLFW_INCLUDE_NONE
 #include "../Core/shader.h"
 #include "../Utilities/assert.h"

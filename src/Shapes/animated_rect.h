@@ -19,8 +19,7 @@ namespace ZipLib::Shapes {
         AnimatedRect(glm::vec2 pos, f32 w, f32 h,
                      std::shared_ptr<Core::Shader> shader,
                      std::string frame_base_name, u32 frame_count,
-                     GLenum texture_filter, GLenum image_type,
-                     Core::ResourceManager& manager);
+                     GLenum texture_filter, GLenum image_type);
         void Draw();
         void Advance();
         const Core::Texture& GetCurrentFrame();

@@ -12,10 +12,18 @@ namespace ZipLib::Core {
 
     // Manages all input, provides api for getting mouse and keyboard state
     class Input {
+    public:
+        Input();
+        // Setups all callbacks for getting input
+        void Setup(GLFWwindow* window);
+        bool KeyDown(GLenum key) const;
+        bool MouseKeyDown(GLenum button) const;
+        glm::vec2 GetMousePos() const;
+
     private:
-        std::array<bool, 316> key_states;
-        std::array<bool, 2> mouse_state;
-        glm::vec2 mouse_pos;
+        inline static std::array<bool, 316> key_states;
+        inline static std::array<bool, 2> mouse_state;
+        inline static glm::vec2 mouse_pos;
 
     private:
         static void InputCallback(GLFWwindow* window, i32 key, i32 scancode,
@@ -24,13 +32,5 @@ namespace ZipLib::Core {
                                            double ypos);
         static void MouseButtonCallback(GLFWwindow* window, int button,
                                         int action, int mods);
-
-    public:
-        Input();
-        // Setups all callbacks for getting input
-        void Setup(GLFWwindow* window);
-        bool KeyDown(GLenum key) const;
-        bool MouseKeyDown(GLenum button) const;
-        glm::vec2 GetMousePos() const;
     };
 } // namespace ZipLib::Core

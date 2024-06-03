@@ -8,11 +8,6 @@
 
 namespace ZipLib::Core {
     class ResourceManager {
-    private:
-        std::map<std::string, TextureData> textures;
-        std::map<std::string, Font> fonts;
-        FT_Library freetype;
-
     public:
         ResourceManager();
         ~ResourceManager() = default;
@@ -23,5 +18,10 @@ namespace ZipLib::Core {
         const Font& LoadFont(std::string name, u16 height);
         const Font& GetFont(std::string name);
         Font& GetMutFont(std::string name);
+
+    private:
+        std::map<std::string, TextureData> textures;
+        std::map<std::string, Font> fonts;
+        FT_Library freetype;
     };
 } // namespace ZipLib::Core

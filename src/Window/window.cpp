@@ -1,18 +1,18 @@
 #include "window.h"
 
+#include "../Core/ZipLib.h"
 #include "../Core/core.h"
 #include "../Core/log.h"
 #include "../Utilities/utilities.h"
 #include "GLFW/glfw3.h"
-#include "freetype/freetype.h"
 
 #include <memory>
 #include <ostream>
 #include <sstream>
 
 namespace ZipLib {
-    Window::Window(u16 width, u16 height, const char* title, bool vSync,
-                   bool debug) : window(nullptr), shader(nullptr) {
+    Window::Window(u16 width, u16 height, const char* title, bool vSync) :
+        window(nullptr), shader(nullptr) {
         Assert(width != 0, "Window width can't be 0");
         Assert(height != 0, "Window height can't be 0");
         Assert(title != nullptr, "Window title can't be null");
@@ -34,16 +34,14 @@ namespace ZipLib {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+        ZipLib::Init(window);
+
+        glEnable(GL_DEBUG_OUTPUT);
+        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+        glDebugMessageCallback(Log::MessageCallback, nullptr);
+
         Log::Info("Succesfully initialized OpenGL, and created a window");
 
-        // Setup debug loggin
-        if (debug) {
-            glEnable(GL_DEBUG_OUTPUT);
-            glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
-            glDebugMessageCallback(MessageCallback, nullptr);
-        }
-
-        input.Setup(window);
         shader = std::make_shared<Core::Shader>();
 
         for (auto type : {Core::ShaderType::SHADER_DEFAULT,
@@ -59,7 +57,6 @@ namespace ZipLib {
 
         deltaTime = 0;
         lastFrame = 0;
-        FT_Init_FreeType(&freetype);
     }
 
     bool Window::ShouldClose() const { return glfwWindowShouldClose(window); }
@@ -84,10 +81,7 @@ namespace ZipLib {
 
     f64 Window::GetTotalTime() const { return glfwGetTime(); }
 
-    Window::~Window() {
-        FT_Done_FreeType(freetype);
-        glfwTerminate();
-    }
+    Window::~Window() { glfwTerminate(); }
 
     void Window::MessageCallback(GLenum src, GLenum type, GLuint id,
                                  GLenum severity, GLsizei len,

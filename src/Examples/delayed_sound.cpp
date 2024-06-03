@@ -1,3 +1,4 @@
+#include "../Core/ZipLib.h"
 #include "../Window/timer.h"
 #include "../Window/window.h"
 
@@ -10,7 +11,7 @@ i32 main() {
         window.Clear(24, 24, 24, 255);
         timer.Tick(window.GetDeltaTime());
         if (timer.Finished()) {
-            window.audio.Play("assets/sounds/synth.wav");
+            ZipLib::Audio.Play("assets/sounds/synth.wav");
             timer.Extend(2);
         }
         window.Swap();

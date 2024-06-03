@@ -1,3 +1,4 @@
+#include "../Core/ZipLib.h"
 #include "../UI/UI.h"
 #include "../Window/window.h"
 
@@ -6,7 +7,7 @@
 int main() {
     ZipLib::Window window(800, 800, "Hello world!", true);
     const ZipLib::Font& font =
-        window.resource_manager.LoadFont("assets/fonts/arial.ttf", 48);
+        ZipLib::ResourceManager.LoadFont("assets/fonts/arial.ttf", 48);
     ZipLib::UI::Text fps_display(font, "", glm::vec2(400, 400),
                                  glm::vec3(1, 1, 1), 1, window.shader);
 

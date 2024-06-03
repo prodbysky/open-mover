@@ -1,3 +1,4 @@
+#include "../Core/ZipLib.h"
 #include "../Shapes/shapes.h"
 #include "../Window/window.h"
 
@@ -9,7 +10,7 @@ i32 main() {
                              glm::vec4(1, 0, 0, 1));
 
     while (!window.ShouldClose()) {
-        if (rect.PointCollision(window.input.GetMousePos())) {
+        if (rect.PointCollision(Input.GetMousePos())) {
             rect.SetColor(glm::vec4(0, 1, 0, 1));
         } else {
             rect.SetColor(glm::vec4(1, 0, 0, 1));
