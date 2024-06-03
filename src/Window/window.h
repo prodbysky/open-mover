@@ -10,14 +10,8 @@
 #include "../Resource/resource_manager.h"
 #include "../Utilities/utilities.h"
 
-/* TODO: Simplify
-   I do not like that Window owns shaders, input management, audio system, ...
-   So probably move it into global variable, or something else
-*/
-
 namespace ZipLib {
     class Window {
-
     public:
         // Initializes GLFW context, all subsystems, setups debugging messages,
         // sets projection matrices for all of the shaders
