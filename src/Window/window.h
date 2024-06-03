@@ -33,11 +33,5 @@ namespace ZipLib {
         f64 deltaTime;
         f64 lastFrame;
         f64 totalTime;
-
-    private:
-        static void MessageCallback(GLenum src, GLenum type, GLuint id,
-                                    GLenum severity, GLsizei len,
-                                    GLchar const* message,
-                                    void const* user_param);
     };
 } // namespace ZipLib
