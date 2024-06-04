@@ -18,9 +18,9 @@ private:
     f32 jump_power;
 
 public:
-    Bird(glm::vec2 pos, f32 power, std::shared_ptr<Core::Shader> shader) {
+    Bird(glm::vec2 pos, f32 power) {
         rect = Shapes::TexturedRect(
-            pos, 64, 64, shader,
+            pos, 64, 64,
             ResourceManager.LoadTexture("assets/sprites/orange.png"),
             GL_NEAREST, GL_RGBA8);
         velocity   = 0.0;
@@ -37,7 +37,7 @@ public:
         rect.Move(glm::vec2(0, velocity));
     }
 
-    void Draw() { rect.Draw(); }
+    void Draw(Renderer& renderer) { rect.Draw(renderer); }
 };
 
 class Pipe {
@@ -46,13 +46,13 @@ private:
     Shapes::TexturedRect upper_pipe;
 
 public:
-    Pipe(glm::vec2 pos, std::shared_ptr<Core::Shader> shader) {
+    Pipe(glm::vec2 pos) {
         lower_pipe = Shapes::TexturedRect(
-            pos, 140, 1400, shader,
+            pos, 140, 1400,
             ResourceManager.LoadTexture("assets/sprites/pipe.png"), GL_NEAREST,
             GL_RGBA8);
         upper_pipe = Shapes::TexturedRect(
-            glm::vec2(pos.x, pos.y + 180 + 1400), 140, 1400, shader,
+            glm::vec2(pos.x, pos.y + 180 + 1400), 140, 1400,
             ResourceManager.LoadTexture("assets/sprites/pipe_flipped.png"),
             GL_NEAREST, GL_RGBA8);
     }
@@ -67,28 +67,28 @@ public:
         }
     }
 
-    void Draw() {
-        lower_pipe.Draw();
-        upper_pipe.Draw();
+    void Draw(Renderer& renderer) {
+        lower_pipe.Draw(renderer);
+        upper_pipe.Draw(renderer);
     }
 };
 
 i32 main() {
     Window window(800, 800, "Flappy bird", true);
     Shapes::TexturedRect background(
-        glm::vec2(0, 800), 800, 800, window.shader,
+        glm::vec2(0, 800), 800, 800,
         ResourceManager.LoadTexture("assets/sprites/bg.png"), GL_LINEAR,
         GL_RGBA8);
-    Bird bird(glm::vec2(200, 300), 500, window.shader);
-    Pipe pipe(glm::vec2(400, 200), window.shader);
+    Bird bird(glm::vec2(200, 300), 500);
+    Pipe pipe(glm::vec2(400, 200));
 
     while (!window.ShouldClose()) {
         bird.Update(window.GetDeltaTime());
         pipe.Update(window.GetDeltaTime());
-        window.Clear(24, 24, 24, 255);
-        background.Draw();
-        bird.Draw();
-        pipe.Draw();
+        window.renderer.Clear(24, 24, 24, 255);
+        background.Draw(window.renderer);
+        bird.Draw(window.renderer);
+        pipe.Draw(window.renderer);
         window.Swap();
     }
 }

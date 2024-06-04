@@ -13,13 +13,13 @@ i32 main() {
     Core::TextureData orange_texture =
         ResourceManager.LoadTexture("assets/sprites/orange.png");
 
-    Shapes::TexturedRect orange(glm::vec2(368, 432), 128, 128, window.shader,
-                                orange_texture, GL_NEAREST, GL_RGBA8);
+    Shapes::TexturedRect orange(glm::vec2(368, 432), 128, 128, orange_texture,
+                                GL_NEAREST, GL_RGBA8);
 
     while (!window.ShouldClose()) {
         OrangeUpdate(orange, window);
-        window.Clear(24, 24, 24, 255);
-        orange.Draw();
+        window.renderer.Clear(24, 24, 24, 255);
+        orange.Draw(window.renderer);
         window.Swap();
     }
 }

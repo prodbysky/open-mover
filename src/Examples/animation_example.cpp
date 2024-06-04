@@ -5,16 +5,16 @@
 i32 main() {
     ZipLib::Window window(800, 800, "Hello world!");
     ZipLib::Shapes::AnimatedRect rect(glm::vec2(200, 400), 64, 64,
-                                      window.shader, "assets/sprites/orange", 2,
-                                      GL_NEAREST, GL_RGBA8);
+                                      "assets/sprites/orange", 2, GL_NEAREST,
+                                      GL_RGBA8);
 
     i32 i = 0;
     while (!window.ShouldClose()) {
         if (i % 60 == 0) {
             rect.Advance();
         }
-        window.Clear(24, 24, 24, 255);
-        rect.Draw();
+        window.renderer.Clear(24, 24, 24, 255);
+        rect.Draw(window.renderer);
         window.Swap();
         i++;
     }

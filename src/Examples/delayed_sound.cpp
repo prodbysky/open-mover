@@ -8,7 +8,7 @@ i32 main() {
     timer.Start();
 
     while (!window.ShouldClose()) {
-        window.Clear(24, 24, 24, 255);
+        window.renderer.Clear(24, 24, 24, 255);
         timer.Tick(window.GetDeltaTime());
         if (timer.Finished()) {
             ZipLib::Audio.Play("assets/sounds/synth.wav");
