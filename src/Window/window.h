@@ -1,5 +1,7 @@
 #pragma once
 
+#include "renderer.h"
+
 #include <memory>
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
@@ -17,9 +19,8 @@ namespace ZipLib {
         // sets projection matrices for all of the shaders
         Window(u16 width, u16 height, const char* title, bool vSync = true);
         ~Window();
-        void Clear(u8 r, u8 b, u8 g, u8 a);
         // Swaps buffers, and polls for inputs
-        void Swap() const;
+        void Swap();
         bool ShouldClose() const;
         f64 GetDeltaTime() const;
         f64 GetFPS() const;
@@ -27,7 +28,7 @@ namespace ZipLib {
 
     public:
         GLFWwindow* window;
-        std::shared_ptr<Core::Shader> shader;
+        Renderer renderer;
 
     private:
         f64 deltaTime;

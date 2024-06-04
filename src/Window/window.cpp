@@ -1,16 +1,14 @@
 #include "window.h"
 
 #include "../Core/ZipLib.h"
-#include "../Core/core.h"
 #include "../Core/log.h"
 #include "../Utilities/utilities.h"
 #include "GLFW/glfw3.h"
-
-#include <memory>
+#include "renderer.h"
 
 namespace ZipLib {
     Window::Window(u16 width, u16 height, const char* title, bool vSync) :
-        window(nullptr), shader(nullptr) {
+        window(nullptr) {
         Assert(width != 0, "Window width can't be 0");
         Assert(height != 0, "Window height can't be 0");
         Assert(title != nullptr, "Window title can't be null");
@@ -40,18 +38,8 @@ namespace ZipLib {
 
         Log::Info("Succesfully initialized OpenGL, and created a window");
 
-        shader = std::make_shared<Core::Shader>();
-
-        for (auto type : {Core::ShaderType::SHADER_DEFAULT,
-                          Core::ShaderType::SHADER_TEXTURE,
-                          Core::ShaderType::SHADER_FONT}) {
-
-            shader->SetShader(type);
-            shader->SetProjection(glm::vec2(f32(width), f32(height)),
-                                  glm::vec2(-1.5, 1.5));
-        }
-
-        Log::Info("Succesfully initialized shaders");
+        renderer = Renderer(width, height);
+        Log::Info("Succesfully initialized renderer");
 
         deltaTime = 0;
         lastFrame = 0;
@@ -59,18 +47,12 @@ namespace ZipLib {
 
     bool Window::ShouldClose() const { return glfwWindowShouldClose(window); }
 
-    void Window::Swap() const {
-        glfwSwapBuffers(window);
-        glfwPollEvents();
-    }
-
-    void Window::Clear(u8 r, u8 b, u8 g, u8 a) {
+    void Window::Swap() {
         f64 currentFrame = glfwGetTime();
         deltaTime        = currentFrame - lastFrame;
         lastFrame        = currentFrame;
-
-        glClearColor(r / 255.0f, g / 255.0f, b / 255.0f, a / 255.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
+        glfwSwapBuffers(window);
+        glfwPollEvents();
     }
 
     f64 Window::GetDeltaTime() const { return deltaTime; }
