@@ -1,21 +1,19 @@
 #include "text.h"
 
+#include "../Window/renderer.h"
 #include "glad/glad.h"
 
 #include <memory>
 
 namespace ZipLib::UI {
     Text::Text(const Font& font, std::string text, glm::vec2 pos,
-               glm::vec3 color, f32 scale,
-               std::shared_ptr<Core::Shader> shader) :
-        font(font), text(text), color(color), pos(pos), scale(scale),
-        shader(shader) {
+               glm::vec3 color, f32 scale) :
+        font(font), text(text), color(color), pos(pos), scale(scale) {
 
-        vao = std::make_unique<Core::VAO>();
-        vbo = std::make_unique<Core::VBO>(nullptr, 24, GL_DYNAMIC_DRAW);
+        vbo = Core::VBO(nullptr, 24, GL_DYNAMIC_DRAW);
 
-        vao->AddAttribute(4, GL_FLOAT);
-        vao->LinkVBO(*vbo);
+        vao.AddAttribute(4, GL_FLOAT);
+        vao.LinkVBO(vbo);
     }
 
     void Text::Move(glm::vec2 move) { pos += move; }
@@ -28,11 +26,25 @@ namespace ZipLib::UI {
 
     void Text::SetScale(f32 scale) { this->scale = scale; }
 
-    void Text::Draw() {
-        shader->SetShader(Core::ShaderType::SHADER_FONT);
+    void Text::Draw(Renderer& renderer) {
 
-        shader->SetUniform(color.r, color.g, color.b, "uColor");
-        vao->Bind();
+        draw_call = {
+            .type          = Core::ShaderType::SHADER_FONT,
+            .vao           = vao,
+            .vertex_count  = 6,
+            .using_indices = false,
+            .texture       = {},
+            .PreDraw =
+                [this]() {
+                    glNamedBufferSubData(vbo.ID, 0, 24 * sizeof(f32),
+                                         vertices.data());
+                },
+            .SetUniforms =
+                [this, &renderer]() {
+                    renderer.shader->SetUniform(color.r, color.g, color.b,
+                                                "uColor");
+                },
+        };
 
         glm::vec2 saved_pos = pos;
 
@@ -45,16 +57,13 @@ namespace ZipLib::UI {
             float w = ch.size.x * scale;
             float h = ch.size.y * scale;
 
-            float vertices[24] = {
-                xpos,     ypos + h, 0.0f, 0.0f, xpos,     ypos,     0.0f, 1.0f,
-                xpos + w, ypos,     1.0f, 1.0f, xpos,     ypos + h, 0.0f, 0.0f,
-                xpos + w, ypos,     1.0f, 1.0f, xpos + w, ypos + h, 1.0f, 0.0f};
-            vao->Bind();
-            ch.texture.Bind();
+            vertices = {xpos, ypos + h, 0.0f,     0.0f,     xpos,     ypos,
+                        0.0f, 1.0f,     xpos + w, ypos,     1.0f,     1.0f,
+                        xpos, ypos + h, 0.0f,     0.0f,     xpos + w, ypos,
+                        1.0f, 1.0f,     xpos + w, ypos + h, 1.0f,     0.0f};
+            draw_call.texture = ch.texture;
 
-            glNamedBufferSubData(vbo->ID, 0, 24 * sizeof(f32), vertices);
-
-            glDrawArrays(GL_TRIANGLES, 0, 6);
+            renderer.Draw(draw_call);
 
             pos.x += (ch.advance >> 6) * scale;
         }
