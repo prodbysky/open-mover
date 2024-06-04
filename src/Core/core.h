@@ -1,6 +1,8 @@
+#pragma once
 #include "audio.h"
 #include "ebo.h"
 #include "input.h"
+#include "log.h"
 #include "shader.h"
 #include "texture.h"
 #include "vao.h"

@@ -7,8 +7,6 @@
 #include "GLFW/glfw3.h"
 
 #include <memory>
-#include <ostream>
-#include <sstream>
 
 namespace ZipLib {
     Window::Window(u16 width, u16 height, const char* title, bool vSync) :
