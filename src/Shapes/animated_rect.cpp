@@ -9,10 +9,9 @@
 
 namespace ZipLib::Shapes {
     AnimatedRect::AnimatedRect(glm::vec2 pos, f32 w, f32 h,
-                               std::shared_ptr<Core::Shader> shader,
                                std::string frame_base_name, u32 frame_count,
                                GLenum texture_filter, GLenum image_type) :
-        Rect(pos, w, h), shader(shader),
+        Rect(pos, w, h),
         animation(frame_base_name, frame_count, GL_MIRRORED_REPEAT,
                   texture_filter, image_type, ZipLib::ResourceManager) {
 
@@ -30,13 +29,22 @@ namespace ZipLib::Shapes {
         vao.AddAttribute(2, GL_FLOAT);
         vao.LinkVBOAndEBO(vbo, ebo);
     }
-    void AnimatedRect::Draw() {
-        shader->SetShader(Core::ShaderType::SHADER_TEXTURE);
-        shader->SetUniform(model, "uModel");
-        animation.GetCurrentFrame().Bind();
-        vao.Bind();
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        animation.GetCurrentFrame().Unbind();
+    void AnimatedRect::Draw(Renderer& renderer) {
+        draw_call = {
+            .type          = Core::ShaderType::SHADER_TEXTURE,
+            .vao           = vao,
+            .vertex_count  = 6,
+            .using_indices = true,
+            .texture       = {},
+            .PreDraw       = []() {},
+            .SetUniforms =
+                [this, &renderer]() {
+                    renderer.shader->SetUniform(model, "uModel");
+                },
+        };
+
+        draw_call.texture = animation.GetCurrentFrame();
+        renderer.Draw(draw_call);
     }
 
     void AnimatedRect::Advance() { animation.Advance(); }

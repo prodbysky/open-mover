@@ -15,15 +15,14 @@ namespace ZipLib::Shapes {
         TexturedRect();
         // Creates a rectangle with an associated texture that is loaded too
         TexturedRect(glm::vec2 pos, f32 w, f32 h,
-                     std::shared_ptr<Core::Shader> shader,
                      const ZipLib::Core::TextureData& data,
                      GLenum texture_filter, GLenum image_type);
-        void Draw() const;
-
-    private:
-        std::shared_ptr<Core::Shader> shader;
+        void Draw(Renderer& renderer);
 
     public:
         Core::Texture texture;
+
+    private:
+        DrawCall draw_call;
     };
 } // namespace ZipLib::Shapes

@@ -9,10 +9,9 @@
 namespace ZipLib::Shapes {
     TexturedRect::TexturedRect(){};
     TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h,
-                               std::shared_ptr<Core::Shader> shader,
                                const ZipLib::Core::TextureData& data,
                                GLenum texture_filter, GLenum image_type) :
-        Rect(pos, w, h), shader(shader) {
+        Rect(pos, w, h) {
         u32 temp_indices[]  = {0, 1, 2, 0, 2, 3};
         f32 temp_vertices[] = {
             pos.x, pos.y, 1.0f,      0.0f,      1.0f,      pos.x + w, pos.y,
@@ -32,12 +31,19 @@ namespace ZipLib::Shapes {
                           {}, Core::TextureType::TEXTURE_IMAGE);
     }
 
-    void TexturedRect::Draw() const {
-        shader->SetShader(Core::ShaderType::SHADER_TEXTURE);
-        shader->SetUniform(model, "uModel");
-        texture.Bind();
-        vao.Bind();
-        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
-        texture.Unbind();
+    void TexturedRect::Draw(Renderer& renderer) {
+        draw_call = {
+            .type          = Core::ShaderType::SHADER_TEXTURE,
+            .vao           = vao,
+            .vertex_count  = 6,
+            .using_indices = true,
+            .texture       = texture,
+            .PreDraw       = []() {},
+            .SetUniforms =
+                [this, &renderer]() {
+                    renderer.shader->SetUniform(model, "uModel");
+                },
+        };
+        renderer.Draw(draw_call);
     }
 } // namespace ZipLib::Shapes
