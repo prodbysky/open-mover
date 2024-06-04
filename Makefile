@@ -9,7 +9,7 @@ SRC = src/Window/renderer.cpp src/Core/ZipLib.cpp src/Core/log.cpp src/Core/shad
 
 OBJ = $(SRC:.cpp=.o)
 
-all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound fps_display animation_example
+all: hello_window text_rendering playing_sounds rendering_textures top_down_movement flappy_bird point_vs_rect aabb_collision delayed_sound fps_display animation_example tank_trouble
 
 %.o : %.cpp, %.c
 	$(CC) -c -o $@ $< $(CPPFLAGS)
@@ -47,5 +47,7 @@ fps_display: $(OBJ) src/Examples/fps_display.cpp
 animation_example: $(OBJ) src/Examples/animation_example.cpp
 	$(shell) $(CC) $(OBJ) src/Examples/animation_example.cpp -o bin/animation_example $(CPPFLAGS) 
 
+tank_trouble: $(OBJ) src/Examples/tank_trouble.cpp
+	$(shell) $(CC) $(OBJ) src/Examples/tank_trouble.cpp -o bin/tank_trouble $(CPPFLAGS) 
 clean:
 	rm -f src/**/*.o bin/*
