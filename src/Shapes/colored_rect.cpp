@@ -14,7 +14,7 @@ namespace ZipLib::Shapes {
         vbo = Core::VBO(temp_vertices, 12);
         ebo = Core::EBO(temp_indices, 6);
 
-        vao.AddAttribute(3, GL_FLOAT);
+        vao.AddAttribute<float>(3);
         vao.LinkVBOAndEBO(vbo, ebo);
     }
 

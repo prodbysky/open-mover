@@ -16,23 +16,16 @@ namespace ZipLib::Core {
 
     void VAO::Bind() const { glBindVertexArray(ID); }
 
-    void VAO::AddAttribute(u32 size, GLenum type) {
+    // TODO: Implement for all available types of attribute types
+    template <> void VAO::AddAttribute<float>(u32 size) {
         Assert(size <= 4 && size != 0,
                "Passed in an invalid attribute size (0 < size <= 4");
 
-        u32 elementSize = 0;
-
-        switch (type) {
-        case GL_FLOAT:
-            elementSize = 4;
-            break;
-        default:
-            Assert(false, "Unimplemented attribute type");
-        }
+        u32 elementSize = 4;
 
         EnableAttribute(nextAttrib);
         glVertexArrayAttribBinding(ID, nextAttrib, 0);
-        glVertexArrayAttribFormat(ID, nextAttrib, size, type, GL_FALSE,
+        glVertexArrayAttribFormat(ID, nextAttrib, size, GL_FLOAT, GL_FALSE,
                                   nextAttribOffset);
 
         nextAttribOffset  = elementSize * size;

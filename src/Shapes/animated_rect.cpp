@@ -25,8 +25,8 @@ namespace ZipLib::Shapes {
         vbo = Core::VBO(temp_vertices, 20);
         ebo = Core::EBO(temp_indices, 6);
 
-        vao.AddAttribute(3, GL_FLOAT);
-        vao.AddAttribute(2, GL_FLOAT);
+        vao.AddAttribute<float>(3);
+        vao.AddAttribute<float>(2);
         vao.LinkVBOAndEBO(vbo, ebo);
     }
     void AnimatedRect::Draw(Renderer& renderer) {

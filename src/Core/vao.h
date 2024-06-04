@@ -8,6 +8,17 @@
 
 namespace ZipLib::Core {
     class VAO {
+    public:
+        VAO();
+        // Binds the VAO for drawing or other purposes
+        void Bind() const;
+        // Adds a attribute of `size`, and of `type`
+        template <class T> void AddAttribute(u32 size);
+        // Use when drawing with glDrawElements()
+        void LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) const;
+        // Use when drawing with glDrawArrays()
+        void LinkVBO(const VBO& vbo) const;
+
     private:
         u64 nextAttribOffset;
         u32 stride;
@@ -16,16 +27,6 @@ namespace ZipLib::Core {
 
     private:
         void EnableAttribute(u32 attribute) const;
-
-    public:
-        VAO();
-        // Binds the VAO for drawing or other purposes
-        void Bind() const;
-        // Adds a attribute of `size`, and of `type`
-        void AddAttribute(u32 size, GLenum type);
-        // Use when drawing with glDrawElements()
-        void LinkVBOAndEBO(const VBO& vbo, const EBO& ebo) const;
-        // Use when drawing with glDrawArrays()
-        void LinkVBO(const VBO& vbo) const;
     };
+
 } // namespace ZipLib::Core

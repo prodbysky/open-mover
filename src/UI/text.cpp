@@ -12,7 +12,7 @@ namespace ZipLib::UI {
 
         vbo = Core::VBO(nullptr, 24, GL_DYNAMIC_DRAW);
 
-        vao.AddAttribute(4, GL_FLOAT);
+        vao.AddAttribute<float>(4);
         vao.LinkVBO(vbo);
     }
 
