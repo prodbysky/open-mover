@@ -52,11 +52,11 @@ namespace ZipLib::Core {
         u32 shader      = glCreateShader(type);
         std::string src = Utilities::ReadEntireFile(name);
         const char* s   = src.c_str();
-        glShaderSource(shader, 1, &s, NULL);
+        glShaderSource(shader, 1, &s, nullptr);
         glCompileShader(shader);
         glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
         if (!success) {
-            glGetShaderInfoLog(shader, 512, NULL, info_log);
+            glGetShaderInfoLog(shader, 512, nullptr, info_log);
             Log::Error("Failed to compile", name, ":", info_log);
         }
 
