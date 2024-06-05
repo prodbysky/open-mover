@@ -45,13 +45,11 @@ add_example(text_rendering)
 add_example(playing_sounds)
 add_example(rendering_textures)
 add_example(top_down_movement)
-add_example(flappy_bird)
 add_example(point_vs_rect)
 add_example(aabb_collision)
 add_example(delayed_sound)
 add_example(fps_display)
 add_example(animation_example)
-add_example(tank_trouble)
 
 # Copy assets directory to the build directory
 add_custom_target(
