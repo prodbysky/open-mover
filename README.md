@@ -1,10 +1,12 @@
 # Open Mover 
-Game framework in C++ using OpenGL (GLAD GLFW CGLM)
+Game framework in C++ using OpenGL (GLAD GLFW GLM)
 
 ## Running examples
 ```console
- $ make [Example name]
- $ ./bin/[Example name]
+ $ mkdir build
+ $ cd build
+ $ cmake ..
+ $ make -j
 ```
 
 ## List of example names
