@@ -1,6 +1,6 @@
 #include "ebo.h"
 
-#include "assert.h"
+#include "../Utilities/assert.h"
 
 #include <glad/glad.h>
 

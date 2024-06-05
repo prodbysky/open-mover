@@ -1,8 +1,6 @@
 #pragma once
 
 #include "glad/glad.h"
-#include "spdlog/common.h"
-#include "spdlog/logger.h"
 
 #include <iostream>
 #include <spdlog/sinks/stdout_color_sinks.h>

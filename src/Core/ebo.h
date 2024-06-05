@@ -1,6 +1,5 @@
 #pragma once
 
-#include "../Utilities/assert.h"
 #include "../Utilities/types.h"
 
 namespace ZipLib::Core {

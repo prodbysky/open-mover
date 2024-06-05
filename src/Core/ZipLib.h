@@ -1,11 +1,7 @@
 #pragma once
 
 #include "../Core/core.h"
-#include "../Core/log.h"
 #include "../Resource/resource_manager.h"
-
-#include <freetype2/ft2build.h>
-#include FT_FREETYPE_H
 
 namespace ZipLib {
     void Init(GLFWwindow* window);
