@@ -22,6 +22,7 @@ namespace ZipLib::Shapes {
         pos.y += move.y;
     }
 
+    // BUG: Majorly broken
     void Rect::Rotate(f32 degrees) {
         glm::vec3 center = glm::vec3(w / 2, h / 2, 0.0f);
 
