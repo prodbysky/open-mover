@@ -13,8 +13,10 @@ namespace ZipLib {
     void Timer::Trim(f64 secs) { duration -= secs; }
 
     void Timer::Tick(f64 delta) {
-        if (!stopped && duration > 0)
+        if (!stopped && duration > 0) {
             duration -= delta;
+            stopped   = true;
+        }
     }
 
     bool Timer::Finished() { return duration <= 0; }
