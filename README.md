@@ -10,14 +10,16 @@ Game framework in C++ using OpenGL (GLAD GLFW GLM)
 ```
 
 ## List of example names
- - hello_window
- - text_rendering
- - playing_sounds
- - rendering_textures
- - top_down_movement
- - flappy_bird
- - point_vs_rect
  - aabb_collision
+ - animation_example
+ - delayed_sound
+ - fps_display
+ - hello_window
+ - playing_sounds
+ - point_vs_rect
+ - rendering_textures
+ - text_rendering
+ - top_down_movement
 
 ## Features
  - Solid, and textured rectangles
@@ -27,7 +29,7 @@ Game framework in C++ using OpenGL (GLAD GLFW GLM)
 
 ## References
  - [Learn OpenGL](learnopengl.com)
- - [Paroj OpenGL tutorial (https://paroj.github.io/gltut/)
+ - [Paroj OpenGL tutorial] (https://paroj.github.io/gltut/)
 
 ## Dependencies
  - Freetype2 [< 2.13]
@@ -37,6 +39,7 @@ Game framework in C++ using OpenGL (GLAD GLFW GLM)
  - GLM
  - GLFW
  - OpenGL [< 4.6]
+ - spdlog
 
 ## TODO:
  - Remove debug messages from release builds
