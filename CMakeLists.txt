@@ -13,18 +13,20 @@ include_directories(include)
 link_directories(lib)
 
 # Recursively find all source files in src/, excluding src/Examples/**
-file(GLOB_RECURSE SRC_FILES RELATIVE ${CMAKE_SOURCE_DIR} src/**/*.cpp)
-file(GLOB_RECURSE EXAMPLE_FILES RELATIVE ${CMAKE_SOURCE_DIR} src/Examples/*.cpp)
+file(
+  GLOB_RECURSE SRC_FILES
+  RELATIVE ${CMAKE_SOURCE_DIR}
+  src/**/*.cpp)
+file(
+  GLOB_RECURSE EXAMPLE_FILES
+  RELATIVE ${CMAKE_SOURCE_DIR}
+  src/Examples/*.cpp)
 list(REMOVE_ITEM SRC_FILES ${EXAMPLE_FILES})
 
 # Define the object files
-set(OBJ
-    lib/miniaudio.o
-    lib/stb_image.o
-    lib/glad.o
-)
-
-# Create a static library for ZipLib with all source files except src/Examples/**
+set(OBJ lib/miniaudio.o lib/stb_image.o lib/glad.o)
+# Create a static library for ZipLib with all source files except
+# src/Examples/**
 add_library(ZipLib STATIC ${SRC_FILES})
 
 # Link the necessary libraries to ZipLib
@@ -32,9 +34,9 @@ target_link_libraries(ZipLib freetype glfw3 GL m glm)
 
 # Create a function to add examples
 function(add_example name)
-    add_executable(${name} src/Examples/${name}.cpp ${OBJ})
-    target_link_libraries(${name} ZipLib)
-    add_dependencies(${name} copy_assets)
+  add_executable(${name} src/Examples/${name}.cpp ${OBJ})
+  target_link_libraries(${name} ZipLib)
+  add_dependencies(${name} copy_assets)
 endfunction()
 
 # Add examples
@@ -52,11 +54,9 @@ add_example(animation_example)
 add_example(tank_trouble)
 
 # Copy assets directory to the build directory
-add_custom_target(copy_assets ALL
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/assets ${CMAKE_BINARY_DIR}/assets
-)
+add_custom_target(
+  copy_assets ALL COMMAND ${CMAKE_COMMAND} -E copy_directory
+                          ${CMAKE_SOURCE_DIR}/assets ${CMAKE_BINARY_DIR}/assets)
 
 # Add a clean target
 set_directory_properties(PROPERTIES ADDITIONAL_MAKE_CLEAN_FILES "bin")
-
