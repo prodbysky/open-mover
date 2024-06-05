@@ -4,7 +4,12 @@ project(ziplib)
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -ggdb")
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -ggdb -ftime-trace")
+
+if(NOT TARGET spdlog)
+    # Stand-alone build
+    find_package(spdlog REQUIRED)
+endif()
 
 # Define include directories
 include_directories(include)
@@ -27,10 +32,11 @@ list(REMOVE_ITEM SRC_FILES ${EXAMPLE_FILES})
 set(OBJ lib/miniaudio.o lib/stb_image.o lib/glad.o)
 # Create a static library for ZipLib with all source files except
 # src/Examples/**
-add_library(ZipLib STATIC ${SRC_FILES})
+add_library(ZipLib STATIC ${SRC_FILES} ${OBJ})
 
 # Link the necessary libraries to ZipLib
-target_link_libraries(ZipLib freetype glfw3 GL m glm)
+target_link_libraries(ZipLib freetype glfw3 GL m glm spdlog::spdlog)
+
 
 # Create a function to add examples
 function(add_example name)

@@ -1,6 +1,6 @@
 #include "log.h"
 
-#include "spdlog/sinks/stdout_color_sinks-inl.h"
+#include "spdlog/sinks/stdout_color_sinks.h"
 
 namespace ZipLib {
     Log::Log() {}

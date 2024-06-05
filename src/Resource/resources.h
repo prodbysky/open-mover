@@ -1,12 +1,9 @@
 #pragma once
 
 #include "../Core/texture.h"
-#include "../Utilities/types.h"
-#include "freetype/freetype.h"
 #include "glm/ext/vector_int2.hpp"
 
 #include <map>
-#include <miniaudio.h>
 #include <string>
 
 namespace ZipLib {

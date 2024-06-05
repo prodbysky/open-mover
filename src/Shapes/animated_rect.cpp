@@ -1,11 +1,6 @@
 #include "animated_rect.h"
 
 #include "../Core/ZipLib.h"
-#include "../Resource/animation.h"
-#include "glad/glad.h"
-#include "rect.h"
-
-#include <memory>
 
 namespace ZipLib::Shapes {
     AnimatedRect::AnimatedRect(glm::vec2 pos, f32 w, f32 h,
@@ -29,6 +24,7 @@ namespace ZipLib::Shapes {
         vao.AddAttribute<float>(2);
         vao.LinkVBOAndEBO(vbo, ebo);
     }
+
     void AnimatedRect::Draw(Renderer& renderer) {
         draw_call = {
             .type          = Core::ShaderType::SHADER_TEXTURE,

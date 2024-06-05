@@ -1,10 +1,6 @@
 #include "../Core/vao.h"
 
-#include "../Core/vbo.h"
 #include "../Utilities/assert.h"
-#include "glad/glad.h"
-
-#include <stdbool.h>
 
 namespace ZipLib::Core {
     VAO::VAO() {

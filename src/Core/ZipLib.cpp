@@ -1,7 +1,5 @@
 #include "ZipLib.h"
 
-#include "../Core/log.h"
-
 namespace ZipLib {
     void Init(GLFWwindow* window) {
         static bool initialized = false;

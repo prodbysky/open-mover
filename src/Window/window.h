@@ -2,15 +2,8 @@
 
 #include "renderer.h"
 
-#include <memory>
 #define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
-#include <ft2build.h>
-#include FT_FREETYPE_H
-
-#include "../Core/core.h"
-#include "../Resource/resource_manager.h"
-#include "../Utilities/utilities.h"
 
 namespace ZipLib {
     class Window {

@@ -1,5 +1,5 @@
 #include "../Core/ZipLib.h"
-#include "../Shapes/shapes.h"
+#include "../Shapes/textured_rect.h"
 #include "../Window/window.h"
 
 int main() {

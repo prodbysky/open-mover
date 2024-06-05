@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../Core/core.h"
-#include "../Utilities/types.h"
+#include "../Core/vao.h"
 
 #include <glm/glm.hpp>
 

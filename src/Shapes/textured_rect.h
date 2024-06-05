@@ -1,12 +1,7 @@
 #pragma once
 
-#include "../Core/vao.h"
-#include "../Resource/texture_data.h"
-#include "../Window/window.h"
-#include "glad/glad.h"
+#include "../Window/renderer.h"
 #include "rect.h"
-
-#include <memory>
 
 namespace ZipLib::Shapes {
     // Rectangle that also has a texture to draw

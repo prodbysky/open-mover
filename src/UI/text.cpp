@@ -1,10 +1,5 @@
 #include "text.h"
 
-#include "../Window/renderer.h"
-#include "glad/glad.h"
-
-#include <memory>
-
 namespace ZipLib::UI {
     Text::Text(const Font& font, std::string text, glm::vec2 pos,
                glm::vec3 color, f32 scale) :

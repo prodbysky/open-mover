@@ -1,10 +1,9 @@
 #pragma once
 
-#include "../Core/texture.h"
 #include "../Resource/resource_manager.h"
 
-#include <string>
 #include <vector>
+
 namespace ZipLib {
 
     class Animation {

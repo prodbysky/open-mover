@@ -1,6 +1,5 @@
 #include "../Shapes/animated_rect.h"
 #include "../Window/window.h"
-#include "glad/glad.h"
 
 i32 main() {
     ZipLib::Window window(800, 800, "Hello world!");

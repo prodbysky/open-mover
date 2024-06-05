@@ -1,10 +1,7 @@
 #include "window.h"
 
 #include "../Core/ZipLib.h"
-#include "../Core/log.h"
-#include "../Utilities/utilities.h"
-#include "GLFW/glfw3.h"
-#include "renderer.h"
+#include "../Utilities/assert.h"
 
 namespace ZipLib {
     Window::Window(u16 width, u16 height, const char* title, bool vSync) :
@@ -43,6 +40,7 @@ namespace ZipLib {
 
         deltaTime = 0;
         lastFrame = 0;
+        totalTime = 0;
     }
 
     bool Window::ShouldClose() const { return glfwWindowShouldClose(window); }

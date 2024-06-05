@@ -1,10 +1,5 @@
 #include "renderer.h"
 
-#include "glad/glad.h"
-
-#include <initializer_list>
-#include <memory>
-
 namespace ZipLib {
     Renderer::Renderer() : shader(nullptr) {}
     Renderer::Renderer(u32 width, u32 height) {

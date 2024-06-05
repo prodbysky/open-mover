@@ -1,7 +1,5 @@
 #include "colored_rect.h"
 
-#include <glm/ext/matrix_transform.hpp>
-
 namespace ZipLib::Shapes {
     ColoredRect::ColoredRect(glm::vec2 pos, f32 w, f32 h, glm::vec4 color) :
         Rect(pos, w, h), color(color) {

@@ -1,10 +1,7 @@
 #include "../Resource/resources.h"
 
 #include "../Core/log.h"
-#include "../Core/texture.h"
 #include "../Utilities/assert.h"
-#include "glad/glad.h"
-#include "stb_image.h"
 
 namespace ZipLib {
     Font::Font(FT_Library freetype, const char* font_name, u16 height) {

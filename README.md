@@ -5,8 +5,8 @@ Game framework in C++ using OpenGL (GLAD GLFW GLM)
 ```console
  $ mkdir build
  $ cd build
- $ cmake ..
- $ make -j
+ $ PARALLEL_LEVEL=7 cmake -G Ninja -DCMAKE_CXX_COMPILER=clang++ ..
+ $ ninja 
 ```
 
 ## List of example names

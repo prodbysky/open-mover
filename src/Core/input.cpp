@@ -1,10 +1,7 @@
 #include "input.h"
 
-#include "../Utilities/assert.h"
-
-#define GLFW_INCLUDE_NONE
 #include "../Core/log.h"
-#include "GLFW/glfw3.h"
+#include "../Utilities/assert.h"
 
 namespace ZipLib::Core {
     Input::Input() {

@@ -2,8 +2,6 @@
 #include "../UI/UI.h"
 #include "../Window/window.h"
 
-#include <string>
-
 int main() {
     ZipLib::Window window(800, 800, "Hello world!", true);
     const ZipLib::Font& font =

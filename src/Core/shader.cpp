@@ -1,4 +1,3 @@
-#include "assert.h"
 #include "log.h"
 
 #define GLFW_INCLUDE_NONE
@@ -6,8 +5,6 @@
 #include "../Utilities/assert.h"
 #include "../Utilities/util.h"
 
-#include <GLFW/glfw3.h>
-#include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 
 namespace ZipLib::Core {

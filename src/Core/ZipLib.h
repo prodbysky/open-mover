@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../Core/core.h"
+#include "../Core/audio.h"
+#include "../Core/input.h"
+#include "../Core/log.h"
 #include "../Resource/resource_manager.h"
 
 namespace ZipLib {

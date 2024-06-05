@@ -1,13 +1,7 @@
 #pragma once
 
-#include "../Core/core.h"
 #include "../Resource/resources.h"
 #include "../Window/renderer.h"
-
-#include <array>
-#include <glm/glm.hpp>
-#include <memory>
-#include <string>
 
 namespace ZipLib::UI {
     class Text {

@@ -1,11 +1,5 @@
 #include "../Shapes/textured_rect.h"
 
-#include "../Core/texture.h"
-#include "glad/glad.h"
-
-#include <glm/ext/matrix_transform.hpp>
-#include <memory>
-
 namespace ZipLib::Shapes {
     TexturedRect::TexturedRect(){};
     TexturedRect::TexturedRect(glm::vec2 pos, f32 w, f32 h,

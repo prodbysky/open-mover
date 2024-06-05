@@ -1,13 +1,7 @@
 #include "animation.h"
 
 #include "../Core/log.h"
-#include "../Core/texture.h"
-#include "../Resource/resource_manager.h"
 #include "../Utilities/assert.h"
-#include "glad/glad.h"
-
-#include <string>
-#include <vector>
 
 namespace ZipLib {
     Animation::Animation(std::string sprite_base_name, u32 frame_count,

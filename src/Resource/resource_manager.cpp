@@ -1,7 +1,6 @@
 #include "resource_manager.h"
 
 #include "../Utilities/assert.h"
-#include "freetype/freetype.h"
 #include "stb_image.h"
 
 namespace ZipLib::Core {

@@ -13,6 +13,6 @@ namespace ZipLib::Utilities {
     }
 
     f32 RandomFloat(f32 min, f32 max) {
-        return ((f32) rand() / RAND_MAX) * (max - min) + min;
+        return ((f32) rand() / (f32) RAND_MAX) * (max - min) + min;
     };
 } // namespace ZipLib::Utilities

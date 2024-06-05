@@ -1,11 +1,7 @@
 #include "../Core/audio.h"
 
 #include "../Utilities/utilities.h"
-#include "../include/miniaudio.h"
 #include "log.h"
-
-#include <cstdlib>
-#include <memory>
 
 namespace ZipLib::Core {
     Audio::Audio() {
