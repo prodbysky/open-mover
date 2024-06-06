@@ -18,6 +18,7 @@ namespace ZipLib {
         f64 GetDeltaTime() const;
         f64 GetFPS() const;
         f64 GetTotalTime() const;
+        void SaveScreenshot(const char* file);
 
     public:
         GLFWwindow* window;
@@ -27,5 +28,6 @@ namespace ZipLib {
         f64 deltaTime;
         f64 lastFrame;
         f64 totalTime;
+        u16 width, height;
     };
 } // namespace ZipLib
