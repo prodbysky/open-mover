@@ -4,18 +4,24 @@ project(ziplib)
 # Set C++ standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -ggdb -ftime-trace")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror -Wextra -ggdb -ftime-trace")
 
-if(NOT TARGET spdlog)
-    # Stand-alone build
-    find_package(spdlog REQUIRED)
+if(NOT DEFINED CMAKE_TOOLCHAIN_FILE)
+  set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
 endif()
 
+find_package(spdlog CONFIG REQUIRED)
+find_package(Freetype CONFIG REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
+find_package(OpenGL REQUIRED)
+find_package(glm CONFIG REQUIRED)
+
 # Define include directories
-include_directories(include)
+# include_directories(include)
+include_directories(include ${GLM_INCLUDE_DIRS} ${SPDLOG_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${FREETYPE_INCLUDE_DIRS})
 
 # Define library directories
-link_directories(lib)
+# link_directories(lib)
 
 # Recursively find all source files in src/, excluding src/Examples/**
 file(
@@ -34,8 +40,10 @@ set(OBJ lib/miniaudio.o lib/stb_image.o lib/glad.o)
 # src/Examples/**
 add_library(ZipLib STATIC ${SRC_FILES} ${OBJ})
 
+target_link_libraries(ZipLib ${GLFW_LIBRARIES})
+
 # Link the necessary libraries to ZipLib
-target_link_libraries(ZipLib freetype glfw3 GL m glm spdlog::spdlog)
+target_link_libraries(ZipLib Freetype::Freetype glfw OpenGL::GL m glm::glm spdlog::spdlog)
 
 
 # Create a function to add examples

@@ -1,0 +1,9 @@
+{
+  "dependencies": [
+    "freetype",
+    "glfw3",
+    "opengl",
+    "spdlog",
+    "glm"
+  ]
+}
