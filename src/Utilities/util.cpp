@@ -1,5 +1,6 @@
 #include "util.h"
 
+#include <cmath>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -14,5 +15,5 @@ namespace ZipLib::Utilities {
 
     f32 RandomFloat(f32 min, f32 max) {
         return ((f32) rand() / (f32) RAND_MAX) * (max - min) + min;
-    };
+    }
 } // namespace ZipLib::Utilities

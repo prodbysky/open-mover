@@ -1,5 +1,7 @@
 #include "rect.h"
 
+#include <Utilities/util.h>
+#include <cmath>
 #include <glm/ext/matrix_transform.hpp>
 
 namespace ZipLib::Shapes {
@@ -21,10 +23,11 @@ namespace ZipLib::Shapes {
     // BUG: Majorly broken
     void Rect::Rotate(f32 degrees) {
         glm::vec3 center = glm::vec3(w / 2, h / 2, 0.0f);
+        model            = glm::translate(model, center);
 
-        model = glm::translate(model, center);
-        model =
-            glm::rotate(model, glm::radians(degrees), glm::vec3(0.0, 0.0, 1.0));
+        model = glm::rotate(model, glm::radians(degrees),
+                            glm::vec3(0.0, 0.0, 1.0)); // Apply rotation first
+                                                       //
         model    = glm::translate(model, -center);
         rotation = degrees;
     }
@@ -42,6 +45,7 @@ namespace ZipLib::Shapes {
         model = glm::translate(model, -center);
     }
 
+    // BUG: BUGGED
     void Rect::FlipY() {
         glm::vec3 center = glm::vec3(w / 2, h / 2, 0.0);
         model            = glm::translate(model, center);

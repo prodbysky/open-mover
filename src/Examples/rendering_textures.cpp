@@ -7,7 +7,7 @@ int main() {
 
     const ZipLib::Core::TextureData& orange =
         ZipLib::ResourceManager.LoadTexture("assets/sprites/orange.png");
-    ZipLib::Shapes::TexturedRect texture(glm::vec2(0, 800), 800, 800, orange,
+    ZipLib::Shapes::TexturedRect texture(glm::vec2(0, 800), 200, 200, orange,
                                          GL_NEAREST, GL_RGBA8);
     while (!window.ShouldClose()) {
         window.renderer.Clear(24, 24, 24, 255);
