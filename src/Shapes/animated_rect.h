@@ -1,8 +1,9 @@
 #pragma once
 
-#include "../Resource/animation.h"
-#include "../Window/renderer.h"
 #include "rect.h"
+
+#include <Resource/animation.h>
+#include <Window/renderer.h>
 
 namespace ZipLib::Shapes {
     // Rectangle that also has a texture to draw

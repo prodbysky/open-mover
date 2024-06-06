@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../Core/vao.h"
-
+#include <Core/vao.h>
 #include <glm/glm.hpp>
 
 namespace ZipLib::Shapes {

@@ -17,11 +17,8 @@ find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
 # Define include directories
-# include_directories(include)
+include_directories(src/)
 include_directories(include ${GLM_INCLUDE_DIRS} ${SPDLOG_INCLUDE_DIRS} ${GLFW_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${FREETYPE_INCLUDE_DIRS})
-
-# Define library directories
-# link_directories(lib)
 
 # Recursively find all source files in src/, excluding src/Examples/**
 file(
@@ -35,7 +32,7 @@ file(
 list(REMOVE_ITEM SRC_FILES ${EXAMPLE_FILES})
 
 # Define the object files
-set(OBJ lib/miniaudio.o lib/stb_image.o lib/glad.o)
+set(OBJ lib/miniaudio.o lib/stb_image.o lib/glad.o lib/stb_image_write.o)
 # Create a static library for ZipLib with all source files except
 # src/Examples/**
 add_library(ZipLib STATIC ${SRC_FILES} ${OBJ})

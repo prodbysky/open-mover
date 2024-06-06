@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../Resource/texture_data.h"
 #include "resources.h"
 
+#include <Resource/texture_data.h>
 #include <map>
 #include <string>
 

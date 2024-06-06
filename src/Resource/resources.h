@@ -1,8 +1,7 @@
 #pragma once
 
-#include "../Core/texture.h"
-#include "glm/ext/vector_int2.hpp"
-
+#include <Core/texture.h>
+#include <glm/ext/vector_int2.hpp>
 #include <map>
 #include <string>
 

@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../Utilities/types.h"
-
+#include <Utilities/types.h>
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 

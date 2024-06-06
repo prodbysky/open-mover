@@ -1,7 +1,6 @@
-#include "../Resource/resources.h"
-
-#include "../Core/log.h"
-#include "../Utilities/assert.h"
+#include <Core/log.h>
+#include <Resource/resources.h>
+#include <Utilities/assert.h>
 
 namespace ZipLib {
     Font::Font(FT_Library freetype, const char* font_name, u16 height) {

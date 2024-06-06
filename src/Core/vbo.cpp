@@ -1,6 +1,6 @@
 #include "vbo.h"
 
-#include "../Utilities/assert.h"
+#include <Utilities/assert.h>
 
 namespace ZipLib::Core {
     VBO::VBO(f32 vertices[], u32 n, GLenum type) {

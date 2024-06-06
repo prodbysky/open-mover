@@ -1,6 +1,6 @@
 #include "animated_rect.h"
 
-#include "../Core/ZipLib.h"
+#include <Core/ZipLib.h>
 
 namespace ZipLib::Shapes {
     AnimatedRect::AnimatedRect(glm::vec2 pos, f32 w, f32 h,

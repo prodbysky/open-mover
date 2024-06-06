@@ -1,7 +1,6 @@
 #pragma once
 
-#include "../Resource/resource_manager.h"
-
+#include <Resource/resource_manager.h>
 #include <vector>
 
 namespace ZipLib {

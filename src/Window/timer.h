@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Utilities/utilities.h"
+#include <Utilities/utilities.h>
 
 namespace ZipLib {
     class Timer {

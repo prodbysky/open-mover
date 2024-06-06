@@ -4,8 +4,8 @@
 #include <glad/glad.h>
 #include FT_FREETYPE_H
 
-#include "../Resource/texture_data.h"
-#include "../Utilities/types.h"
+#include <Resource/texture_data.h>
+#include <Utilities/types.h>
 
 namespace ZipLib::Core {
     // All texture types

@@ -1,10 +1,9 @@
 #include "log.h"
 
 #define GLFW_INCLUDE_NONE
-#include "../Core/shader.h"
-#include "../Utilities/assert.h"
-#include "../Utilities/util.h"
-
+#include <Core/shader.h>
+#include <Utilities/assert.h>
+#include <Utilities/util.h>
 #include <glm/gtc/type_ptr.hpp>
 
 namespace ZipLib::Core {

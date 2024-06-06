@@ -1,7 +1,7 @@
 #include "input.h"
 
-#include "../Core/log.h"
-#include "../Utilities/assert.h"
+#include <Core/log.h>
+#include <Utilities/assert.h>
 
 namespace ZipLib::Core {
     Input::Input() {

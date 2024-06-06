@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../Core/shader.h"
-#include "../Core/texture.h"
-#include "../Core/vao.h"
-
+#include <Core/shader.h>
+#include <Core/texture.h>
+#include <Core/vao.h>
 #include <functional>
 #include <memory>
 #include <optional>

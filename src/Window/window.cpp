@@ -1,7 +1,9 @@
 #include "window.h"
 
-#include "../Core/ZipLib.h"
-#include "../Utilities/assert.h"
+#include <Core/ZipLib.h>
+#include <Utilities/assert.h>
+#include <glad/glad.h>
+#include <stb_image_write.h>
 
 namespace ZipLib {
     Window::Window(u16 width, u16 height, const char* title, bool vSync) :
@@ -38,9 +40,21 @@ namespace ZipLib {
         renderer = Renderer(width, height);
         Log::Info("Succesfully initialized renderer");
 
-        deltaTime = 0;
-        lastFrame = 0;
-        totalTime = 0;
+        deltaTime    = 0;
+        lastFrame    = 0;
+        totalTime    = 0;
+        this->width  = width;
+        this->height = height;
+    }
+
+    void Window::SaveScreenshot(const char* file) {
+        u8* pixels = new u8[3 * width * height];
+
+        glReadPixels(0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, pixels);
+
+        stbi_write_png(file, width, height, 3, pixels, 3);
+
+        delete[] pixels;
     }
 
     bool Window::ShouldClose() const { return glfwWindowShouldClose(window); }

@@ -1,7 +1,8 @@
 #pragma once
 
-#include "../Window/renderer.h"
 #include "rect.h"
+
+#include <Window/renderer.h>
 
 namespace ZipLib::Shapes {
     // Solid colored rectangle

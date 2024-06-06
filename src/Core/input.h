@@ -2,10 +2,10 @@
 
 #include <array>
 #include <glad/glad.h>
-#define GLFW_INCLUDE_NONE
-#include "../Utilities/types.h"
 
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <Utilities/types.h>
 #include <glm/glm.hpp>
 
 namespace ZipLib::Core {

@@ -1,6 +1,5 @@
-#include "../Core/vao.h"
-
-#include "../Utilities/assert.h"
+#include <Core/vao.h>
+#include <Utilities/assert.h>
 
 namespace ZipLib::Core {
     VAO::VAO() {

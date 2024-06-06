@@ -1,9 +1,8 @@
 #pragma once
 
-#include "../Core/ebo.h"
-#include "../Core/vbo.h"
-#include "../Utilities/types.h"
-
+#include <Core/ebo.h>
+#include <Core/vbo.h>
+#include <Utilities/types.h>
 #include <glad/glad.h>
 
 namespace ZipLib::Core {

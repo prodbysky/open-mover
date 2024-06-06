@@ -1,4 +1,4 @@
-#include "../Shapes/textured_rect.h"
+#include <Shapes/textured_rect.h>
 
 namespace ZipLib::Shapes {
     TexturedRect::TexturedRect(){};

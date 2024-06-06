@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../Utilities/types.h"
+#include <Utilities/types.h>
 
 namespace ZipLib::Core {
     // Manages index buffers

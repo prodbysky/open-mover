@@ -1,7 +1,5 @@
-#include "../Core/texture.h"
-
-#include "../Resource/texture_data.h"
-
+#include <Core/texture.h>
+#include <Resource/texture_data.h>
 #include <cstring>
 #include <glad/glad.h>
 #include <stb_image.h>

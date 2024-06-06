@@ -1,7 +1,6 @@
 #include "ebo.h"
 
-#include "../Utilities/assert.h"
-
+#include <Utilities/assert.h>
 #include <glad/glad.h>
 
 namespace ZipLib::Core {

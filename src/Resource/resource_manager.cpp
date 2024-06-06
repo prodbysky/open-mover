@@ -1,7 +1,7 @@
 #include "resource_manager.h"
 
-#include "../Utilities/assert.h"
-#include "stb_image.h"
+#include <Utilities/assert.h>
+#include <stb_image.h>
 
 namespace ZipLib::Core {
     ResourceManager::ResourceManager() {

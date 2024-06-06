@@ -2,8 +2,8 @@
   "dependencies": [
     "freetype",
     "glfw3",
+    "glm",
     "opengl",
-    "spdlog",
-    "glm"
+    "spdlog"
   ]
 }

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../Resource/resources.h"
-#include "../Window/renderer.h"
+#include <Resource/resources.h>
+#include <Window/renderer.h>
 
 namespace ZipLib::UI {
     class Text {

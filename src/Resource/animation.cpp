@@ -1,7 +1,7 @@
 #include "animation.h"
 
-#include "../Core/log.h"
-#include "../Utilities/assert.h"
+#include <Core/log.h>
+#include <Utilities/assert.h>
 
 namespace ZipLib {
     Animation::Animation(std::string sprite_base_name, u32 frame_count,
