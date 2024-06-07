@@ -15,8 +15,10 @@ namespace ZipLib {
     void Timer::Tick(f64 delta) {
         if (!stopped && duration > 0) {
             duration -= delta;
-            stopped   = true;
+            return;
         }
+        stopped  = true;
+        duration = 0;
     }
 
     bool Timer::Finished() { return duration <= 0; }
