@@ -61,6 +61,7 @@ add_example(aabb_collision)
 add_example(delayed_sound)
 add_example(fps_display)
 add_example(animation_example)
+add_example(snake)
 
 # Copy assets directory to the build directory
 add_custom_target(
