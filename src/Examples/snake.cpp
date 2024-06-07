@@ -1,4 +1,3 @@
-#include "Core/log.h"
 #include "glm/ext/vector_float2.hpp"
 
 #include <Core/ZipLib.h>
@@ -43,8 +42,8 @@ class Fruit : public Tile {
 public:
     Fruit() : Tile({5, 5}, {1, 0, 0, 1}) {}
     void Move() {
-        i32 x = rand() % (TileCount);
-        i32 y = rand() % (TileCount + 1);
+        i32 x = ZipLib::Random.Get(0, TileCount - 1);
+        i32 y = ZipLib::Random.Get(0, TileCount - 1);
         if (y == 0)
             y++;
         SetPos({x, y});
@@ -102,8 +101,6 @@ public:
     }
 
     void Update(Fruit& fruit) {
-        head.Update();
-
         if (body.size() != 0) {
             for (i64 i = body.size() - 1; i >= 0; i--) {
                 Tile& part = body[i];
@@ -131,6 +128,8 @@ public:
 
 public:
     Player head;
+
+private:
     std::vector<Tile> body;
 };
 
@@ -141,11 +140,9 @@ i32 main() {
     Snake snake;
     Fruit fruit;
 
-    // TODO: Utilities::RandomInt()
-    srand(time(NULL));
-
     timer.Start();
     while (!window.ShouldClose()) {
+        snake.head.Update();
 
         timer.Tick(window.GetDeltaTime());
         if (timer.Finished()) {

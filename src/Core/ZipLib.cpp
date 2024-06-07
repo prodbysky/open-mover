@@ -10,6 +10,7 @@ namespace ZipLib {
             Log::Info("Succesfully initialized ZipLib subsystem");
             initialized = true;
         }
+        ZipLib::Random.Init();
     }
 
 } // namespace ZipLib

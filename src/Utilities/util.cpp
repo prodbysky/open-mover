@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include <fstream>
+#include <random>
 #include <sstream>
 #include <string>
 
@@ -13,7 +14,8 @@ namespace ZipLib::Utilities {
         return buffer.str();
     }
 
-    f32 RandomFloat(f32 min, f32 max) {
-        return ((f32) rand() / (f32) RAND_MAX) * (max - min) + min;
+    void RNG::Init() {
+        std::random_device dev;
+        RNG::rng = std::mt19937(dev());
     }
 } // namespace ZipLib::Utilities
