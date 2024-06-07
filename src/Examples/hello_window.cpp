@@ -1,6 +1,6 @@
-#include "../Window/window.h"
+#include <Window/window.h>
 
-int main() {
+i32 main() {
     ZipLib::Window window(800, 800, "Hello world!");
 
     while (!window.ShouldClose()) {

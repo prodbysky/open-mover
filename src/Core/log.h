@@ -5,6 +5,9 @@
 #include <sstream>
 
 namespace ZipLib {
+    /*
+     * Logging system thats simply a wrapper around spdlog
+     */
     class Log {
     public:
         Log();
