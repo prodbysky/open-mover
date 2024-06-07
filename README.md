@@ -1,5 +1,7 @@
 # Open Mover 
-Game framework in C++ using OpenGL (GLAD GLFW GLM)
+OpenGL Game framework in C++
+Highly inspired by Raylib (raysan5 <3)
+As raysan5 said: "no fancy interface, no visual helpers, just coding in the most spartan-programmers way."
 
 ## Description
 This is a game 2D game library that I make in interest
