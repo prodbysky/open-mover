@@ -5,7 +5,9 @@
 using namespace ZipLib;
 
 i32 main() {
-    Window window(800, 800, "Point vs rect", true);
+    ZipLib::Window window(
+        {.width = 800, .height = 800, .title = "Hello world!", .v_sync = true});
+
     Shapes::ColoredRect rect(glm::vec2(200, 600), 200, 200,
                              glm::vec4(1, 0, 0, 1));
 
