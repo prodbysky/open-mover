@@ -8,9 +8,20 @@
 namespace ZipLib {
     class Window {
     public:
+        struct WindowConfig {
+            u16 width;
+            u16 height;
+            const char* title;
+            bool v_sync;
+        };
+
+    public:
         // Initializes GLFW context, all subsystems, setups debugging messages,
         // sets projection matrices for all of the shaders
-        Window(u16 width, u16 height, const char* title, bool vSync = true);
+        Window(WindowConfig config = {.width  = 1280,
+                                      .height = 720,
+                                      .title  = "ZipLib!",
+                                      .v_sync = true});
         ~Window();
         // Swaps buffers, and polls for inputs
         void Swap();

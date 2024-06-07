@@ -3,7 +3,8 @@
 #include "../Window/window.h"
 
 i32 main() {
-    ZipLib::Window window(800, 800, "Hello world!");
+    ZipLib::Window window(
+        {.width = 800, .height = 800, .title = "Hello world!", .v_sync = true});
     ZipLib::Timer timer(1.0f);
     timer.Start();
 

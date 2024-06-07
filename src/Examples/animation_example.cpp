@@ -2,7 +2,8 @@
 #include "../Window/window.h"
 
 i32 main() {
-    ZipLib::Window window(800, 800, "Hello world!");
+    ZipLib::Window window(
+        {.width = 800, .height = 800, .title = "Hello world!", .v_sync = true});
     ZipLib::Shapes::AnimatedRect rect(glm::vec2(200, 400), 64, 64,
                                       "assets/sprites/orange", 2, GL_NEAREST,
                                       GL_RGBA8);

@@ -6,11 +6,10 @@
 #include <stb_image_write.h>
 
 namespace ZipLib {
-    Window::Window(u16 width, u16 height, const char* title, bool vSync) :
-        window(nullptr) {
-        Assert(width != 0, "Window width can't be 0");
-        Assert(height != 0, "Window height can't be 0");
-        Assert(title != nullptr, "Window title can't be null");
+    Window::Window(WindowConfig config) : window(nullptr) {
+        Assert(config.width != 0, "Window width can't be 0");
+        Assert(config.height != 0, "Window height can't be 0");
+        Assert(config.title != nullptr, "Window title can't be null");
 
         // Initialize glfw, glad, and load opengl (4.6 core)
         glfwInit();
@@ -19,13 +18,14 @@ namespace ZipLib {
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
         // Setup window
-        window = glfwCreateWindow(width, height, title, nullptr, nullptr);
+        window = glfwCreateWindow(config.width, config.height, config.title,
+                                  nullptr, nullptr);
         Assert(window != nullptr, "Failed to create GLFW window!");
         glfwMakeContextCurrent(window);
-        glfwSwapInterval(vSync);
+        glfwSwapInterval(config.v_sync);
 
         gladLoadGL();
-        glViewport(0, 0, width, height);
+        glViewport(0, 0, config.width, config.height);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -37,14 +37,14 @@ namespace ZipLib {
 
         Log::Info("Succesfully initialized OpenGL, and created a window");
 
-        renderer = Renderer(width, height);
+        renderer = Renderer(config.width, config.height);
         Log::Info("Succesfully initialized renderer");
 
         deltaTime    = 0;
         lastFrame    = 0;
         totalTime    = 0;
-        this->width  = width;
-        this->height = height;
+        this->width  = config.width;
+        this->height = config.height;
     }
 
     void Window::SaveScreenshot(const char* file) {

@@ -134,7 +134,10 @@ private:
 };
 
 i32 main() {
-    ZipLib::Window window(WindowWidth, WindowHeight, "Hello!");
+    ZipLib::Window window({.width  = WindowWidth,
+                           .height = WindowHeight,
+                           .title  = "Hello!",
+                           .v_sync = true});
     ZipLib::Timer timer(1);
 
     Snake snake;

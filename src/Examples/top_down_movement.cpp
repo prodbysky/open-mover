@@ -9,7 +9,9 @@ using namespace ZipLib;
 void OrangeUpdate(Shapes::TexturedRect& orange, const Window& window);
 
 i32 main() {
-    Window window(800, 800, "Top-Down Movement", false);
+    ZipLib::Window window(
+        {.width = 800, .height = 800, .title = "Hello world!", .v_sync = true});
+
     Core::TextureData orange_texture =
         ResourceManager.LoadTexture("assets/sprites/orange.png");
 
