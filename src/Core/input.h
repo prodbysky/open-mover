@@ -11,7 +11,7 @@
 
 namespace ZipLib::Core {
     struct InputRule {
-        std::vector<GLenum> keys;
+        std::vector<i32> keys;
 
         template <class... Args> InputRule(Args... keys) {
             this->keys = {keys...};
