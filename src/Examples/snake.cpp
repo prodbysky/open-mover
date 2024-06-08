@@ -10,7 +10,7 @@
 
 constexpr i32 WindowWidth  = 800;
 constexpr i32 WindowHeight = 800;
-constexpr f32 TileSize     = 80;
+constexpr f32 TileSize     = 100;
 constexpr i32 TileCount    = WindowWidth / TileSize;
 
 class Tile {
@@ -52,7 +52,7 @@ public:
 
 class Player : public Tile {
 public:
-    Player() : Tile({0, 0}, {0, 0, 1, 1}) {}
+    Player() : Tile({0, 0}, {0, 1, 0, 1}) {}
     void Update() {
         if (ZipLib::Input.KeyDown(GLFW_KEY_A) && velocity.x != 1) {
             velocity.x = -1;
@@ -121,7 +121,7 @@ public:
         if (head.Collision(fruit)) {
             glm::vec2 next_pos = fruit.rect.pos / TileSize;
             next_pos.y--;
-            body.push_back(Tile(next_pos, {0.5, 0, 0, 1}));
+            body.push_back(Tile(next_pos, {0, 0.5, 0, 1}));
             fruit.Move();
         }
     }
@@ -150,10 +150,10 @@ i32 main() {
         timer.Tick(window.GetDeltaTime());
         if (timer.Finished()) {
             snake.Update(fruit);
-            timer.Extend(0.1);
+            timer.Extend(0.2);
             timer.Start();
         }
-        window.renderer.Clear(0, 0, 0, 0);
+        window.renderer.Clear(18, 18, 18, 255);
         snake.Draw(window.renderer);
         fruit.Draw(window.renderer);
         window.Swap();
