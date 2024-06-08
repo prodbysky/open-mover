@@ -55,10 +55,14 @@ public:
 class Player : public Tile {
 public:
     Player() : Tile({0, 0}, {0, 1, 0, 1}) {
-        left  = ZipLib::Core::InputRule(GLFW_KEY_A, GLFW_KEY_LEFT);
-        right = ZipLib::Core::InputRule(GLFW_KEY_D, GLFW_KEY_RIGHT);
-        up    = ZipLib::Core::InputRule(GLFW_KEY_W, GLFW_KEY_UP);
-        down  = ZipLib::Core::InputRule(GLFW_KEY_S, GLFW_KEY_DOWN);
+        left  = ZipLib::Core::InputRule(ZipLib::Core::Key::A,
+                                        ZipLib::Core::Key::Left);
+        right = ZipLib::Core::InputRule(ZipLib::Core::Key::D,
+                                        ZipLib::Core::Key::Right);
+        up    = ZipLib::Core::InputRule(ZipLib::Core::Key::W,
+                                        ZipLib::Core::Key::Up);
+        down  = ZipLib::Core::InputRule(ZipLib::Core::Key::S,
+                                        ZipLib::Core::Key::Down);
     }
     void Update() {
         if (ZipLib::Input.InputRuleDown(left) && velocity.x != 1) {

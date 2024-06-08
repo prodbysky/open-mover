@@ -1,6 +1,7 @@
 #include "../Core/ZipLib.h"
 #include "../Shapes/textured_rect.h"
 #include "../Window/window.h"
+#include "Core/input.h"
 
 #define SPEED 300
 
@@ -28,19 +29,19 @@ i32 main() {
 
 void OrangeUpdate(Shapes::TexturedRect& orange, const Window& window) {
     f32 speed = SPEED * window.GetDeltaTime();
-    if (Input.KeyDown(GLFW_KEY_A)) {
+    if (Input.KeyDown(Core::Key::A)) {
         orange.Move(glm::vec2(-speed, 0));
     }
 
-    if (Input.KeyDown(GLFW_KEY_D)) {
+    if (Input.KeyDown(Core::Key::D)) {
         orange.Move(glm::vec2(speed, 0));
     }
 
-    if (Input.KeyDown(GLFW_KEY_W)) {
+    if (Input.KeyDown(Core::Key::W)) {
         orange.Move(glm::vec2(0, speed));
     }
 
-    if (Input.KeyDown(GLFW_KEY_S)) {
+    if (Input.KeyDown(Core::Key::S)) {
         orange.Move(glm::vec2(0, -speed));
     }
 }

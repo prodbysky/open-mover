@@ -10,8 +10,25 @@
 #include <vector>
 
 namespace ZipLib::Core {
+    // TODO: Add all GLFW keycodes
+    enum class Key {
+        W,
+        A,
+        S,
+        D,
+        Up,
+        Down,
+        Left,
+        Right,
+
+        MouseLeft,
+        MouseRight,
+    };
+
+    i32 KeycodeToGLFW(Key key);
+
     struct InputRule {
-        std::vector<i32> keys;
+        std::vector<Key> keys;
 
         template <class... Args> InputRule(Args... keys) {
             this->keys = {keys...};
@@ -25,8 +42,8 @@ namespace ZipLib::Core {
         // Setups all callbacks for getting input
         void Setup(GLFWwindow* window);
         bool InputRuleDown(InputRule rule);
-        bool KeyDown(GLenum key) const;
-        bool MouseKeyDown(GLenum button) const;
+        bool KeyDown(Key key) const;
+        bool MouseKeyDown(Key button) const;
         glm::vec2 GetMousePos() const;
 
     private:
