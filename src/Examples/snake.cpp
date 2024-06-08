@@ -1,6 +1,8 @@
 #include "glm/ext/vector_float2.hpp"
 
 #include <Core/ZipLib.h>
+#include <Core/input.h>
+#include <GLFW/glfw3.h>
 #include <Shapes/colored_rect.h>
 #include <Window/renderer.h>
 #include <Window/timer.h>
@@ -52,24 +54,29 @@ public:
 
 class Player : public Tile {
 public:
-    Player() : Tile({0, 0}, {0, 1, 0, 1}) {}
+    Player() : Tile({0, 0}, {0, 1, 0, 1}) {
+        left  = ZipLib::Core::InputRule(GLFW_KEY_A, GLFW_KEY_LEFT);
+        right = ZipLib::Core::InputRule(GLFW_KEY_D, GLFW_KEY_RIGHT);
+        up    = ZipLib::Core::InputRule(GLFW_KEY_W, GLFW_KEY_UP);
+        down  = ZipLib::Core::InputRule(GLFW_KEY_S, GLFW_KEY_DOWN);
+    }
     void Update() {
-        if (ZipLib::Input.KeyDown(GLFW_KEY_A) && velocity.x != 1) {
+        if (ZipLib::Input.InputRuleDown(left) && velocity.x != 1) {
             velocity.x = -1;
             velocity.y = 0;
         }
 
-        if (ZipLib::Input.KeyDown(GLFW_KEY_D) && velocity.x != -1) {
+        if (ZipLib::Input.InputRuleDown(right) && velocity.x != -1) {
             velocity.x = 1;
             velocity.y = 0;
         }
 
-        if (ZipLib::Input.KeyDown(GLFW_KEY_W) && velocity.y != -1) {
+        if (ZipLib::Input.InputRuleDown(up) && velocity.y != -1) {
             velocity.y = 1;
             velocity.x = 0;
         }
 
-        if (ZipLib::Input.KeyDown(GLFW_KEY_S) && velocity.y != 1) {
+        if (ZipLib::Input.InputRuleDown(down) && velocity.y != 1) {
             velocity.y = -1;
             velocity.x = 0;
         }
@@ -79,6 +86,11 @@ public:
 
 private:
     glm::vec2 velocity = {0, 0};
+
+    ZipLib::Core::InputRule left;
+    ZipLib::Core::InputRule right;
+    ZipLib::Core::InputRule up;
+    ZipLib::Core::InputRule down;
 };
 
 class Snake {
