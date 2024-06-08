@@ -7,8 +7,16 @@
 #include <GLFW/glfw3.h>
 #include <Utilities/types.h>
 #include <glm/glm.hpp>
+#include <vector>
 
 namespace ZipLib::Core {
+    struct InputRule {
+        std::vector<GLenum> keys;
+
+        template <class... Args> InputRule(Args... keys) {
+            this->keys = {keys...};
+        }
+    };
 
     // Manages all input, provides api for getting mouse and keyboard state
     class Input {
@@ -16,6 +24,7 @@ namespace ZipLib::Core {
         Input();
         // Setups all callbacks for getting input
         void Setup(GLFWwindow* window);
+        bool InputRuleDown(InputRule rule);
         bool KeyDown(GLenum key) const;
         bool MouseKeyDown(GLenum button) const;
         glm::vec2 GetMousePos() const;

@@ -34,6 +34,15 @@ namespace ZipLib::Core {
 
     glm::vec2 Input::GetMousePos() const { return mouse_pos; }
 
+    bool Input::InputRuleDown(InputRule rule) {
+        for (const auto& key : rule.keys) {
+            if (KeyDown(key)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     void Input::InputCallback(GLFWwindow* window, i32 key, i32 scancode,
                               i32 action, i32 mods) {
 
