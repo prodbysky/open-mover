@@ -41,7 +41,7 @@ namespace ZipLib::Core {
         Input();
         // Setups all callbacks for getting input
         void Setup(GLFWwindow* window);
-        bool InputRuleDown(InputRule rule);
+        bool InputRuleDown(InputRule rule) const;
         bool KeyDown(Key key) const;
         bool MouseKeyDown(Key button) const;
         glm::vec2 GetMousePos() const;
